@@ -2,9 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'main-app',
-    template: '<h1>FIRE Tracker</h1><instructions></instructions>',
-    directives: [
-    ]
+    template: '<h1>FIRE Tracker</h1><instructions></instructions>'
 })
 export class AppComponent {
 }

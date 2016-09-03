@@ -12,7 +12,6 @@ import {Component} from '@angular/core'
               `
 })
 export class InstructionsComponent {
-    title = "Title of insctructions page";
+    title = "Title of instructions page";
     instructions = ["Step1", "Step2", "Step3"];
-
 }
