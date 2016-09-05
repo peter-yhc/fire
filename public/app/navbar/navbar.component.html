@@ -22,18 +22,24 @@
                 <li><a routerLink="/networth" routerLinkActive="active">Net Worth</a></li>
                 <li><a routerLink="/investments" routerLinkActive="active">Investments</a></li>
                 <li><a routerLink="/expenses" routerLinkActive="active">Expenses</a></li>
-                <li><a [routerLink]="['/months', 'January']" routerLinkActive="active">January</a></li>
-                <li><a [routerLink]="['/months', 'February']"  routerLinkActive="active">February</a></li>
-                <li><a [routerLink]="['/months', 'March']"  routerLinkActive="active">March</a></li>
-                <li><a [routerLink]="['/months', 'April']"  routerLinkActive="active">April</a></li>
-                <li><a [routerLink]="['/months', 'May']"  routerLinkActive="active">May</a></li>
-                <li><a [routerLink]="['/months', 'June']"  routerLinkActive="active">June</a></li>
-                <li><a [routerLink]="['/months', 'July']"  routerLinkActive="active">July</a></li>
-                <li><a [routerLink]="['/months', 'August']"  routerLinkActive="active">August</a></li>
-                <li><a [routerLink]="['/months', 'September']"  routerLinkActive="active">September</a></li>
-                <li><a [routerLink]="['/months', 'October']"  routerLinkActive="active">October</a></li>
-                <li><a [routerLink]="['/months', 'November']"  routerLinkActive="active">November</a></li>
-                <li><a [routerLink]="['/months', 'December']"  routerLinkActive="active">December</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Months<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/months', 'January']" routerLinkActive="active">January</a></li>
+                        <li><a [routerLink]="['/months', 'February']" routerLinkActive="active">February</a></li>
+                        <li><a [routerLink]="['/months', 'March']" routerLinkActive="active">March</a></li>
+                        <li><a [routerLink]="['/months', 'April']" routerLinkActive="active">April</a></li>
+                        <li><a [routerLink]="['/months', 'May']" routerLinkActive="active">May</a></li>
+                        <li><a [routerLink]="['/months', 'June']" routerLinkActive="active">June</a></li>
+                        <li><a [routerLink]="['/months', 'July']" routerLinkActive="active">July</a></li>
+                        <li><a [routerLink]="['/months', 'August']" routerLinkActive="active">August</a></li>
+                        <li><a [routerLink]="['/months', 'September']" routerLinkActive="active">September</a></li>
+                        <li><a [routerLink]="['/months', 'October']" routerLinkActive="active">October</a></li>
+                        <li><a [routerLink]="['/months', 'November']" routerLinkActive="active">November</a></li>
+                        <li><a [routerLink]="['/months', 'December']" routerLinkActive="active">December</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
