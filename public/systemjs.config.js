@@ -25,7 +25,8 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-            'Handsontable': 'npm:handsontable'
+            'ag-grid': 'node_modules/ag-grid',
+            'ag-grid-ng2': 'node_modules/ag-grid-ng2'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -40,8 +41,11 @@
                 main: './index.js',
                 defaultExtension: 'js'
             },
-            'handsontable': {
-                defaultExtension: 'js'
+            'ag-grid-ng2': {
+                defaultExtension: "js"
+            },
+            'ag-grid': {
+                defaultExtension: "js"
             }
         }
     });

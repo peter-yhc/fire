@@ -11,10 +11,11 @@ import {ExpensesComponent} from "./expenses/expenses.component";
 import {NetWorthComponent} from "./net-worth/net-worth.component";
 import {InvestmentsComponent} from "./investments/investments.component";
 import {MonthComponent} from "./month/month.component";
+import {AgGridModule} from "ag-grid-ng2/main";
 
 @NgModule({
     imports: [
-        BrowserModule, routing
+        BrowserModule, routing, AgGridModule
     ],
     declarations: [
         AppComponent,

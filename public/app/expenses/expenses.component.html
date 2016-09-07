@@ -1,2 +1,9 @@
-Expenses
-<div id="example"></div>
+<div class="col-md-offset-1 col-md-10">
+    <div class="row">
+        <ag-grid-ng2 #agGrid style="width: 100%; height: 475px;" class="ag-blue"
+                     [gridOptions]="gridOptions"
+                     [columnDefs]="columnDefs"
+                     [rowData]="rowData">
+        </ag-grid-ng2>
+    </div>
+</div>
