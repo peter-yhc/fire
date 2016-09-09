@@ -25,7 +25,11 @@
             </div>
         </div>
         <div id="expense-monthly" role="tabpanel" class="tab-pane" [hidden]="shouldShowMonthly()">
-            Monthly
+            <div class="col-md-12">
+                <div class="row table-container">
+                    <necessary-monthly-component></necessary-monthly-component>
+                </div>
+            </div>
         </div>
     </div>
 </div>
