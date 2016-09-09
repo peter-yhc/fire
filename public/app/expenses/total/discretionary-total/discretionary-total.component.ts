@@ -1,10 +1,10 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: 'discretionary-expenses-component',
-    templateUrl: 'app/expenses/discretionary-expenses/discretionary-expenses.component.html'
+    selector: 'discretionary-total-component',
+    templateUrl: 'app/expenses/total/discretionary-total/discretionary-total.component.html'
 })
-export class DiscretionaryExpensesComponent {
+export class DiscretionaryTotalComponent {
 
     private rowData;
     private columnDefs;

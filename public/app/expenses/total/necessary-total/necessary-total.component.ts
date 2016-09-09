@@ -1,10 +1,10 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: 'necessary-expenses-component',
-    templateUrl: 'app/expenses/necessary-expenses/necessary-expenses.component.html'
+    selector: 'necessary-total-component',
+    templateUrl: 'app/expenses/total/necessary-total/necessary-total.component.html'
 })
-export class NecessaryExpensesComponent {
+export class NecessaryTotalComponent {
 
     private rowData;
     private columnDefs;

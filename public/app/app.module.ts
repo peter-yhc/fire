@@ -10,9 +10,9 @@ import {ExpensesComponent} from "./expenses/expenses.component";
 import {NetWorthComponent} from "./net-worth/net-worth.component";
 import {InvestmentsComponent} from "./investments/investments.component";
 import {MonthComponent} from "./month/month.component";
-import {NecessaryExpensesComponent} from "./expenses/necessary-expenses/necessary-expenses.component";
-import {DiscretionaryExpensesComponent} from "./expenses/discretionary-expenses/discretionary-expenses.component";
-import {ExcessExpensesComponent} from "./expenses/excess-expenses/excess-expenses.component";
+import {NecessaryTotalComponent} from "./expenses/total/necessary-total/necessary-total.component";
+import {DiscretionaryTotalComponent} from "./expenses/total/discretionary-total/discretionary-total.component";
+import {ExcessTotalComponent} from "./expenses/total/excess-total/excess-total.component";
 import {DataTableModule, SharedModule} from "primeng/primeng";
 
 @NgModule({
@@ -26,9 +26,9 @@ import {DataTableModule, SharedModule} from "primeng/primeng";
         InstructionsComponent,
         DashboardComponent,
         ExpensesComponent,
-        NecessaryExpensesComponent,
-        DiscretionaryExpensesComponent,
-        ExcessExpensesComponent,
+        NecessaryTotalComponent,
+        DiscretionaryTotalComponent,
+        ExcessTotalComponent,
         NetWorthComponent,
         InvestmentsComponent,
         MonthComponent

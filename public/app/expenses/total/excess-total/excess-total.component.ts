@@ -1,10 +1,10 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: 'excess-expenses-component',
-    templateUrl: 'app/expenses/excess-expenses/excess-expenses.component.html'
+    selector: 'excess-total-component',
+    templateUrl: 'app/expenses/total/excess-total/excess-total.component.html'
 })
-export class ExcessExpensesComponent {
+export class ExcessTotalComponent {
 
     private rowData;
     private columnDefs;
