@@ -1,0 +1,7 @@
+.table-container {
+    margin: 1em 0;
+}
+
+:host /deep/ table {
+    font-size: 1em;
+}

@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 //var mysql = require('mysql');
 
 server.listen(3000, function () {
-    console.log("Server connected. Listening on port: 9999");
+    console.log("Server connected. Listening on port: 3000");
 });
 //session init
 app.use(session({

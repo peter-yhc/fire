@@ -1,9 +1,11 @@
-<div class="col-md-offset-1 col-md-10">
-    <div class="row">
-        <ag-grid-ng2 #agGrid style="width: 100%; height: 475px;" class="ag-blue"
-                     [gridOptions]="gridOptions"
-                     [columnDefs]="columnDefs"
-                     [rowData]="rowData">
-        </ag-grid-ng2>
+<div class="col-md-12">
+    <div class="row table-container">
+        <necessary-expenses-component></necessary-expenses-component>
+    </div>
+    <div class="row table-container">
+        <discretionary-expenses-component></discretionary-expenses-component>
+    </div>
+    <div class="row table-container">
+        <excess-expenses-component></excess-expenses-component>
     </div>
 </div>

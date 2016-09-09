@@ -25,28 +25,14 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-            'ag-grid': 'node_modules/ag-grid',
-            'ag-grid-ng2': 'node_modules/ag-grid-ng2'
+            'primeng': 'node_modules/primeng'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
-            app: {
-                main: './boot.js',
-                defaultExtension: 'js'
-            },
-            rxjs: {
-                defaultExtension: 'js'
-            },
-            'angular2-in-memory-web-api': {
-                main: './index.js',
-                defaultExtension: 'js'
-            },
-            'ag-grid-ng2': {
-                defaultExtension: "js"
-            },
-            'ag-grid': {
-                defaultExtension: "js"
-            }
+            app: {main: './boot.js', defaultExtension: 'js'},
+            rxjs: {defaultExtension: 'js'},
+            'angular2-in-memory-web-api': {main: './index.js', defaultExtension: 'js'},
+            'primeng': {defaultExtension: 'js'}
         }
     });
 })(this);
