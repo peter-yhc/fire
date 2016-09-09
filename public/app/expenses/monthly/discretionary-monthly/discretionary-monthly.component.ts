@@ -4,7 +4,8 @@ import moment = require("moment/moment");
 
 @Component({
     selector: 'discretionary-monthly-component',
-    templateUrl: 'app/expenses/expense-table.template.html'
+    templateUrl: 'app/expenses/expense-table.template.html',
+    styleUrls: ['app/expenses/monthly/monthly.component.css']
 })
 export class DiscretionaryMonthlyComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class DiscretionaryMonthlyComponent implements OnInit {
         this.dateGeneratorService = dateGeneratorService;
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this.columnDefs = [
             {headerName: 'Discretionary Expenses', field: 'discretionaryExpenses'}
         ];

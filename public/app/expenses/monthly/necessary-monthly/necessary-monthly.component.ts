@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from "@angular/core";
-import {DateGeneratorService} from "../../../service/date-generator.service";
-import moment = require("moment/moment");
+import {Component, Inject, OnInit} from '@angular/core';
+import {DateGeneratorService} from '../../../service/date-generator.service';
+import moment = require('moment/moment');
 
 @Component({
     selector: 'necessary-monthly-component',
-    templateUrl: 'app/expenses/expense-table.template.html'
+    templateUrl: 'app/expenses/expense-table.template.html',
+    styleUrls: ['app/expenses/monthly/monthly.component.css']
 })
 export class NecessaryMonthlyComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class NecessaryMonthlyComponent implements OnInit {
         this.dateGeneratorService = dateGeneratorService;
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this.columnDefs = [
             {headerName: 'Necessary Expenses', field: 'necessaryExpenses'}
         ];
@@ -26,11 +27,24 @@ export class NecessaryMonthlyComponent implements OnInit {
         }
 
         this.rowData = [
-            {necessaryExpenses: 'Totals',},
-            {necessaryExpenses: 'Income After Tax',},
-            {necessaryExpenses: 'Savings',},
-            {necessaryExpenses: 'Investment Income',},
-            {necessaryExpenses: 'Expenses',},
+            {necessaryExpenses: 'Mortgage / Rent'},
+            {necessaryExpenses: 'Home Insurance'},
+            {necessaryExpenses: 'Property Tax'},
+            {necessaryExpenses: 'Health Insurance'},
+            {necessaryExpenses: 'Medical'},
+            {necessaryExpenses: 'Food & Groceries'},
+            {necessaryExpenses: 'Electric'},
+            {necessaryExpenses: 'Natural Gas'},
+            {necessaryExpenses: 'Cable & Internet'},
+            {necessaryExpenses: 'Mobile Phones'},
+            {necessaryExpenses: 'Public Transport'},
+            {necessaryExpenses: 'Car Insurance'},
+            {necessaryExpenses: 'Car Maintenance'},
+            {necessaryExpenses: 'Petrol'},
+            {necessaryExpenses: 'Home Repairs'},
+            {necessaryExpenses: 'Pets'},
+            {necessaryExpenses: 'Furniture'},
+            {necessaryExpenses: 'Misc'}
         ];
 
     }

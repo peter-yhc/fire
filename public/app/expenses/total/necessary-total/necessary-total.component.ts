@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'necessary-total-component',
-    templateUrl: 'app/expenses/expense-table.template.html'
+    templateUrl: 'app/expenses/expense-table.template.html',
+    styleUrls: ['app/expenses/monthly/monthly.component.css']
 })
 export class NecessaryTotalComponent {
 
@@ -11,14 +12,14 @@ export class NecessaryTotalComponent {
 
     constructor() {
         this.columnDefs = [
-            {headerName: "Necessary Expenses", field: "necessaryExpenses"},
-            {headerName: "Costs", field: "costs"},
-            {headerName: "Budget", field: "budget"},
-            {headerName: "Daily", field: "daily"},
-            {headerName: "Monthly", field: "monthly"},
-            {headerName: "Annually", field: "annually"},
-            {headerName: "Savings", field: "savings"},
-            {headerName: "FI", field: "fi"}
+            {headerName: 'Necessary Expenses', field: 'necessaryExpenses'},
+            {headerName: 'Costs', field: 'costs'},
+            {headerName: 'Budget', field: 'budget'},
+            {headerName: 'Daily', field: 'daily'},
+            {headerName: 'Monthly', field: 'monthly'},
+            {headerName: 'Annually', field: 'annually'},
+            {headerName: 'Savings', field: 'savings'},
+            {headerName: 'FI', field: 'fi'}
         ];
 
         this.rowData = [

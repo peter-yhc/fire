@@ -18,6 +18,7 @@ import {NecessaryMonthlyComponent} from "./expenses/monthly/necessary-monthly/ne
 import {DateGeneratorService} from "./service/date-generator.service";
 import {DiscretionaryMonthlyComponent} from "./expenses/monthly/discretionary-monthly/discretionary-monthly.component";
 import {ExcessMonthlyComponent} from "./expenses/monthly/excess-monthly/excess-monthly.component";
+import {TotalMonthlyComponent} from "./expenses/monthly/total-monthly/total-monthly.component";
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import {ExcessMonthlyComponent} from "./expenses/monthly/excess-monthly/excess-m
         NecessaryTotalComponent,
         DiscretionaryTotalComponent,
         ExcessTotalComponent,
+        TotalMonthlyComponent,
         NecessaryMonthlyComponent,
         DiscretionaryMonthlyComponent,
         ExcessMonthlyComponent,
