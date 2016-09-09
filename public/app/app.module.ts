@@ -16,6 +16,8 @@ import {ExcessTotalComponent} from "./expenses/total/excess-total/excess-total.c
 import {DataTableModule, SharedModule} from "primeng/primeng";
 import {NecessaryMonthlyComponent} from "./expenses/monthly/necessary-monthly/necessary-monthly.component";
 import {DateGeneratorService} from "./service/date-generator.service";
+import {DiscretionaryMonthlyComponent} from "./expenses/monthly/discretionary-monthly/discretionary-monthly.component";
+import {ExcessMonthlyComponent} from "./expenses/monthly/excess-monthly/excess-monthly.component";
 
 @NgModule({
     imports: [
@@ -32,6 +34,8 @@ import {DateGeneratorService} from "./service/date-generator.service";
         DiscretionaryTotalComponent,
         ExcessTotalComponent,
         NecessaryMonthlyComponent,
+        DiscretionaryMonthlyComponent,
+        ExcessMonthlyComponent,
         NetWorthComponent,
         InvestmentsComponent,
         MonthComponent

@@ -3,10 +3,10 @@ import {DateGeneratorService} from "../../../service/date-generator.service";
 import moment = require("moment/moment");
 
 @Component({
-    selector: 'necessary-monthly-component',
+    selector: 'excess-monthly-component',
     templateUrl: 'app/expenses/expense-table.template.html'
 })
-export class NecessaryMonthlyComponent implements OnInit {
+export class ExcessMonthlyComponent implements OnInit {
 
     private rowData;
     private columnDefs;
@@ -18,7 +18,7 @@ export class NecessaryMonthlyComponent implements OnInit {
 
     ngOnInit():void {
         this.columnDefs = [
-            {headerName: 'Necessary Expenses', field: 'necessaryExpenses'}
+            {headerName: 'Excess Expenses', field: 'excessExpenses'}
         ];
         let months = this.dateGeneratorService.getMonths();
         for (let index in months) {
@@ -26,11 +26,11 @@ export class NecessaryMonthlyComponent implements OnInit {
         }
 
         this.rowData = [
-            {necessaryExpenses: 'Totals',},
-            {necessaryExpenses: 'Income After Tax',},
-            {necessaryExpenses: 'Savings',},
-            {necessaryExpenses: 'Investment Income',},
-            {necessaryExpenses: 'Expenses',},
+            {excessExpenses: 'Gifts'},
+            {excessExpenses: 'Anniversaries'},
+            {excessExpenses: 'Holidays'},
+            {excessExpenses: 'Travel'},
+            {excessExpenses: 'Business expenses'},
         ];
 
     }

@@ -3,10 +3,10 @@ import {DateGeneratorService} from "../../../service/date-generator.service";
 import moment = require("moment/moment");
 
 @Component({
-    selector: 'necessary-monthly-component',
+    selector: 'discretionary-monthly-component',
     templateUrl: 'app/expenses/expense-table.template.html'
 })
-export class NecessaryMonthlyComponent implements OnInit {
+export class DiscretionaryMonthlyComponent implements OnInit {
 
     private rowData;
     private columnDefs;
@@ -18,7 +18,7 @@ export class NecessaryMonthlyComponent implements OnInit {
 
     ngOnInit():void {
         this.columnDefs = [
-            {headerName: 'Necessary Expenses', field: 'necessaryExpenses'}
+            {headerName: 'Discretionary Expenses', field: 'discretionaryExpenses'}
         ];
         let months = this.dateGeneratorService.getMonths();
         for (let index in months) {
@@ -26,11 +26,14 @@ export class NecessaryMonthlyComponent implements OnInit {
         }
 
         this.rowData = [
-            {necessaryExpenses: 'Totals',},
-            {necessaryExpenses: 'Income After Tax',},
-            {necessaryExpenses: 'Savings',},
-            {necessaryExpenses: 'Investment Income',},
-            {necessaryExpenses: 'Expenses',},
+            {discretionaryExpenses: 'Hobbies'},
+            {discretionaryExpenses: 'Gifts'},
+            {discretionaryExpenses: 'Eating Out'},
+            {discretionaryExpenses: 'Entertainment'},
+            {discretionaryExpenses: 'Electronics'},
+            {discretionaryExpenses: 'Personal'},
+            {discretionaryExpenses: 'Clothing'},
+            {discretionaryExpenses: 'Misc'}
         ];
 
     }

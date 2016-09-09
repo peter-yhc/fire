@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 
 @Component({
     selector: 'discretionary-total-component',
-    templateUrl: 'app/expenses/total/discretionary-total/discretionary-total.component.html'
+    templateUrl: 'app/expenses/expense-table.template.html'
 })
 export class DiscretionaryTotalComponent {
 
