@@ -1,11 +1,31 @@
-<div class="col-md-12">
-    <div class="row table-container">
-        <necessary-expenses-component></necessary-expenses-component>
-    </div>
-    <div class="row table-container">
-        <discretionary-expenses-component></discretionary-expenses-component>
-    </div>
-    <div class="row table-container">
-        <excess-expenses-component></excess-expenses-component>
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#expense-totals" aria-controls="expense-totals" role="tab" data-toggle="tab">Totals</a>
+        </li>
+        <li role="presentation">
+            <a href="#expense-monthly" aria-controls="expense-monthly" role="tab" data-toggle="tab">Monthly</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="expense-totals" role="tabpanel" class="tab-pane active" [hidden]="shouldShowTotals()">
+            <div class="col-md-12">
+                <div class="row table-container">
+                    <necessary-expenses-component></necessary-expenses-component>
+                </div>
+                <div class="row table-container">
+                    <discretionary-expenses-component></discretionary-expenses-component>
+                </div>
+                <div class="row table-container">
+                    <excess-expenses-component></excess-expenses-component>
+                </div>
+            </div>
+        </div>
+        <div id="expense-monthly" role="tabpanel" class="tab-pane" [hidden]="shouldShowMonthly()">
+            Monthly
+        </div>
     </div>
 </div>
