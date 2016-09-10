@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {DateGeneratorService} from '../../../service/date-generator.service';
+import {DateGeneratorService} from '../../service/date-generator.service';
 import moment = require('moment/moment');
 
 @Component({
-    selector: 'total-monthly-component',
+    selector: 'excess-monthly-component',
     templateUrl: 'app/expenses/expense-table.template.html',
     styleUrls: ['app/expenses/monthly/monthly.component.css']
 })
-export class TotalMonthlyComponent implements OnInit {
+export class ExcessMonthlyComponent implements OnInit {
 
     private rowData;
     private columnDefs;
@@ -19,7 +19,7 @@ export class TotalMonthlyComponent implements OnInit {
 
     ngOnInit(): void {
         this.columnDefs = [
-            {headerName: 'Total Expenses', field: 'totalExpenses'}
+            {headerName: 'Excess Expenses', field: 'excessExpenses'}
         ];
         let months = this.dateGeneratorService.getMonths();
         for (let index in months) {
@@ -27,11 +27,11 @@ export class TotalMonthlyComponent implements OnInit {
         }
 
         this.rowData = [
-            {totalExpenses: 'Totals'},
-            {totalExpenses: 'Income After Tax'},
-            {totalExpenses: 'Savings'},
-            {totalExpenses: 'Investment Income'},
-            {totalExpenses: 'Expenses'}
+            {excessExpenses: 'Gifts'},
+            {excessExpenses: 'Anniversaries'},
+            {excessExpenses: 'Holidays'},
+            {excessExpenses: 'Travel'},
+            {excessExpenses: 'Business expenses'}
         ];
 
     }

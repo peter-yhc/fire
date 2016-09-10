@@ -3,7 +3,7 @@ import {Component} from "@angular/core";
 @Component({
     selector: 'excess-total-component',
     templateUrl: 'app/expenses/expense-table.template.html',
-    styleUrls: ['app/expenses/monthly/monthly.component.css']
+    styleUrls: ['app/expenses/total/total.component.css']
 })
 export class ExcessTotalComponent {
 
