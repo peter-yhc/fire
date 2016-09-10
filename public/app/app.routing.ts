@@ -7,7 +7,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {NetWorthComponent} from "./net-worth/net-worth.component";
 import {InvestmentsComponent} from "./investments/investments.component";
-import {MonthComponent} from "./month/month.component";
+import {MonthComponent} from "./monthly-budgets/month.component";
 
 const appRoutes:Routes = [
     {

@@ -9,7 +9,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {NetWorthComponent} from "./net-worth/net-worth.component";
 import {InvestmentsComponent} from "./investments/investments.component";
-import {MonthComponent} from "./month/month.component";
+import {MonthComponent} from "./monthly-budgets/month.component";
 import {NecessaryTotalComponent} from "./expenses/total/necessary-total/necessary-total.component";
 import {DiscretionaryTotalComponent} from "./expenses/total/discretionary-total/discretionary-total.component";
 import {ExcessTotalComponent} from "./expenses/total/excess-total/excess-total.component";
@@ -19,6 +19,11 @@ import {DateGeneratorService} from "./service/date-generator.service";
 import {DiscretionaryMonthlyComponent} from "./expenses/monthly/discretionary-monthly/discretionary-monthly.component";
 import {ExcessMonthlyComponent} from "./expenses/monthly/excess-monthly/excess-monthly.component";
 import {TotalMonthlyComponent} from "./expenses/monthly/total-monthly/total-monthly.component";
+import {IncomeBudgetComponent} from "./monthly-budgets/incoming/income-budget.component";
+import {InvestmentBudgetComponent} from "./monthly-budgets/incoming/investment.component";
+import {NecessaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/necessary-expense-budget.component";
+import {DiscretionaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/discretionary-expense-budget.component";
+import {ExcessExpenseBudgetComponent} from "./monthly-budgets/outgoing/excess-expense-budget.component";
 
 @NgModule({
     imports: [
@@ -40,7 +45,12 @@ import {TotalMonthlyComponent} from "./expenses/monthly/total-monthly/total-mont
         ExcessMonthlyComponent,
         NetWorthComponent,
         InvestmentsComponent,
-        MonthComponent
+        MonthComponent,
+        IncomeBudgetComponent,
+        InvestmentBudgetComponent,
+        NecessaryExpenseBudgetComponent,
+        DiscretionaryExpenseBudgetComponent,
+        ExcessExpenseBudgetComponent
     ],
     providers: [
         appRoutingProviders,

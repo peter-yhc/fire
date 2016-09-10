@@ -40,7 +40,7 @@ export class NecessaryTotalComponent {
             {necessaryExpenses: 'Home Repairs', costs: 0, budget: 0, daily: 0, monthly: 0, annually: 0, savings: 0, fi: 0},
             {necessaryExpenses: 'Pets', costs: 0, budget: 0, daily: 0, monthly: 0, annually: 0, savings: 0, fi: 0},
             {necessaryExpenses: 'Furniture', costs: 0, budget: 0, daily: 0, monthly: 0, annually: 0, savings: 0, fi: 0},
-            {necessaryExpenses: 'Misc', costs: 0, budget: 0, daily: 0, monthly: 0, annually: 0, savings: 0, fi: 0},
+            {necessaryExpenses: 'Misc', costs: 0, budget: 0, daily: 0, monthly: 0, annually: 0, savings: 0, fi: 0}
         ];
     }
 }
