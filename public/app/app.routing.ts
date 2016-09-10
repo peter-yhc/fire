@@ -11,6 +11,11 @@ import {MonthComponent} from "./month/month.component";
 
 const appRoutes:Routes = [
     {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
         path: 'home', component: HomeComponent
     }, {
         path: 'instructions', component: InstructionsComponent
