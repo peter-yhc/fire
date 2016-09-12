@@ -20,7 +20,7 @@ import {DiscretionaryMonthlyComponent} from "./expenses/monthly/discretionary-mo
 import {ExcessMonthlyComponent} from "./expenses/monthly/excess-monthly.component";
 import {TotalMonthlyComponent} from "./expenses/monthly/total-monthly.component";
 import {IncomeBudgetComponent} from "./monthly-budgets/incoming/income-budget.component";
-import {InvestmentBudgetComponent} from "./monthly-budgets/incoming/investment.component";
+import {InvestmentBudgetComponent} from "./monthly-budgets/incoming/investment-budget.component";
 import {NecessaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/necessary-expense-budget.component";
 import {DiscretionaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/discretionary-expense-budget.component";
 import {ExcessExpenseBudgetComponent} from "./monthly-budgets/outgoing/excess-expense-budget.component";
