@@ -1,7 +1,23 @@
 :host /deep/ .expense-table {
-    margin: 1em 1em;
+    margin: 1em 0;
 }
 
 :host /deep/ .income-table {
-    margin: 1em 1em;
+    margin: 1em 0;
+}
+
+.expense-section-container {
+    margin-top: 1.5em;
+}
+
+#month-title {
+    text-transform: capitalize;
+}
+
+.table-title {
+    margin-left: 15px;
+}
+
+#month-expenditure {
+    margin-left: 1em;
 }

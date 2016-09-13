@@ -1,16 +1,20 @@
 <div class="row">
     <div class="col-md-5">
-        <span>{{ month }}</span>
-        <span>Monthly Savings Rate 65%</span>
-        <span>Monthly Expenses 9000</span>
+        <h2 id="month-title">{{ month }}</h2>
+        <span id="month-savings-rate">Monthly Savings Rate</span>
+        <span id="month-savings-rate-value"><strong>65%</strong></span>
+        <span id="month-expenditure">Monthly Expenses</span>
+        <span id="month-expenditure-value"><strong>$134.20</strong></span>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
+<div class="row expense-section-container">
+    <h4 class="table-title">Payroll</h4>
+    <div class="col-md-6">
         <payroll-component></payroll-component>
     </div>
 </div>
-<div class="row">
+<div class="row expense-section-container">
+    <h4 class="table-title">Income</h4>
     <div class="col-md-6">
         <income-budget-component></income-budget-component>
     </div>
@@ -19,7 +23,8 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row expense-section-container">
+    <h4 class="table-title">Expenses</h4>
     <div class="col-md-6">
         <necessary-expense-budget-component></necessary-expense-budget-component>
     </div>
