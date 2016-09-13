@@ -2,7 +2,8 @@ import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-    templateUrl: 'app/monthly-budgets/month.component.html'
+    templateUrl: 'app/monthly-budgets/month.component.html',
+    styleUrls: ['app/monthly-budgets/month.component.css']
 })
 export class MonthComponent {
 

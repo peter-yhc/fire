@@ -1,7 +1,5 @@
-<div class="col-md-3">
-    <div class="row">
-        <p-dataTable [value]="rowData">
-            <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
-        </p-dataTable>
-    </div>
+<div class="row income-table">
+    <p-dataTable [value]="rowData">
+        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
+    </p-dataTable>
 </div>

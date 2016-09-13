@@ -1,0 +1,7 @@
+:host /deep/ .expense-table {
+    margin: 1em 1em;
+}
+
+:host /deep/ .income-table {
+    margin: 1em 1em;
+}

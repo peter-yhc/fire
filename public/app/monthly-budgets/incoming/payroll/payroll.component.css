@@ -1,0 +1,4 @@
+:host /deep/ tr td:first-of-type,
+:host /deep/ tr th:first-of-type {
+    background: #afafaf;
+}
