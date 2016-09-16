@@ -26,10 +26,14 @@ import {DiscretionaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/di
 import {ExcessExpenseBudgetComponent} from "./monthly-budgets/outgoing/excess-expense-budget.component";
 import {PayrollComponent} from "./monthly-budgets/incoming/payroll/payroll.component";
 import {InvestmentAccountComponent} from "./investments/account/investment-account.component";
+import {ExpensesModule} from "./expenses/expenses.module";
+import {MonthModule} from "./monthly-budgets/month.module";
+import {InvestmentsModule} from "./investments/investments.module";
 
 @NgModule({
     imports: [
-        BrowserModule, routing, DataTableModule, SharedModule
+        BrowserModule, routing, DataTableModule, SharedModule,
+        ExpensesModule, MonthModule, InvestmentsModule
     ],
     declarations: [
         AppComponent,
@@ -37,24 +41,7 @@ import {InvestmentAccountComponent} from "./investments/account/investment-accou
         HomeComponent,
         InstructionsComponent,
         DashboardComponent,
-        ExpensesComponent,
-        NecessaryTotalComponent,
-        DiscretionaryTotalComponent,
-        ExcessTotalComponent,
-        TotalMonthlyComponent,
-        NecessaryMonthlyComponent,
-        DiscretionaryMonthlyComponent,
-        ExcessMonthlyComponent,
-        NetWorthComponent,
-        InvestmentsComponent,
-        InvestmentAccountComponent,
-        MonthComponent,
-        IncomeBudgetComponent,
-        InvestmentBudgetComponent,
-        NecessaryExpenseBudgetComponent,
-        DiscretionaryExpenseBudgetComponent,
-        ExcessExpenseBudgetComponent,
-        PayrollComponent
+        NetWorthComponent
     ],
     providers: [
         appRoutingProviders,
