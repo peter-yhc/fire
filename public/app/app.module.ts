@@ -25,6 +25,7 @@ import {NecessaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/necess
 import {DiscretionaryExpenseBudgetComponent} from "./monthly-budgets/outgoing/discretionary-expense-budget.component";
 import {ExcessExpenseBudgetComponent} from "./monthly-budgets/outgoing/excess-expense-budget.component";
 import {PayrollComponent} from "./monthly-budgets/incoming/payroll/payroll.component";
+import {InvestmentAccountComponent} from "./investments/account/investment-account.component";
 
 @NgModule({
     imports: [
@@ -46,6 +47,7 @@ import {PayrollComponent} from "./monthly-budgets/incoming/payroll/payroll.compo
         ExcessMonthlyComponent,
         NetWorthComponent,
         InvestmentsComponent,
+        InvestmentAccountComponent,
         MonthComponent,
         IncomeBudgetComponent,
         InvestmentBudgetComponent,
