@@ -1,14 +1,16 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 
 @Component({
     selector: "investment-account-component",
-    templateUrl: "app/investments/account/investment-account.component.html"    
+    templateUrl: "app/investments/account/investment-account.component.html"
 })
 export class InvestmentAccountComponent implements OnInit {
+    @Input() account;
+
     private rowData;
     private columnDefs;
 
-    ngOnInit(): void {
+    ngOnInit():void {
 
         this.columnDefs = [
             {headerName: "Category", field: "category"},
@@ -23,8 +25,6 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Fee (in Dollars)", field: "feeDollars"}
         ];
 
-        this.rowData = [
-        ];
-
+        this.rowData = [];
     }
 }

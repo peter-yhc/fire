@@ -1,3 +1,17 @@
-Investments
+<div class="row">
+    <h3>Investment Summary</h3>
+    <div class="col-md-4">
+        <investment-summary-component></investment-summary-component>
+    </div>
+</div>
 
-<investment-account-component></investment-account-component>
+<div id="stock-details-container" class="row">
+    <h3>Stock Details</h3>
+    <div id="add-account-button-container" class="col-md-offset-10 col-md-2">
+        <button class="btn btn-default pull-right">Add new account</button>
+    </div>
+</div>
+
+<div class="row investment-account-container" *ngFor="let account of accounts">
+    <investment-account-component [account]="account"></investment-account-component>
+</div>

@@ -7,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MonthComponent {
 
-    month:string;
+    private month:string;
 
     constructor(private route:ActivatedRoute) {
     }
