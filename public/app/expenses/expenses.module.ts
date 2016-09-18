@@ -9,11 +9,11 @@ import {DiscretionaryMonthlyComponent} from "./monthly/discretionary-monthly.com
 import {ExcessMonthlyComponent} from "./monthly/excess-monthly.component";
 import {DataTableModule} from "primeng/components/datatable/datatable";
 import {SharedModule} from "primeng/components/common/shared";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
-        BrowserModule, DataTableModule, SharedModule
+        CommonModule, DataTableModule, SharedModule
     ],
     declarations: [
         ExpensesComponent,

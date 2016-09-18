@@ -1,5 +1,4 @@
 import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
 import {DataTableModule} from "primeng/components/datatable/datatable";
 import {SharedModule} from "primeng/components/common/shared";
 import {MonthComponent} from "./month.component";
@@ -9,10 +8,11 @@ import {NecessaryExpenseBudgetComponent} from "./outgoing/necessary-expense-budg
 import {DiscretionaryExpenseBudgetComponent} from "./outgoing/discretionary-expense-budget.component";
 import {ExcessExpenseBudgetComponent} from "./outgoing/excess-expense-budget.component";
 import {PayrollComponent} from "./incoming/payroll/payroll.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
-        BrowserModule, DataTableModule, SharedModule
+        CommonModule, DataTableModule, SharedModule
     ],
     declarations: [
         MonthComponent,

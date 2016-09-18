@@ -1,6 +1,5 @@
-import {Routes, RouterModule}   from '@angular/router';
+import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
-
 import {InstructionsComponent} from "./instructions/instructions.component";
 import {HomeComponent} from "./home/home.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
