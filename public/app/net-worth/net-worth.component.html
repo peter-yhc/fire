@@ -1,1 +1,5 @@
-Net Worth
+<div class="row income-table">
+    <p-dataTable [value]="rowData">
+        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
+    </p-dataTable>
+</div>
