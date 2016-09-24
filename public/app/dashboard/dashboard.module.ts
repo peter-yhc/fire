@@ -1,8 +1,8 @@
 import {NgModule} from "@angular/core";
 import {DashboardComponent} from "./dashboard.component";
 import {ChartModule} from "primeng/components/chart/chart";
-import {CountdownComponent} from "./countdown/countdown.component";
-import {CashFlowComponent} from "./cash-flow/cash-flow.component";
+import {CountdownChartComponent} from "./countdown-chart/countdown-chart.component";
+import {CashflowChartComponent} from "./cashflow-chart/cashflow-chart.component";
 import {SavingStatisticsComponent} from "./statistics/saving-statistics.component";
 
 @NgModule({
@@ -11,8 +11,8 @@ import {SavingStatisticsComponent} from "./statistics/saving-statistics.componen
     ],
     declarations: [
         DashboardComponent,
-        CountdownComponent,
-        CashFlowComponent,
+        CountdownChartComponent,
+        CashflowChartComponent,
         SavingStatisticsComponent
     ]
 })

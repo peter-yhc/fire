@@ -1,10 +1,10 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: "cashflow-component",
-    templateUrl: "app/dashboard/cash-flow/cash-flow.component.html"
+    selector: "cashflow-chart-component",
+    templateUrl: "app/dashboard/cashflow-chart/cashflow-chart.component.html"
 })
-export class CashFlowComponent {
+export class CashflowChartComponent {
     data: any;
 
     constructor() {
