@@ -6,6 +6,7 @@ import {CashflowChartComponent} from "./cashflow-chart/cashflow-chart.component"
 import {NetWorthChartComponent} from "./net-worth-chart/net-worth-chart.component";
 import {SavingRateComponent} from "./saving-rate/saving-rate.component";
 import {SavingTotalComponent} from "./saving-total/saving-total.component";
+import {StockChartComponent} from "./stock-chart/stock-chart.component";
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {SavingTotalComponent} from "./saving-total/saving-total.component";
         CashflowChartComponent,
         SavingRateComponent,
         SavingTotalComponent,
-        NetWorthChartComponent
+        NetWorthChartComponent,
+        StockChartComponent
     ]
 })
 export class DashboardModule {

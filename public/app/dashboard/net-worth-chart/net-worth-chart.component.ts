@@ -5,7 +5,6 @@ declare var Chart:any;
 @Component({
     selector: "net-worth-chart-component",
     templateUrl: "app/dashboard/net-worth-chart/net-worth-chart.component.html",
-    styleUrls: ["app/dashboard/net-worth-chart/net-worth-chart.component.css"]
 })
 export class NetWorthChartComponent implements AfterViewInit {
 
@@ -17,7 +16,7 @@ export class NetWorthChartComponent implements AfterViewInit {
     }
 
     ngAfterViewInit():void {
-        var ctx = document.getElementById("net-worth-chart");
+        var ctx = this.el.getElementsByTagName("canvas");
         var config = {
             type: 'bar',
             data: {

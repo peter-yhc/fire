@@ -1,4 +1,4 @@
-import {Component, AfterViewInit} from "@angular/core";
+import {Component, AfterViewInit, ElementRef} from "@angular/core";
 
 declare var Chart:any;
 
@@ -7,13 +7,16 @@ declare var Chart:any;
     templateUrl: "app/dashboard/cashflow-chart/cashflow-chart.component.html"
 })
 export class CashflowChartComponent implements AfterViewInit{
-    private myChart;
 
-    constructor() {
+    private el;
+    private cashflowChart;
+
+    constructor(el: ElementRef) {
+        this.el = el.nativeElement;
     }
 
     ngAfterViewInit():void {
-        var ctx = document.getElementById("cashflow-chart");
+        var ctx = this.el.getElementsByTagName("canvas");
         var config = {
             type: 'bar',
             data: {
@@ -40,6 +43,6 @@ export class CashflowChartComponent implements AfterViewInit{
                 responsive: true
             },
         };
-        this.myChart = new Chart(ctx, config);
+        this.cashflowChart = new Chart(ctx, config);
     }
 }
