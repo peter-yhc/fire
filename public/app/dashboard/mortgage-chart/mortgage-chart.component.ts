@@ -3,13 +3,13 @@ import {Component, ElementRef, AfterViewInit} from "@angular/core";
 declare var Chart:any;
 
 @Component({
-    selector: "net-worth-chart-component",
-    templateUrl: "app/dashboard/net-worth-chart/net-worth-chart.component.html",
+    selector: "mortgage-chart-component",
+    templateUrl: "app/dashboard/mortgage-chart/mortgage-chart.component.html"
 })
-export class NetWorthChartComponent implements AfterViewInit {
+export class MortgageChartComponent implements AfterViewInit {
 
-    private myChart;
     private el;
+    private mortgageChart;
 
     constructor(el:ElementRef) {
         this.el = el.nativeElement;
@@ -24,8 +24,8 @@ export class NetWorthChartComponent implements AfterViewInit {
                 datasets: [
                     {
                         type: "bar",
-                        label: "Total Assets",
-                        data: [35, 40, 45, 50, 55, 60, 65],
+                        label: "Loan Balance",
+                        data: [150, 140, 130, 120, 110, 100],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -44,14 +44,14 @@ export class NetWorthChartComponent implements AfterViewInit {
                         ]
                     },
                     {
-                        type: "line",
-                        label: "Liquid Assets",
-                        data: [20, 24, 30, 32, 36, 44, 45]
+                        type: "bar",
+                        label: "Equity",
+                        data: [20, 24, 30, 32, 36, 44]
                     }
 
                 ]
             }
         };
-        this.myChart = new Chart(ctx, config);
+        this.mortgageChart = new Chart(ctx, config);
     }
 }
