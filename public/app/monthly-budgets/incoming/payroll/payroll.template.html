@@ -1,0 +1,14 @@
+<div class="row income-table">
+    <p-dataTable [value]="payrollData">
+        <p-column *ngFor="let columnDef of columnDefs; let i = index" [field]="columnDef.field" [header]="columnDef.headerName">
+            <template let-payroll="payrollData"> {{payroll[i][columnDef.field] | currency: 'USD': true : '3.2-2'}} </template>
+        </p-column>
+    </p-dataTable>
+</div>
+
+
+<!--<p-column field="unitPrice" [style]="{'width': '100px'}" [editable]="true">-->
+    <!--<template let-col let-currentInvoiceItem="rowData">-->
+        <!--{{currentInvoiceItem[col.field] | currency: 'USD': true : '1.2-2'}}-->
+    <!--</template>-->
+<!--</p-column>-->

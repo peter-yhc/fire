@@ -1,17 +1,19 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {PayrollService} from "./payroll.service";
+import {Payroll} from "./Payroll";
 
 @Component({
     selector: "payroll-component",
-    templateUrl: "app/monthly-budgets/incoming/budget.template.html",
+    templateUrl: "app/monthly-budgets/incoming/payroll/payroll.template.html",
     styleUrls: ["app/monthly-budgets/incoming/payroll/payroll.component.css"],
     providers: [
         PayrollService
     ]
 })
 export class PayrollComponent implements OnInit {
+    @Input() monthId: number;
 
-    private rowData;
+    private payrollData;
     private columnDefs;
     private payrollService;
 
@@ -22,18 +24,27 @@ export class PayrollComponent implements OnInit {
     ngOnInit(): void {
         this.columnDefs = [
             {headerName: "Paycheck", field: "rowHeader"},
-            {headerName: "Pay Period 1", field: "period1"},
-            {headerName: "Pay Period 2", field: "period2"},
-            {headerName: "Pay Period 3", field: "period3"},
-            {headerName: "Pay Period 4", field: "period4"}
+            {headerName: "Pay Period 1", field: "1"},
+            {headerName: "Pay Period 2", field: "2"},
+            {headerName: "Pay Period 3", field: "3"},
+            {headerName: "Pay Period 4", field: "4"}
         ];
 
-        this.rowData = [
-            {rowHeader: "Net Pay", period1: "1532", period2: "1532"},
-            {rowHeader: "Tax", period1: "250", period2: "250"},
-            {rowHeader: "Superannuation", period1: "150", period2: "150"}
+        this.payrollData = [
+            {rowHeader: "Total", "1": "250", "2": "250"},
+            {rowHeader: "Tax", "1": "250", "2": "250"},
+            {rowHeader: "Net", "1": "1532", "2": "1532"},
+            {rowHeader: "Superannuation", "1": "150", "2": "150"}
         ];
 
-        console.log(this.payrollService.getForMonth())
+        let payrollList = this.payrollService.get(2016, this.monthId);
+        payrollList.forEach((payroll : Payroll, index) => {
+            this.payrollData[0][index] = payroll.totalAmount;
+            this.payrollData[1][index] = payroll.taxedAmount;
+            this.payrollData[2][index] = payroll.netPayment;
+            this.payrollData[3][index] = payroll.retirementPlan;
+        });
+
+        console.log(this.payrollService.get(2016, this.monthId))
     }
 }
