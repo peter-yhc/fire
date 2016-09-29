@@ -1,4 +1,7 @@
 :host /deep/ tr td:first-of-type,
-:host /deep/ tr th:first-of-type {
-    background: #afafaf;
+:host /deep/ tr:not(:first-of-type) th:first-of-type {
+    background: #cfcfcf;
+}
+:host /deep/ tr td:not(:first-of-type) {
+    text-align: right;
 }
