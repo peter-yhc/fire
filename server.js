@@ -1,26 +1,16 @@
 var express = require('express');
 var app = express();
-var server = require('http').Server(app);
-var session = require('express-session');
-var bodyParser = require('body-parser');
+// var server = require('http').Server(app);
+// var session = require('express-session');
+// var bodyParser = require('body-parser');
 
-
-//var mysql = require('mysql');
-
-server.listen(3000, function () {
-    console.log("Server connected. Listening on port: 3000");
-});
-//session init
-app.use(session({
-    secret: 'can',
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+var port = 3000;
 
 app.use(express.static(__dirname + '/public'));
+app.listen(port, function () {
+    "use strict";
+    console.log("Express server started on port: " + port);
+});
 
 //Routes
 var Routes = require('./routes.js');

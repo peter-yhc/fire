@@ -1,13 +1,14 @@
 {
-    "name": "fire-starter",
-    "description": "",
-    "version": "1.0.0",
-    "dependencies": {
-        "body-parser": "^1.13.3",
-        "express": "^4.13.3",
-        "express-session": "^1.11.3"
-    },
-    "scripts": {
-        "start": "node server.js"
-    }
+  "name": "fire-starter",
+  "description": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "mongoose": "^4.6.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
 }
