@@ -9,12 +9,12 @@ export class PayrollService {
     }
 
     private stub(year: number, month: number) {
-        month = ('00' + month).substring((month + "").length);
+        var paddedMonth = ('00' + month).substring((month + "").length);
         return [
-            new Payroll('{"payPeriod": "' + year + '-' + month + '-01", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
-            new Payroll('{"payPeriod": "' + year + '-' + month + '-08", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
-            new Payroll('{"payPeriod": "' + year + '-' + month + '-15", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
-            new Payroll('{"payPeriod": "' + year + '-' + month + '-22", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}')
+            new Payroll('{"payPeriod": "' + year + '-' + paddedMonth + '-01", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
+            new Payroll('{"payPeriod": "' + year + '-' + paddedMonth + '-08", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
+            new Payroll('{"payPeriod": "' + year + '-' + paddedMonth + '-15", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}'),
+            new Payroll('{"payPeriod": "' + year + '-' + paddedMonth + '-22", "totalAmount": 2000, "taxedAmount": 300, "netPayment": 1700, "retirementPlan": 100}')
         ]
     }
 }

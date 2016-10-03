@@ -13,7 +13,7 @@ import {CommonModule} from "@angular/common";
     declarations: [
         InvestmentsComponent,
         InvestmentAccountComponent,
-        InvestmentSummaryComponent
+        InvestmentSummaryComponent,
     ]
 })
 export class InvestmentsModule {

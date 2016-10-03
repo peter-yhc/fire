@@ -3,13 +3,12 @@ import {InvestmentAccountComponent} from "./account/investment-account.component
 
 @Component({
     templateUrl: "app/investments/investments.component.html",
-    styleUrls: ["app/investments/investments.component.css"],
-    directives: [InvestmentAccountComponent]
+    styleUrls: ["app/investments/investments.component.css"]
 })
 export class InvestmentsComponent implements OnInit {
-    private accounts:Array;
+    private accounts: Array<String>;
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this.accounts = ["TFSA", "Canadian Holdings"];
     }
 

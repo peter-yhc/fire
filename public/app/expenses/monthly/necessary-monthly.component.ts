@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {DateGeneratorService} from '../../service/date-generator.service';
+import {DateGeneratorService} from '../../application/service/date-generator.service';
 import moment = require('moment/moment');
 
 @Component({
