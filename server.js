@@ -7,7 +7,7 @@ var app = express();
 var port = 3000;
 
 // Mongoose Configuration
-mongoose.connect('mongodb://raspberry/test');
+mongoose.connect('mongodb://localhost/test');
 
 // App Configuration =================
 app.use(express.static(__dirname + '/public'));              // set the static files location /public/img will be /img for users
