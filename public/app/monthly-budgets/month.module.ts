@@ -9,10 +9,11 @@ import {DiscretionaryExpenseBudgetComponent} from "./outgoing/discretionary-expe
 import {ExcessExpenseBudgetComponent} from "./outgoing/excess-expense-budget.component";
 import {PayrollComponent} from "./incoming/payroll/payroll.component";
 import {CommonModule} from "@angular/common";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
     imports: [
-        CommonModule, DataTableModule, SharedModule
+        CommonModule, DataTableModule, SharedModule, HttpModule
     ],
     declarations: [
         MonthComponent,
