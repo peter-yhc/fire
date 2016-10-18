@@ -11,23 +11,23 @@ import {Payroll} from "./Payroll";
     ]
 })
 export class PayrollComponent implements OnInit {
-    @Input() monthId:number;
+    @Input() monthId: number;
 
     private payrollData;
     private columnDefs;
     private payrollService;
 
-    constructor(payrollService:PayrollService) {
+    constructor(payrollService: PayrollService) {
         this.payrollService = payrollService;
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this.columnDefs = [
             {headerName: "Paycheck", field: "rowHeader"},
-            {headerName: "Pay Period 1", field: "1"},
-            {headerName: "Pay Period 2", field: "2"},
-            {headerName: "Pay Period 3", field: "3"},
-            {headerName: "Pay Period 4", field: "4"}
+            {headerName: "Pay Period 1", field: "0"},
+            {headerName: "Pay Period 2", field: "1"},
+            {headerName: "Pay Period 3", field: "2"},
+            {headerName: "Pay Period 4", field: "3"}
         ];
 
         this.payrollData = [
@@ -37,14 +37,14 @@ export class PayrollComponent implements OnInit {
             {rowHeader: "Retirement"}
         ];
 
-        let payrollList = this.payrollService.get(2016, this.monthId);
-        payrollList.forEach((payroll:Payroll, index) => {
-            this.payrollData[0][index] = payroll.totalAmount;
-            this.payrollData[1][index] = payroll.taxedAmount;
-            this.payrollData[2][index] = payroll.netPayment;
-            this.payrollData[3][index] = payroll.retirementPlan;
-        });
-
-        console.log(this.payrollService.get(2016, this.monthId))
+        this.payrollService.get(2016, this.monthId).subscribe(
+            payrolls => (payrolls.forEach((payroll: Payroll, index) => {
+                    this.payrollData[0][index] = payroll.totalAmount;
+                    this.payrollData[1][index] = payroll.taxedAmount;
+                    this.payrollData[2][index] = payroll.netPayment;
+                    this.payrollData[3][index] = payroll.retirementPlan;
+                })
+            )
+        );
     }
 }

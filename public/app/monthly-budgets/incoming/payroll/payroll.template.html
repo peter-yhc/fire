@@ -1,4 +1,5 @@
 <div class="row income-table">
+    <button (click)="refreshData()">Refresh</button>
     <p-dataTable [value]="payrollData"
                  [editable]="true">
         <p-column *ngFor="let columnDef of columnDefs; let i = index"
