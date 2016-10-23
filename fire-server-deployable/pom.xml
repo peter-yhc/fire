@@ -3,26 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.pyhc</groupId>
-    <artifactId>fire-server-deployable</artifactId>
-    <version>0.1.0</version>
-
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.1.RELEASE</version>
+        <groupId>org.pyhc</groupId>
+        <artifactId>fire</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
+    <artifactId>fire-server-deployable</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.pyhc</groupId>
             <artifactId>fire-server-core</artifactId>
-            <version>0.1.0</version>
-            <scope>runtime</scope>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -32,6 +25,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
 
         <!--Test Dependencies-->
@@ -50,19 +47,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-releases</id>
-            <name>Spring Releases</name>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-releases</id>
-            <name>Spring Releases</name>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
