@@ -1,7 +1,7 @@
 package org.pyhc.fire.payroll;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface PayrollRepository extends Repository<Payroll, Long> {
+public interface PayrollRepository extends MongoRepository<Payroll, String> {
 
 }

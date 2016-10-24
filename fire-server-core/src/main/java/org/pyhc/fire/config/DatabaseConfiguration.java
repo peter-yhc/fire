@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "org.pyhc.fire.repository")
+@EnableMongoRepositories(basePackages = "org.pyhc.fire")
 public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
     @Override
