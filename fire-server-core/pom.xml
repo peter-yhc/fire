@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.pyhc</groupId>
         <artifactId>fire</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
     </parent>
 
     <artifactId>fire-server-core</artifactId>
@@ -15,4 +15,33 @@
     <dependencies>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>ports-and-adapters-dependencies-check</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>org.pyhc:fire-server-adapter</exclude>
+                                        <exclude>com.tyro:fire-server-deployable</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
