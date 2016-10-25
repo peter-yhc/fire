@@ -17,7 +17,7 @@ public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
     @Override
     public Mongo mongo() throws Exception {
-        return new MongoClient("localhost", 27017);
+        return new MongoClient("raspberry", 27017);
     }
 
     @Override

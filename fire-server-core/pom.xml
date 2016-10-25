@@ -13,6 +13,13 @@
     <artifactId>fire-server-core</artifactId>
 
     <dependencies>
+        <!--Internal-->
+        <dependency>
+            <groupId>org.pyhc</groupId>
+            <artifactId>fire-server-port</artifactId>
+        </dependency>
+
+        <!--Third Party-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

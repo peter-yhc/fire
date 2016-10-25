@@ -15,4 +15,8 @@ public class PayrollService {
         return payrollRepository.findAll();
     }
 
+    public PayrollEntry save(PayrollEntry payrollEntry) {
+        payrollRepository.save(Payroll.fromEntry(payrollEntry));
+        return null;
+    }
 }
