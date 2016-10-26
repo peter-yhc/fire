@@ -1,33 +1,33 @@
 package org.pyhc.fire.payroll;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.pyhc.fire.config.MainConfiguration;
-import org.pyhc.fire.listeners.MongoExecutionListener;
+import org.pyhc.fire.ServiceTestBase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import java.math.BigDecimal;
+import java.util.List;
 
+import static java.math.BigDecimal.valueOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MainConfiguration.class)
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class, MongoExecutionListener.class})
-public class PayrollServiceTest {
+public class PayrollServiceTest extends ServiceTestBase {
 
     @Autowired
     private PayrollService payrollService;
 
     @Test
-    public void canSavePayrolls() throws Exception {
-        PayrollEntry payrollEntry = new PayrollEntry("", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ZERO);
+    public void canSaveAndRetrievePayrollEntries() throws Exception {
+        PayrollEntry payrollEntry = new PayrollEntry("2016-01-10", valueOf(1000), valueOf(100), valueOf(1900), valueOf(80));
         payrollService.save(payrollEntry);
 
-        assertThat(payrollService.findPayroll().size(), is(1));
+        List<PayrollEntry> payrolls = payrollService.findPayrolls();
+        assertThat(payrolls.size(), is(1));
+
+        PayrollEntry entryFromDB = payrolls.get(0);
+        assertThat(payrollEntry.getTotalAmount(), is(entryFromDB.getTotalAmount()));
+        assertThat(payrollEntry.getNetPayment(), is(entryFromDB.getNetPayment()));
+        assertThat(payrollEntry.getPayPeriod(), is(entryFromDB.getPayPeriod()));
+        assertThat(payrollEntry.getTaxedAmount(), is(entryFromDB.getTaxedAmount()));
+        assertThat(payrollEntry.getRetirementPlan(), is(entryFromDB.getRetirementPlan()));
     }
 }

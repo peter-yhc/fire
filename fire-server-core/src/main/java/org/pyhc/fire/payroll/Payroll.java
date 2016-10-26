@@ -16,15 +16,11 @@ public class Payroll {
     private Payroll() {
     }
 
-    private Payroll(PayrollEntry payrollEntry) {
-        this.payPeriod = payrollEntry.getPayPeriod();
-        this.totalAmount = payrollEntry.getTotalAmount();
-        this.taxedAmount = payrollEntry.getTaxedAmount();
-        this.netPayment = payrollEntry.getNetPayment();
-        this.retirementPlan = payrollEntry.getRetirementPlan();
-    }
-
-    public static Payroll fromEntry(PayrollEntry payrollEntry) {
-        return new Payroll(payrollEntry);
+    Payroll(String payPeriod, BigDecimal totalAmount, BigDecimal taxedAmount, BigDecimal netPayment, BigDecimal retirementPlan) {
+        this.payPeriod = payPeriod;
+        this.totalAmount = totalAmount;
+        this.taxedAmount = taxedAmount;
+        this.netPayment = netPayment;
+        this.retirementPlan = retirementPlan;
     }
 }
