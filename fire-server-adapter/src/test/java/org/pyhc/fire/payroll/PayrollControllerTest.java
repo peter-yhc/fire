@@ -15,7 +15,6 @@ import static java.math.BigDecimal.valueOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,13 +38,12 @@ public class PayrollControllerTest extends ControllerTestBase {
         PayrollEntry payrollEntry = new PayrollEntry("2015-01-01", valueOf(2000), valueOf(2001), valueOf(2002), valueOf(2003));
         when(payrollServicePort.findPayrolls()).thenReturn(Collections.singletonList(payrollEntry));
         mockMvc.perform(get("/payrolls"))
-                .andDo(print())
-                .andExpect(status().is(HttpStatus.OK.value()))
-                .andExpect(jsonPath("$[0].totalAmount", is(2000)))
-                .andExpect(jsonPath("$[0].taxedAmount", is(2001)))
-                .andExpect(jsonPath("$[0].netPayment", is(2002)))
-                .andExpect(jsonPath("$[0].retirementPlan", is(2003)))
-                .andExpect(jsonPath("$[0].payPeriod", is("2015-01-01")))
-                .andReturn();
+            .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(jsonPath("$[0].totalAmount", is(2000)))
+            .andExpect(jsonPath("$[0].taxedAmount", is(2001)))
+            .andExpect(jsonPath("$[0].netPayment", is(2002)))
+            .andExpect(jsonPath("$[0].retirementPlan", is(2003)))
+            .andExpect(jsonPath("$[0].payPeriod", is("2015-01-01")))
+            .andReturn();
     }
 }

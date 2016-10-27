@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value = "/payrolls")
+@RequestMapping(value = "/payrolls")
 public class PayrollController {
+
+    @Autowired
+    private Gson gson;
 
     @Autowired
     private PayrollServicePort payrollServicePort;
 
-    @RequestMapping(path = "/payrolls", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getPayrolls() {
-        Gson gson = new Gson();
         List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
         return ResponseEntity.ok().body(gson.toJson(payrolls));
     }
