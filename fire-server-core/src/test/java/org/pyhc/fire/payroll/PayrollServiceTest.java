@@ -13,14 +13,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PayrollServiceTest extends ServiceTestBase {
 
     @Autowired
-    private PayrollService payrollService;
+    private PayrollServicePort payrollServicePort;
 
     @Test
     public void canSaveAndRetrievePayrollEntries() throws Exception {
         PayrollEntry payrollEntry = new PayrollEntry("2016-01-10", valueOf(1000), valueOf(100), valueOf(1900), valueOf(80));
-        payrollService.save(payrollEntry);
+        payrollServicePort.addPayroll(payrollEntry);
 
-        List<PayrollEntry> payrolls = payrollService.findPayrolls();
+        List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
         assertThat(payrolls.size(), is(1));
 
         PayrollEntry entryFromDB = payrolls.get(0);

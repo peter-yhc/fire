@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PayrollService {
+public class PayrollService implements PayrollServicePort {
 
     @Autowired
     private PayrollRepository payrollRepository;
 
+    @Override
     public List<PayrollEntry> findPayrolls() {
         return payrollRepository.findAll()
                 .stream()
@@ -19,7 +20,8 @@ public class PayrollService {
                 .collect(Collectors.toList());
     }
 
-    public PayrollEntry save(PayrollEntry payrollEntry) {
+    @Override
+    public PayrollEntry addPayroll(PayrollEntry payrollEntry) {
         Payroll payroll = payrollRepository.save(fromEntry(payrollEntry));
         return toEntry(payroll);
     }
