@@ -2,6 +2,8 @@ package org.pyhc.fire.payroll;
 
 import org.junit.Test;
 import org.pyhc.fire.ServiceTestBase;
+import org.pyhc.fire.TestPayrollEntryBuilder;
+import org.pyhc.fire.service.DatabaseIdentityObfuscatorPort;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -14,9 +16,12 @@ public class PayrollServiceTest extends ServiceTestBase {
     @Autowired
     private PayrollServicePort payrollServicePort;
 
+    @Autowired
+    private DatabaseIdentityObfuscatorPort databaseIdentityObfuscatorPort;
+
     @Test
     public void canSaveAndRetrievePayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.random();
+        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
         payrollServicePort.addPayroll(payrollEntry);
 
         List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
@@ -33,9 +38,13 @@ public class PayrollServiceTest extends ServiceTestBase {
 
     @Test
     public void canObfuscateId() throws Exception {
-        payrollServicePort.addPayroll(TestPayrollEntryBuilder.random());
+        payrollServicePort.addPayroll(TestPayrollEntryBuilder.randomWithId());
 
         PayrollEntry payrollEntry = payrollServicePort.findPayrolls().get(0);
+        String originalId = payrollEntry.getId();
 
+        databaseIdentityObfuscatorPort.hideId(payrollEntry);
+
+        assertThat(payrollEntry.getId(), not(originalId));
     }
 }

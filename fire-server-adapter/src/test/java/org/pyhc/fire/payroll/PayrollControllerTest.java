@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.stubbing.Answer;
 import org.pyhc.fire.ControllerTestBase;
+import org.pyhc.fire.TestPayrollEntryBuilder;
 import org.pyhc.fire.service.DatabaseIdentityObfuscatorPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
-import static java.math.BigDecimal.valueOf;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
@@ -42,7 +42,7 @@ public class PayrollControllerTest extends ControllerTestBase {
 
     @Test
     public void canGetPayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = new PayrollEntry("objectId12adef98cbf","2015-01-01", valueOf(2000), valueOf(2001), valueOf(2002), valueOf(2003));
+        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
         List<PayrollEntry> payrollEntries = singletonList(payrollEntry);
         when(payrollServicePort.findPayrolls()).thenReturn(payrollEntries);
         doAnswer(hideIdMethodMock()).when(databaseIdentityObfuscatorPort).hideId(payrollEntries);
@@ -50,12 +50,12 @@ public class PayrollControllerTest extends ControllerTestBase {
         mockMvc.perform(get("/payrolls"))
             .andExpect(status().is(HttpStatus.OK.value()))
             .andExpect(jsonPath("$[0].id", not(nullValue())))
-            .andExpect(jsonPath("$[0].id", not("objectId12adef98cbf")))
-            .andExpect(jsonPath("$[0].totalAmount", is(2000)))
-            .andExpect(jsonPath("$[0].taxedAmount", is(2001)))
-            .andExpect(jsonPath("$[0].netPayment", is(2002)))
-            .andExpect(jsonPath("$[0].retirementPlan", is(2003)))
-            .andExpect(jsonPath("$[0].payPeriod", is("2015-01-01")))
+            .andExpect(jsonPath("$[0].id", not(payrollEntry.getId())))
+            .andExpect(jsonPath("$[0].totalAmount", is(payrollEntry.getTotalAmount())))
+            .andExpect(jsonPath("$[0].taxedAmount", is(payrollEntry.getTaxedAmount())))
+            .andExpect(jsonPath("$[0].netPayment", is(payrollEntry.getNetPayment())))
+            .andExpect(jsonPath("$[0].retirementPlan", is(payrollEntry.getRetirementPlan())))
+            .andExpect(jsonPath("$[0].payPeriod", is(payrollEntry.getPayPeriod())))
             .andReturn();
 
         verify(payrollServicePort, times(1)).findPayrolls();

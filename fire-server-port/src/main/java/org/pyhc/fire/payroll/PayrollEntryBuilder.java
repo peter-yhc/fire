@@ -41,6 +41,6 @@ public class PayrollEntryBuilder {
     }
 
     public PayrollEntry build() {
-        return new PayrollEntry(payPeriod, totalAmount, taxedAmount, netPayment, retirementPlan);
+        return new PayrollEntry(id, payPeriod, totalAmount, taxedAmount, netPayment, retirementPlan);
     }
 }

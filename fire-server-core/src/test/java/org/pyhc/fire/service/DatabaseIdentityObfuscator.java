@@ -14,7 +14,7 @@ public class DatabaseIdentityObfuscator implements DatabaseIdentityObfuscatorPor
 
     @Override
     public void hideId(Obfuscatable obfuscatable) {
-        String encodeHex = hashids.encode(obfuscatable.getId().hashCode());
+        String encodeHex = hashids.encodeHex(obfuscatable.getId());
         obfuscatable.setId(encodeHex);
     }
 
