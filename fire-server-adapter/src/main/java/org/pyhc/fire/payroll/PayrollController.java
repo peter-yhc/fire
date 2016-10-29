@@ -1,6 +1,7 @@
 package org.pyhc.fire.payroll;
 
 import com.google.gson.Gson;
+import org.pyhc.fire.service.DatabaseIdentityObfuscatorPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,15 @@ public class PayrollController {
     private Gson gson;
 
     @Autowired
+    private DatabaseIdentityObfuscatorPort databaseIdentityObfuscatorPort;
+
+    @Autowired
     private PayrollServicePort payrollServicePort;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getPayrolls() {
         List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
+        databaseIdentityObfuscatorPort.hideId(payrolls);
         return ResponseEntity.ok().body(gson.toJson(payrolls));
     }
 

@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static java.math.BigDecimal.valueOf;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PayrollServiceTest extends ServiceTestBase {
@@ -17,17 +16,26 @@ public class PayrollServiceTest extends ServiceTestBase {
 
     @Test
     public void canSaveAndRetrievePayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = new PayrollEntry("2016-01-10", valueOf(1000), valueOf(100), valueOf(1900), valueOf(80));
+        PayrollEntry payrollEntry = TestPayrollEntryBuilder.random();
         payrollServicePort.addPayroll(payrollEntry);
 
         List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
         assertThat(payrolls.size(), is(1));
 
         PayrollEntry entryFromDB = payrolls.get(0);
-        assertThat(payrollEntry.getTotalAmount(), is(entryFromDB.getTotalAmount()));
-        assertThat(payrollEntry.getNetPayment(), is(entryFromDB.getNetPayment()));
-        assertThat(payrollEntry.getPayPeriod(), is(entryFromDB.getPayPeriod()));
-        assertThat(payrollEntry.getTaxedAmount(), is(entryFromDB.getTaxedAmount()));
-        assertThat(payrollEntry.getRetirementPlan(), is(entryFromDB.getRetirementPlan()));
+        assertThat(entryFromDB.getId(), not(nullValue()));
+        assertThat(entryFromDB.getTotalAmount(), is(payrollEntry.getTotalAmount()));
+        assertThat(entryFromDB.getNetPayment(), is(payrollEntry.getNetPayment()));
+        assertThat(entryFromDB.getPayPeriod(), is(payrollEntry.getPayPeriod()));
+        assertThat(entryFromDB.getTaxedAmount(), is(payrollEntry.getTaxedAmount()));
+        assertThat(entryFromDB.getRetirementPlan(), is(payrollEntry.getRetirementPlan()));
+    }
+
+    @Test
+    public void canObfuscateId() throws Exception {
+        payrollServicePort.addPayroll(TestPayrollEntryBuilder.random());
+
+        PayrollEntry payrollEntry = payrollServicePort.findPayrolls().get(0);
+
     }
 }

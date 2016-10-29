@@ -37,12 +37,13 @@ public class PayrollService implements PayrollServicePort {
     }
 
     private static PayrollEntry toEntry(Payroll payroll) {
-        return new PayrollEntry(
-                payroll.getPayPeriod(),
-                payroll.getTotalAmount(),
-                payroll.getTaxedAmount(),
-                payroll.getNetPayment(),
-                payroll.getRetirementPlan()
-        );
+        return new PayrollEntryBuilder()
+                .withId(payroll.getId())
+                .withPayPeriod(payroll.getPayPeriod())
+                .withTotalAmount(payroll.getTotalAmount())
+                .withTaxedAmount(payroll.getTaxedAmount())
+                .withNetPayment(payroll.getNetPayment())
+                .withRetirementPlan(payroll.getRetirementPlan())
+                .build();
     }
 }

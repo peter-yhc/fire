@@ -1,5 +1,6 @@
 package org.pyhc.fire.payroll;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -7,6 +8,8 @@ import java.math.BigDecimal;
 @Getter
 public class Payroll {
 
+    @Getter(AccessLevel.NONE)
+    private String _id;
     private String payPeriod;
     private BigDecimal totalAmount;
     private BigDecimal taxedAmount;
@@ -22,5 +25,9 @@ public class Payroll {
         this.taxedAmount = taxedAmount;
         this.netPayment = netPayment;
         this.retirementPlan = retirementPlan;
+    }
+
+    public String getId() {
+        return _id;
     }
 }
