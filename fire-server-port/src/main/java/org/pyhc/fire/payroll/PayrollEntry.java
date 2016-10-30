@@ -15,17 +15,7 @@ public class PayrollEntry implements Obfuscatable {
     private BigDecimal netPayment;
     private BigDecimal retirementPlan;
 
-    public PayrollEntry(String payPeriod,
-                        BigDecimal totalAmount,
-                        BigDecimal taxedAmount,
-                        BigDecimal netPayment,
-                        BigDecimal retirementPlan) {
-        this.payPeriod = payPeriod;
-        this.totalAmount = totalAmount;
-        this.taxedAmount = taxedAmount;
-        this.netPayment = netPayment;
-        this.retirementPlan = retirementPlan;
-    }
+    public PayrollEntry() {}
 
     public PayrollEntry(String id,
                         String payPeriod,

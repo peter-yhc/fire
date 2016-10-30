@@ -1,5 +1,6 @@
 package org.pyhc.fire.payroll;
 
+import com.google.gson.Gson;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.pyhc.fire.TestPayrollEntryBuilder;
 import org.pyhc.fire.service.DatabaseIdentityObfuscatorPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -17,8 +19,10 @@ import java.util.List;
 
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,6 +30,9 @@ public class PayrollControllerTest extends ControllerTestBase {
 
     @Autowired
     private WebApplicationContext wac;
+
+    @Autowired
+    private Gson gson;
 
     @Autowired
     private PayrollServicePort payrollServicePort;
@@ -60,6 +67,21 @@ public class PayrollControllerTest extends ControllerTestBase {
 
         verify(payrollServicePort, times(1)).findPayrolls();
         verify(databaseIdentityObfuscatorPort, times(1)).hideId(payrollEntries);
+    }
+
+    @Test
+    public void canAddPayrolls() throws Exception {
+        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+        when(payrollServicePort.addPayroll(any(PayrollEntry.class))).thenReturn("aHR0cDovL3d3dy50aGVh");
+
+        mockMvc.perform(post("/payrolls")
+            .content(gson.toJson(payrollEntry))
+            .contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().is(HttpStatus.ACCEPTED.value()))
+            .andExpect(jsonPath("$.id", is("aHR0cDovL3d3dy50aGVh")))
+            .andReturn();
+
+        verify(payrollServicePort, times(1)).addPayroll(any(PayrollEntry.class));
     }
 
     @SuppressWarnings("unchecked")

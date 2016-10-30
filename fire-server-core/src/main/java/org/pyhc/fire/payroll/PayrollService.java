@@ -21,9 +21,9 @@ public class PayrollService implements PayrollServicePort {
     }
 
     @Override
-    public PayrollEntry addPayroll(PayrollEntry payrollEntry) {
+    public String addPayroll(PayrollEntry payrollEntry) {
         Payroll payroll = payrollRepository.save(fromEntry(payrollEntry));
-        return toEntry(payroll);
+        return payroll.getId();
     }
 
     private static Payroll fromEntry(PayrollEntry payrollEntry) {
