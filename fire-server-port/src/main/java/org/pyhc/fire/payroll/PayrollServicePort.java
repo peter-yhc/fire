@@ -7,4 +7,6 @@ public interface PayrollServicePort {
     List<PayrollEntry> findPayrolls();
 
     String addPayroll(PayrollEntry payrollEntry);
+
+    PayrollEntry updatePayroll(PayrollEntry payrollEntry);
 }

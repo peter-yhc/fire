@@ -47,4 +47,22 @@ public class PayrollServiceTest extends ServiceTestBase {
 
         assertThat(payrollEntry.getId(), not(originalId));
     }
+
+    @Test
+    public void canUpdatePayroll() throws Exception {
+        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+        String payrollId = payrollServicePort.addPayroll(payrollEntry);
+
+        PayrollEntry updateRequest = TestPayrollEntryBuilder.randomWithId();
+        updateRequest.setId(payrollId);
+
+        PayrollEntry updateResponse = payrollServicePort.updatePayroll(updateRequest);
+        assertThat(updateResponse.getId(), is(payrollId));
+        assertThat(updateResponse.getNetPayment(), is(updateRequest.getNetPayment()));
+        assertThat(updateResponse.getPayPeriod(), is(updateRequest.getPayPeriod()));
+        assertThat(updateResponse.getRetirementPlan(), is(updateRequest.getRetirementPlan()));
+        assertThat(updateResponse.getTaxedAmount(), is(updateRequest.getTaxedAmount()));
+        assertThat(updateResponse.getTotalAmount(), is(updateRequest.getTotalAmount()));
+    }
+
 }

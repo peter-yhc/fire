@@ -26,8 +26,14 @@ public class PayrollService implements PayrollServicePort {
         return payroll.getId();
     }
 
+    @Override
+    public PayrollEntry updatePayroll(PayrollEntry payrollEntry) {
+        return toEntry(payrollRepository.save(fromEntry(payrollEntry)));
+    }
+
     private static Payroll fromEntry(PayrollEntry payrollEntry) {
         return new Payroll(
+                payrollEntry.getId(),
                 payrollEntry.getPayPeriod(),
                 payrollEntry.getTotalAmount(),
                 payrollEntry.getTaxedAmount(),

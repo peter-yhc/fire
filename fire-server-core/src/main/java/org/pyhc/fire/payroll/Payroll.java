@@ -19,7 +19,8 @@ public class Payroll {
     private Payroll() {
     }
 
-    Payroll(String payPeriod, BigDecimal totalAmount, BigDecimal taxedAmount, BigDecimal netPayment, BigDecimal retirementPlan) {
+    Payroll(String id, String payPeriod, BigDecimal totalAmount, BigDecimal taxedAmount, BigDecimal netPayment, BigDecimal retirementPlan) {
+        this._id = id;
         this.payPeriod = payPeriod;
         this.totalAmount = totalAmount;
         this.taxedAmount = taxedAmount;
