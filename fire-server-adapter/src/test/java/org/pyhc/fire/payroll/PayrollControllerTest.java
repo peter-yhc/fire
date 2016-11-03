@@ -62,7 +62,7 @@ public class PayrollControllerTest extends ControllerTestBase {
         when(payrollServicePort.findPayrolls()).thenReturn(payrollEntries);
         doAnswer(hideIdMethodMock()).when(databaseIdentityObfuscatorPort).hideId(payrollEntries);
 
-        mockMvc.perform(get("/payrolls"))
+        mockMvc.perform(get("/api/payrolls"))
             .andExpect(status().is(HttpStatus.OK.value()))
             .andExpect(jsonPath("$[0].id", not(nullValue())))
             .andExpect(jsonPath("$[0].id", not(payrollEntry.getId())))
@@ -82,7 +82,7 @@ public class PayrollControllerTest extends ControllerTestBase {
         PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
         when(payrollServicePort.addPayroll(payrollEntry)).thenReturn("aHR0cDovL3d3dy50aGVh");
 
-        mockMvc.perform(post("/payrolls")
+        mockMvc.perform(post("/api/payrolls")
             .content(gson.toJson(payrollEntry))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().is(HttpStatus.ACCEPTED.value()))
@@ -99,7 +99,7 @@ public class PayrollControllerTest extends ControllerTestBase {
         PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId(id);
         when(payrollServicePort.updatePayroll(id, payrollEntry)).thenReturn(payrollEntry);
 
-        mockMvc.perform(patch("/payrolls/" + id)
+        mockMvc.perform(patch("/api/payrolls/" + id)
                 .content(gson.toJson(payrollEntry))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().is(HttpStatus.OK.value()))
@@ -118,7 +118,7 @@ public class PayrollControllerTest extends ControllerTestBase {
     public void return404_ifUpdatingNonexistingPayroll() throws Exception {
         doThrow(PayrollNotFoundException.class).when(payrollServicePort).updatePayroll(anyString(), any(PayrollEntry.class));
 
-        mockMvc.perform(patch("/payrolls/" + randomAlphanumeric(10))
+        mockMvc.perform(patch("/api/payrolls/" + randomAlphanumeric(10))
                 .content(gson.toJson(TestPayrollEntryBuilder.random()))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
