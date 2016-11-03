@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.pyhc.fire.service.Obfuscatable;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Getter
 public class PayrollEntry implements Obfuscatable {
@@ -34,5 +35,23 @@ public class PayrollEntry implements Obfuscatable {
     @Override
     public void setId(String obfuscatedId) {
         this.id = obfuscatedId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PayrollEntry that = (PayrollEntry) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(payPeriod, that.payPeriod) &&
+                Objects.equals(totalAmount, that.totalAmount) &&
+                Objects.equals(taxedAmount, that.taxedAmount) &&
+                Objects.equals(netPayment, that.netPayment) &&
+                Objects.equals(retirementPlan, that.retirementPlan);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, payPeriod, totalAmount, taxedAmount, netPayment, retirementPlan);
     }
 }

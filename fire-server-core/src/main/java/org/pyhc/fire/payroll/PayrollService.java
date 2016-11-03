@@ -27,7 +27,11 @@ public class PayrollService implements PayrollServicePort {
     }
 
     @Override
-    public PayrollEntry updatePayroll(PayrollEntry payrollEntry) {
+    public PayrollEntry updatePayroll(String id, PayrollEntry payrollEntry) throws PayrollNotFoundException {
+        if (null == payrollRepository.findOne(id)) {
+            throw new PayrollNotFoundException();
+        }
+        payrollEntry.setId(id);
         return toEntry(payrollRepository.save(fromEntry(payrollEntry)));
     }
 

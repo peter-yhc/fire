@@ -9,8 +9,12 @@ import java.math.BigDecimal;
 public class TestPayrollEntryBuilder extends PayrollEntryBuilder {
 
     public static PayrollEntry randomWithId() {
+        return randomWithId(RandomStringUtils.randomAlphabetic(10));
+    }
+
+    public static PayrollEntry randomWithId(String id) {
         return new PayrollEntryBuilder()
-            .withId(RandomStringUtils.randomAlphabetic(10))
+            .withId(id)
             .withTotalAmount(new BigDecimal(Math.random()))
             .withNetPayment(new BigDecimal(Math.random()))
             .withRetirementPlan(new BigDecimal(Math.random()))

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -56,13 +57,18 @@ public class PayrollServiceTest extends ServiceTestBase {
         PayrollEntry updateRequest = TestPayrollEntryBuilder.randomWithId();
         updateRequest.setId(payrollId);
 
-        PayrollEntry updateResponse = payrollServicePort.updatePayroll(updateRequest);
+        PayrollEntry updateResponse = payrollServicePort.updatePayroll(payrollId, updateRequest);
         assertThat(updateResponse.getId(), is(payrollId));
         assertThat(updateResponse.getNetPayment(), is(updateRequest.getNetPayment()));
         assertThat(updateResponse.getPayPeriod(), is(updateRequest.getPayPeriod()));
         assertThat(updateResponse.getRetirementPlan(), is(updateRequest.getRetirementPlan()));
         assertThat(updateResponse.getTaxedAmount(), is(updateRequest.getTaxedAmount()));
         assertThat(updateResponse.getTotalAmount(), is(updateRequest.getTotalAmount()));
+    }
+
+    @Test(expected = PayrollNotFoundException.class)
+    public void throwsException_IfUpdatingPayrollThatDoesNotExist() throws Exception {
+        payrollServicePort.updatePayroll(randomAlphanumeric(10), TestPayrollEntryBuilder.randomWithId());
     }
 
 }

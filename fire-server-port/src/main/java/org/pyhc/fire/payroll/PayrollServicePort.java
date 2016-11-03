@@ -8,5 +8,5 @@ public interface PayrollServicePort {
 
     String addPayroll(PayrollEntry payrollEntry);
 
-    PayrollEntry updatePayroll(PayrollEntry payrollEntry);
+    PayrollEntry updatePayroll(String id, PayrollEntry payrollEntry) throws PayrollNotFoundException;
 }
