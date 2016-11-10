@@ -21,6 +21,9 @@ public class PayrollServiceTest extends ServiceTestBase {
     @Autowired
     private DatabaseIdentityObfuscatorPort databaseIdentityObfuscatorPort;
 
+    @Autowired
+    private PayrollRepository payrollRepository;
+
     @Test
     public void canSaveAndRetrievePayrollEntries() throws Exception {
         PayrollEntry payrollEntry = randomPayrollWithId().build();
@@ -89,6 +92,15 @@ public class PayrollServiceTest extends ServiceTestBase {
     @Test(expected = PayrollNotFoundException.class)
     public void throwsException_IfUpdatingPayrollThatDoesNotExist() throws Exception {
         payrollServicePort.updatePayroll(randomAlphanumeric(10), randomPayrollWithId().build());
+    }
+
+    @Test
+    public void canDeletePayroll() throws Exception {
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
+        String payrollId = payrollServicePort.addPayroll(payrollEntry);
+
+        payrollServicePort.delete(payrollId);
+        assertThat(payrollRepository.findAll().size(), is(0));
     }
 
 }

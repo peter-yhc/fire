@@ -24,6 +24,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.pyhc.fire.TestPayrollEntryBuilder.randomPayrollWithId;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -156,6 +157,18 @@ public class PayrollControllerTest extends ControllerTestBase {
             .content(gson.toJson(TestPayrollEntryBuilder.randomPayroll()))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
+    }
+
+    @Test
+    public void canDeletePayroll() throws Exception {
+        String id = RandomStringUtils.randomAlphabetic(5);
+        doNothing().when(payrollServicePort).delete(id);
+
+        mockMvc.perform(delete("/api/payrolls/" + id))
+            .andExpect(status().is(HttpStatus.OK.value()))
+            .andReturn();
+
+        verify(payrollServicePort, times(1)).delete(id);
     }
 
     @SuppressWarnings("unchecked")

@@ -44,6 +44,11 @@ public class PayrollService implements PayrollServicePort {
         return toEntry(payrollRepository.save(fromEntry(payrollEntry)));
     }
 
+    @Override
+    public void delete(String id) {
+        payrollRepository.delete(id);
+    }
+
     private static Payroll fromEntry(PayrollEntry payrollEntry) {
         return new Payroll(
                 payrollEntry.getId(),

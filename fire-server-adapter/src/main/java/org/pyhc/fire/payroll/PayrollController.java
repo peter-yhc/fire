@@ -50,4 +50,10 @@ public class PayrollController {
         }
         return ResponseEntity.ok().body(gson.toJson(payrollEntry));
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deletePayroll(@PathVariable("id") String id) {
+        payrollServicePort.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }

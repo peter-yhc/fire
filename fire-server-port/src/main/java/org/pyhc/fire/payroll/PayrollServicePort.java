@@ -11,4 +11,6 @@ public interface PayrollServicePort {
     String addPayroll(PayrollEntry payrollEntry);
 
     PayrollEntry updatePayroll(String id, PayrollEntry payrollEntry) throws PayrollNotFoundException;
+
+    void delete(String id);
 }
