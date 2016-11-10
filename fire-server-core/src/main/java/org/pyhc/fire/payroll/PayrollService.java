@@ -21,6 +21,15 @@ public class PayrollService implements PayrollServicePort {
     }
 
     @Override
+    public List<PayrollEntry> findPayrollsByPeriod(String period) throws PayrollNotFoundException {
+        List<Payroll> payrolls = payrollRepository.findByPayPeriod(period);
+        if (payrolls.isEmpty()) {
+            throw new PayrollNotFoundException("No Payrolls found for period: " + period);
+        }
+        return toEntry(payrolls);
+    }
+
+    @Override
     public String addPayroll(PayrollEntry payrollEntry) {
         Payroll payroll = payrollRepository.save(fromEntry(payrollEntry));
         return payroll.getId();
@@ -29,7 +38,7 @@ public class PayrollService implements PayrollServicePort {
     @Override
     public PayrollEntry updatePayroll(String id, PayrollEntry payrollEntry) throws PayrollNotFoundException {
         if (null == payrollRepository.findOne(id)) {
-            throw new PayrollNotFoundException();
+            throw new PayrollNotFoundException("No payroll found with id: " + id);
         }
         payrollEntry.setId(id);
         return toEntry(payrollRepository.save(fromEntry(payrollEntry)));
@@ -44,6 +53,10 @@ public class PayrollService implements PayrollServicePort {
                 payrollEntry.getNetPayment(),
                 payrollEntry.getRetirementPlan()
         );
+    }
+
+    private static List<PayrollEntry> toEntry(List<Payroll> payrolls) {
+        return payrolls.stream().map(PayrollService::toEntry).collect(Collectors.toList());
     }
 
     private static PayrollEntry toEntry(Payroll payroll) {

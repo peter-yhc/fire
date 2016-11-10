@@ -23,6 +23,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
+import static org.pyhc.fire.TestPayrollEntryBuilder.randomPayrollWithId;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -55,8 +56,8 @@ public class PayrollControllerTest extends ControllerTestBase {
     }
 
     @Test
-    public void canGetPayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+    public void canGetAllPayrollEntries() throws Exception {
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
 
         List<PayrollEntry> payrollEntries = singletonList(payrollEntry);
         when(payrollServicePort.findPayrolls()).thenReturn(payrollEntries);
@@ -78,8 +79,41 @@ public class PayrollControllerTest extends ControllerTestBase {
     }
 
     @Test
+    public void canGetPayrollsWithParameters() throws Exception {
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
+
+        List<PayrollEntry> payrollEntries = singletonList(payrollEntry);
+        when(payrollServicePort.findPayrollsByPeriod("2015-06")).thenReturn(payrollEntries);
+
+        mockMvc.perform(get("/api/payrolls?payPeriod=2015-06"))
+            .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(jsonPath("$[0].totalAmount", is(payrollEntry.getTotalAmount())))
+            .andExpect(jsonPath("$[0].taxedAmount", is(payrollEntry.getTaxedAmount())))
+            .andExpect(jsonPath("$[0].netPayment", is(payrollEntry.getNetPayment())))
+            .andExpect(jsonPath("$[0].retirementPlan", is(payrollEntry.getRetirementPlan())))
+            .andExpect(jsonPath("$[0].payPeriod", is(payrollEntry.getPayPeriod())));
+
+        verify(payrollServicePort, times(1)).findPayrollsByPeriod("2015-06");
+        verify(databaseIdentityObfuscatorPort, times(1)).hideId(payrollEntries);
+    }
+
+    @Test
+    public void returns404IfGettingPayrollsWithParamsFails() throws Exception {
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
+
+        List<PayrollEntry> payrollEntries = singletonList(payrollEntry);
+        doThrow(PayrollNotFoundException.class).when(payrollServicePort).findPayrollsByPeriod("obviouslyfakeperiod");
+
+        mockMvc.perform(get("/api/payrolls?payPeriod=obviouslyfakeperiod"))
+            .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
+
+        verify(payrollServicePort, times(1)).findPayrollsByPeriod("obviouslyfakeperiod");
+        verify(databaseIdentityObfuscatorPort, times(0)).hideId(payrollEntries);
+    }
+
+    @Test
     public void canAddPayrolls() throws Exception {
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
         when(payrollServicePort.addPayroll(payrollEntry)).thenReturn("aHR0cDovL3d3dy50aGVh");
 
         mockMvc.perform(post("/api/payrolls")
@@ -96,20 +130,20 @@ public class PayrollControllerTest extends ControllerTestBase {
     public void canUpdatePayroll() throws Exception {
         String id = RandomStringUtils.randomAlphabetic(5);
 
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId(id);
+        PayrollEntry payrollEntry = randomPayrollWithId(id).build();
         when(payrollServicePort.updatePayroll(id, payrollEntry)).thenReturn(payrollEntry);
 
         mockMvc.perform(patch("/api/payrolls/" + id)
-                .content(gson.toJson(payrollEntry))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().is(HttpStatus.OK.value()))
-                .andExpect(jsonPath("$.id", is(id)))
-                .andExpect(jsonPath("$.totalAmount", is(payrollEntry.getTotalAmount())))
-                .andExpect(jsonPath("$.taxedAmount", is(payrollEntry.getTaxedAmount())))
-                .andExpect(jsonPath("$.netPayment", is(payrollEntry.getNetPayment())))
-                .andExpect(jsonPath("$.retirementPlan", is(payrollEntry.getRetirementPlan())))
-                .andExpect(jsonPath("$.payPeriod", is(payrollEntry.getPayPeriod())))
-                .andReturn();
+            .content(gson.toJson(payrollEntry))
+            .contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(jsonPath("$.id", is(id)))
+            .andExpect(jsonPath("$.totalAmount", is(payrollEntry.getTotalAmount())))
+            .andExpect(jsonPath("$.taxedAmount", is(payrollEntry.getTaxedAmount())))
+            .andExpect(jsonPath("$.netPayment", is(payrollEntry.getNetPayment())))
+            .andExpect(jsonPath("$.retirementPlan", is(payrollEntry.getRetirementPlan())))
+            .andExpect(jsonPath("$.payPeriod", is(payrollEntry.getPayPeriod())))
+            .andReturn();
 
         verify(payrollServicePort, times(1)).updatePayroll(id, payrollEntry);
     }
@@ -119,9 +153,9 @@ public class PayrollControllerTest extends ControllerTestBase {
         doThrow(PayrollNotFoundException.class).when(payrollServicePort).updatePayroll(anyString(), any(PayrollEntry.class));
 
         mockMvc.perform(patch("/api/payrolls/" + randomAlphanumeric(10))
-                .content(gson.toJson(TestPayrollEntryBuilder.random()))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
+            .content(gson.toJson(TestPayrollEntryBuilder.randomPayroll()))
+            .contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
     }
 
     @SuppressWarnings("unchecked")

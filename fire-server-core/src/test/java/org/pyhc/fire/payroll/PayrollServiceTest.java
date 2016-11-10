@@ -2,15 +2,16 @@ package org.pyhc.fire.payroll;
 
 import org.junit.Test;
 import org.pyhc.fire.ServiceTestBase;
-import org.pyhc.fire.TestPayrollEntryBuilder;
 import org.pyhc.fire.service.DatabaseIdentityObfuscatorPort;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.apache.commons.lang3.RandomStringUtils.*;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.pyhc.fire.TestPayrollEntryBuilder.randomPayroll;
+import static org.pyhc.fire.TestPayrollEntryBuilder.randomPayrollWithId;
 
 public class PayrollServiceTest extends ServiceTestBase {
 
@@ -22,7 +23,7 @@ public class PayrollServiceTest extends ServiceTestBase {
 
     @Test
     public void canSaveAndRetrievePayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
         payrollServicePort.addPayroll(payrollEntry);
 
         List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
@@ -36,10 +37,29 @@ public class PayrollServiceTest extends ServiceTestBase {
         assertThat(entryFromDB.getTaxedAmount(), is(payrollEntry.getTaxedAmount()));
         assertThat(entryFromDB.getRetirementPlan(), is(payrollEntry.getRetirementPlan()));
     }
+    
+    @Test
+    public void canRetrievePayrollsByPeriod() throws Exception {
+        PayrollEntry payrollEntry = randomPayroll().withPayPeriod("2015-05").build();
+        payrollServicePort.addPayroll(payrollEntry);
+
+        List<PayrollEntry> dbPayrolls = payrollServicePort.findPayrollsByPeriod("2015-05");
+        assertThat(dbPayrolls, not(nullValue()));
+        assertThat(dbPayrolls.size(), is(1));
+        assertThat(dbPayrolls.get(0).getPayPeriod(), is("2015-05"));
+    }
+
+    @Test(expected = PayrollNotFoundException.class)
+    public void throwsExceptionIfSearchByPeriodFindsNothing() throws Exception {
+        PayrollEntry payrollEntry = randomPayroll().withPayPeriod("2015-05").build();
+        payrollServicePort.addPayroll(payrollEntry);
+
+        payrollServicePort.findPayrollsByPeriod("2015-06");
+    }
 
     @Test
     public void canObfuscateId() throws Exception {
-        payrollServicePort.addPayroll(TestPayrollEntryBuilder.randomWithId());
+        payrollServicePort.addPayroll(randomPayrollWithId().build());
 
         PayrollEntry payrollEntry = payrollServicePort.findPayrolls().get(0);
         String originalId = payrollEntry.getId();
@@ -51,10 +71,10 @@ public class PayrollServiceTest extends ServiceTestBase {
 
     @Test
     public void canUpdatePayroll() throws Exception {
-        PayrollEntry payrollEntry = TestPayrollEntryBuilder.randomWithId();
+        PayrollEntry payrollEntry = randomPayrollWithId().build();
         String payrollId = payrollServicePort.addPayroll(payrollEntry);
 
-        PayrollEntry updateRequest = TestPayrollEntryBuilder.randomWithId();
+        PayrollEntry updateRequest = randomPayrollWithId().build();
         updateRequest.setId(payrollId);
 
         PayrollEntry updateResponse = payrollServicePort.updatePayroll(payrollId, updateRequest);
@@ -68,7 +88,7 @@ public class PayrollServiceTest extends ServiceTestBase {
 
     @Test(expected = PayrollNotFoundException.class)
     public void throwsException_IfUpdatingPayrollThatDoesNotExist() throws Exception {
-        payrollServicePort.updatePayroll(randomAlphanumeric(10), TestPayrollEntryBuilder.randomWithId());
+        payrollServicePort.updatePayroll(randomAlphanumeric(10), randomPayrollWithId().build());
     }
 
 }

@@ -24,8 +24,13 @@ public class PayrollController {
     private PayrollServicePort payrollServicePort;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getPayrolls() {
-        List<PayrollEntry> payrolls = payrollServicePort.findPayrolls();
+    public ResponseEntity getPayrolls(@RequestParam(name = "payPeriod", required = false) String payPeriod) throws PayrollNotFoundException {
+        List<PayrollEntry> payrolls;
+        if (null != payPeriod) {
+            payrolls = payrollServicePort.findPayrollsByPeriod(payPeriod);
+        } else {
+            payrolls = payrollServicePort.findPayrolls();
+        }
         databaseIdentityObfuscatorPort.hideId(payrolls);
         return ResponseEntity.ok().body(gson.toJson(payrolls));
     }

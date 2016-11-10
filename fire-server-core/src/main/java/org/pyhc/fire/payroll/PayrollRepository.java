@@ -1,8 +1,10 @@
 package org.pyhc.fire.payroll;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.rest.core.annotation.RestResource;
+
+import java.util.List;
 
 interface PayrollRepository extends MongoRepository<Payroll, String> {
 
+    List<Payroll> findByPayPeriod(String payPeriod);
 }
