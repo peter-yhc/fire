@@ -2,7 +2,7 @@ node_modules
 .idea
 typings
 npm-debug.log
-public/**/*.js
-public/**/*.js.map
+fire-web/app/**/*.js
+fire-web/app/**/*.js.map
 target
 *.iml
