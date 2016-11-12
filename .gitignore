@@ -4,5 +4,6 @@ typings
 npm-debug.log
 fire-web/app/**/*.js
 fire-web/app/**/*.js.map
+boot.js*
 target
 *.iml
