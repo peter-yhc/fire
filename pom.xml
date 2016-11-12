@@ -20,6 +20,7 @@
         <module>fire-server-deployable</module>
         <module>fire-server-port</module>
         <module>fire-server-adapter</module>
+        <module>fire-web</module>
     </modules>
 
     <properties>
