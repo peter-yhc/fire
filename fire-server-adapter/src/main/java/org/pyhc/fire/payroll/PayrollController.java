@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+
 @RestController
 @RequestMapping(value = "/api/payrolls")
 public class PayrollController {
@@ -32,7 +34,7 @@ public class PayrollController {
             payrolls = payrollServicePort.findPayrolls();
         }
         databaseIdentityObfuscatorPort.hideId(payrolls);
-        return ResponseEntity.ok().body(gson.toJson(payrolls));
+        return ResponseEntity.ok().contentType(APPLICATION_JSON_UTF8).body(gson.toJson(payrolls));
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -48,7 +50,7 @@ public class PayrollController {
         } catch (PayrollNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(gson.toJson(payrollEntry));
+        return ResponseEntity.ok().contentType(APPLICATION_JSON_UTF8).body(gson.toJson(payrollEntry));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -24,10 +24,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.pyhc.fire.TestPayrollEntryBuilder.randomPayrollWithId;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class PayrollControllerTest extends ControllerTestBase {
 
@@ -58,7 +57,8 @@ public class PayrollControllerTest extends ControllerTestBase {
 
     @Test
     public void canGetAllPayrollEntries() throws Exception {
-        PayrollEntry payrollEntry = randomPayrollWithId().build();
+        String originalId = randomAlphanumeric(10);
+        PayrollEntry payrollEntry = randomPayrollWithId().withId(originalId).build();
 
         List<PayrollEntry> payrollEntries = singletonList(payrollEntry);
         when(payrollServicePort.findPayrolls()).thenReturn(payrollEntries);
@@ -66,8 +66,9 @@ public class PayrollControllerTest extends ControllerTestBase {
 
         mockMvc.perform(get("/api/payrolls"))
             .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$[0].id", not(nullValue())))
-            .andExpect(jsonPath("$[0].id", not(payrollEntry.getId())))
+            .andExpect(jsonPath("$[0].id", not(originalId)))
             .andExpect(jsonPath("$[0].totalAmount", is(payrollEntry.getTotalAmount())))
             .andExpect(jsonPath("$[0].taxedAmount", is(payrollEntry.getTaxedAmount())))
             .andExpect(jsonPath("$[0].netPayment", is(payrollEntry.getNetPayment())))
@@ -88,6 +89,7 @@ public class PayrollControllerTest extends ControllerTestBase {
 
         mockMvc.perform(get("/api/payrolls?payPeriod=2015-06"))
             .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$[0].totalAmount", is(payrollEntry.getTotalAmount())))
             .andExpect(jsonPath("$[0].taxedAmount", is(payrollEntry.getTaxedAmount())))
             .andExpect(jsonPath("$[0].netPayment", is(payrollEntry.getNetPayment())))
@@ -121,6 +123,7 @@ public class PayrollControllerTest extends ControllerTestBase {
             .content(gson.toJson(payrollEntry))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().is(HttpStatus.ACCEPTED.value()))
+            .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id", is("aHR0cDovL3d3dy50aGVh")))
             .andReturn();
 
@@ -138,6 +141,7 @@ public class PayrollControllerTest extends ControllerTestBase {
             .content(gson.toJson(payrollEntry))
             .contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().is(HttpStatus.OK.value()))
+            .andExpect(header().string(CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id", is(id)))
             .andExpect(jsonPath("$.totalAmount", is(payrollEntry.getTotalAmount())))
             .andExpect(jsonPath("$.taxedAmount", is(payrollEntry.getTaxedAmount())))
@@ -175,7 +179,7 @@ public class PayrollControllerTest extends ControllerTestBase {
     private Answer<List<PayrollEntry>> hideIdMethodMock() {
         return invocationOnMock -> {
             List<PayrollEntry> payrollEntryCall = (List<PayrollEntry>) invocationOnMock.getArguments()[0];
-            payrollEntryCall.get(0).setId(RandomStringUtils.random(10));
+            payrollEntryCall.get(0).setId(randomAlphanumeric(10));
             return payrollEntryCall;
         };
     }

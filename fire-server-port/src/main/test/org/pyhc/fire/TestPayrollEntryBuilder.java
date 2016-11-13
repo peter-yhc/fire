@@ -1,14 +1,15 @@
 package org.pyhc.fire;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.pyhc.fire.payroll.PayrollEntryBuilder;
 
 import java.math.BigDecimal;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+
 public class TestPayrollEntryBuilder extends PayrollEntryBuilder {
 
     public static PayrollEntryBuilder randomPayrollWithId() {
-        return randomPayrollWithId(RandomStringUtils.randomAlphabetic(10));
+        return randomPayrollWithId(randomAlphanumeric(10));
     }
 
     public static PayrollEntryBuilder randomPayrollWithId(String id) {
@@ -18,7 +19,7 @@ public class TestPayrollEntryBuilder extends PayrollEntryBuilder {
             .withNetPayment(new BigDecimal(Math.random()))
             .withRetirementPlan(new BigDecimal(Math.random()))
             .withTaxedAmount(new BigDecimal(Math.random()))
-            .withPayPeriod(RandomStringUtils.randomAlphanumeric(10));
+            .withPayPeriod(randomAlphanumeric(10));
     }
 
     public static PayrollEntryBuilder randomPayroll() {
@@ -27,7 +28,7 @@ public class TestPayrollEntryBuilder extends PayrollEntryBuilder {
             .withNetPayment(new BigDecimal(Math.random()))
             .withRetirementPlan(new BigDecimal(Math.random()))
             .withTaxedAmount(new BigDecimal(Math.random()))
-            .withPayPeriod(RandomStringUtils.randomAlphanumeric(10));
+            .withPayPeriod(randomAlphanumeric(10));
     }
 
 }
