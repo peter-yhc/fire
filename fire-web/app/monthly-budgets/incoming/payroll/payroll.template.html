@@ -1,5 +1,5 @@
 <div class="row income-table">
-    <button (click)="refreshData()">Refresh</button>
+    <button (click)="logData()">logData</button>
     <p-dataTable [value]="payrollData"
                  [editable]="true">
         <p-column *ngFor="let columnDef of columnDefs; let i = index"
@@ -7,7 +7,7 @@
                   [header]="columnDef.headerName"
                   [editable]="i > 0">   <!-- first column should not be editable -->
             <template *ngIf="i > 0" let-col let-payroll="rowData" pTemplate type="body">
-                <span>{{ payroll[col.field] | currency: 'USD': true : '3.2-2' }}</span>
+                <span>{{ payroll[col.field] | currency : 'USD' : true }}</span>
             </template>
         </p-column>
     </p-dataTable>
