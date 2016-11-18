@@ -1,5 +1,6 @@
-package org.pyhc.fire.payroll;
+package org.pyhc.fire.income.payroll;
 
+import org.pyhc.fire.income.MonthlyIncomeNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,8 +13,8 @@ public class ExceptionControllerAdvice {
 
     private static final Logger LOG = Logger.getLogger("ExceptionControllerAdvice");
 
-    @ExceptionHandler(PayrollNotFoundException.class)
-    public ResponseEntity<Void> handlePayrollNotFoundException(PayrollNotFoundException exception) {
+    @ExceptionHandler(MonthlyIncomeNotFoundException.class)
+    public ResponseEntity<Void> handleMonthlyIncomeNotFoundException(MonthlyIncomeNotFoundException exception) {
         LOG.log(Level.WARNING, exception.getMessage(), exception);
         return ResponseEntity.notFound().build();
     }

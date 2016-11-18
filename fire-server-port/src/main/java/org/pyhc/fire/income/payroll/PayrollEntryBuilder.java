@@ -1,17 +1,16 @@
-package org.pyhc.fire.payroll;
+package org.pyhc.fire.income.payroll;
 
 import java.math.BigDecimal;
 
 public class PayrollEntryBuilder {
-    private String payPeriod;
+    private String source;
     private BigDecimal totalAmount;
     private BigDecimal taxedAmount;
     private BigDecimal netPayment;
     private BigDecimal retirementPlan;
-    private String id;
 
-    public PayrollEntryBuilder withPayPeriod(String payPeriod) {
-        this.payPeriod = payPeriod;
+    public PayrollEntryBuilder withSource(String source) {
+        this.source = source;
         return this;
     }
 
@@ -35,12 +34,7 @@ public class PayrollEntryBuilder {
         return this;
     }
 
-    public PayrollEntryBuilder withId(String id) {
-        this.id = id;
-        return this;
-    }
-
     public PayrollEntry build() {
-        return new PayrollEntry(id, payPeriod, totalAmount, taxedAmount, netPayment, retirementPlan);
+        return new PayrollEntry(source, totalAmount, taxedAmount, netPayment, retirementPlan);
     }
 }

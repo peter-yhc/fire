@@ -19,7 +19,7 @@ public class DatabaseIdentityObfuscator implements DatabaseIdentityObfuscatorPor
     }
 
     @Override
-    public void hideId(Collection<? extends Obfuscatable> obfuscatables) {
+    public void hideIds(Collection<? extends Obfuscatable> obfuscatables) {
         obfuscatables.forEach(this::hideId);
     }
 

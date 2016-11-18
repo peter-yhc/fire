@@ -6,6 +6,6 @@ public interface DatabaseIdentityObfuscatorPort {
 
     void hideId(Obfuscatable obfuscatable);
 
-    void hideId(Collection<? extends Obfuscatable> obfuscatables);
+    void hideIds(Collection<? extends Obfuscatable> obfuscatables);
 
 }
