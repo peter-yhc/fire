@@ -1,0 +1,23 @@
+<div class="col-md-6">
+    <div class="row income-table">
+        <p-dataTable [value]="directIncomeRowData"
+                     [editable]="true">
+            <p-column *ngFor="let columnDef of directIncomeColumnDefs; let i = index"
+                      [field]="columnDef.field"
+                      [header]="columnDef.headerName"
+                      [editable]="i > 0">   <!-- first column should not be editable -->
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                    <span>{{ row[col.field] | currency : 'USD' : true }}</span>
+                </template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="row income-table">
+        <p-dataTable [value]="investmentsRowData">
+            <p-column *ngFor="let columnDef of investmentsColumnDefs" [field]="columnDef.field"
+                      [header]="columnDef.headerName"></p-column>
+        </p-dataTable>
+    </div>
+</div>

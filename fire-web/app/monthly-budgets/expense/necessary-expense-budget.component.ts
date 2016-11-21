@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 
 @Component({
     selector: 'necessary-expense-budget-component',
-    templateUrl: 'app/monthly-budgets/outgoing/expense.template.html'
+    templateUrl: 'app/monthly-budgets/expense/expense.template.html'
 })
 export class NecessaryExpenseBudgetComponent {
 
