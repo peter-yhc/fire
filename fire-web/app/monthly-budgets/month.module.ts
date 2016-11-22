@@ -4,7 +4,7 @@ import {SharedModule} from "primeng/components/common/shared";
 import {MonthComponent} from "./month.component";
 import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
-import {IncomeBudgetComponent} from "./income/income-budget.component";
+import {IncomeBudgetComponent} from "./income/income.component";
 import {NecessaryExpenseBudgetComponent} from "./expense/necessary-expense-budget.component";
 import {DiscretionaryExpenseBudgetComponent} from "./expense/discretionary-expense-budget.component";
 import {ExcessExpenseBudgetComponent} from "./expense/excess-expense-budget.component";

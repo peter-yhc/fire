@@ -23,10 +23,7 @@ export class IncomeBudgetComponent {
             {income: 'Payroll 1', monthlyBudgeted: '1500', monthlyActual: '1480', taxWithheld: '200'},
             {income: 'Payroll 2', monthlyBudgeted: '1500', monthlyActual: '1520', taxWithheld: '210'},
             {income: 'Gift Money', monthlyBudgeted: '0', monthlyActual: '200', taxWithheld: '0'},
-            {income: 'Side Hustle', monthlyBudgeted: '150', monthlyActual: '200', taxWithheld: '6'},
-            // {income: 'Other Income 3', monthlyBudgeted: '', monthlyActual: '', taxWithheld: ''},
-            // {income: 'Other Income 4', monthlyBudgeted: '', monthlyActual: '', taxWithheld: ''},
-            // {income: 'Total Income', monthlyBudgeted: '', monthlyActual: '', taxWithheld: ''},
+            {income: 'Side Hustle', monthlyBudgeted: '150', monthlyActual: '', taxWithheld: '6'},
         ];
 
         this.investmentsColumnDefs = [
