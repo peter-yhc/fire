@@ -1,0 +1,35 @@
+{
+    "period": "2016-03",
+    "incomes": [
+        {
+            "source": "Payroll 1",
+            "budget": 1500.00,
+            "actual": 1480.00,
+            "taxWithheld": 213.42
+        },
+        {
+            "source": "Payroll 2",
+            "budget": 1500.00,
+            "actual": 1520.00,
+            "taxWithheld": 251.89
+        },
+        {
+            "source": "Gift Money",
+            "actual": "60",
+            "taxWithheld": 0.00
+        },
+        {
+            "source": "Side Job",
+            "budget": 500,
+            "actual": 650,
+            "taxWithheld": 23.37
+        }
+    ],
+    "investments": [
+        {
+            "source": "VCN",
+            "actual": 2000.00,
+            "dividend": 12.22
+        }
+    ]
+}

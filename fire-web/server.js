@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');                     // pull information from HTML POST (express4)
 var proxy = require('express-http-proxy');
-
+var fs = require('fs');
 var app = express();
 var port = 3000;
 
@@ -11,11 +11,16 @@ app.use(bodyParser.urlencoded({'extended': 'true'}));        // parse applicatio
 app.use(bodyParser.json());                                  // parse application/json
 
 // Routing
-app.use('/api', proxy('localhost:8080/api', {
-    forwardPath: function(req, res) {
-        return require('url').parse(req.originalUrl).path;
-    }
-}));
+// app.use('/api', proxy('localhost:8080/api', {
+//     forwardPath: function(req, res) {
+//         return require('url').parse(req.originalUrl).path;
+//     }
+// }));
+
+app.get('/api/payrolls', function (req, res) {
+    var content = fs.readFileSync("stub/monthly-income.json");
+    res.json(JSON.parse(content));
+});
 
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html');

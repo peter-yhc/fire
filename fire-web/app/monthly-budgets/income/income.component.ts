@@ -1,8 +1,13 @@
 import {Component} from "@angular/core";
+import {IncomeService} from "./income.service";
+import {MonthlyIncome} from "./MonthlyIncome";
 
 @Component({
     selector: 'income-budget-component',
-    templateUrl: 'app/monthly-budgets/income/income.template.html'
+    templateUrl: 'app/monthly-budgets/income/income.template.html',
+    providers: [
+        IncomeService
+    ]
 })
 export class IncomeBudgetComponent {
 
@@ -11,7 +16,7 @@ export class IncomeBudgetComponent {
     private investmentsRowData;
     private investmentsColumnDefs;
 
-    constructor() {
+    constructor(incomeService:IncomeService) {
         this.directIncomeColumnDefs = [
             {headerName: 'Income', field: 'income'},
             {headerName: 'Monthly Budgeted', field: 'monthlyBudgeted'},
@@ -19,26 +24,43 @@ export class IncomeBudgetComponent {
             {headerName: 'Tax Withheld', field: 'taxWithheld'},
         ];
 
-        this.directIncomeRowData = [
-            {income: 'Payroll 1', monthlyBudgeted: '1500', monthlyActual: '1480', taxWithheld: '200'},
-            {income: 'Payroll 2', monthlyBudgeted: '1500', monthlyActual: '1520', taxWithheld: '210'},
-            {income: 'Gift Money', monthlyBudgeted: '0', monthlyActual: '200', taxWithheld: '0'},
-            {income: 'Side Hustle', monthlyBudgeted: '150', monthlyActual: '', taxWithheld: '6'},
-        ];
-
         this.investmentsColumnDefs = [
             {headerName: 'Investment', field: 'investment'},
             {headerName: 'Monthly Budgeted', field: 'monthlyBudgeted'},
             {headerName: 'Monthly Actual', field: 'monthlyActual'},
+            {headerName: 'Dividends', field: 'dividend'},
         ];
 
-        this.investmentsRowData = [
-            {investment: 'Superannuation', monthlyBudgeted: '', monthlyActual: ''},
-            {investment: 'Other Investment 1', monthlyBudgeted: '', monthlyActual: ''},
-            {investment: 'Other Investment 2', monthlyBudgeted: '', monthlyActual: ''},
-            {investment: 'Other Investment 3', monthlyBudgeted: '', monthlyActual: ''},
-            {investment: 'Other Investment 4', monthlyBudgeted: '', monthlyActual: ''},
-            {investment: 'Total Investments', monthlyBudgeted: '', monthlyActual: ''},
-        ];
+        this.directIncomeRowData = [];
+        this.investmentsRowData = [];
+
+        incomeService.get(2015, 12).subscribe(
+            (monthlyIncome: MonthlyIncome) => {
+                monthlyIncome.incomes.forEach(i => {
+                    this.directIncomeRowData.push(mapIncomeData(i))
+                });
+                monthlyIncome.investments.forEach(i => {
+                    this.investmentsRowData.push(mapInvestmentData(i))
+                });
+            }
+        );
+
+        var mapIncomeData = (income) => {
+            return {
+                income: income.source,
+                monthlyBudgeted: income.budget,
+                monthlyActual: income.actual,
+                taxWithheld: income.taxWithheld
+            }
+        };
+
+        var mapInvestmentData = (investment) => {
+            return {
+                investment: investment.source,
+                monthlyBudgeted: investment.budget,
+                monthlyActual: investment.actual,
+                dividend: investment.dividend
+            }
+        }
     }
 }
