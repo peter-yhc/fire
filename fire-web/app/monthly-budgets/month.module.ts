@@ -5,9 +5,7 @@ import {MonthComponent} from "./month.component";
 import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
 import {IncomeBudgetComponent} from "./income/income.component";
-import {NecessaryExpenseBudgetComponent} from "./expense/necessary-expense-budget.component";
-import {DiscretionaryExpenseBudgetComponent} from "./expense/discretionary-expense-budget.component";
-import {ExcessExpenseBudgetComponent} from "./expense/excess-expense-budget.component";
+import {ExpenseBudgetComponent} from "./expense/expense-budget.component";
 
 @NgModule({
     imports: [
@@ -16,9 +14,7 @@ import {ExcessExpenseBudgetComponent} from "./expense/excess-expense-budget.comp
     declarations: [
         MonthComponent,
         IncomeBudgetComponent,
-        NecessaryExpenseBudgetComponent,
-        DiscretionaryExpenseBudgetComponent,
-        ExcessExpenseBudgetComponent,
+        ExpenseBudgetComponent
     ]
 })
 export class MonthModule {

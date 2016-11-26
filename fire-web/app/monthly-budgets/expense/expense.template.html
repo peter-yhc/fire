@@ -1,5 +1,43 @@
-<div class="row expense-table">
-    <p-dataTable [value]="rowData">
-        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
-    </p-dataTable>
+<div class="col-md-6">
+    <div class="row income-table">
+        <p-dataTable [value]="necessaryExpensesRowData"
+                     [editable]="true">
+            <p-column *ngFor="let columnDef of necessaryExpensesColumnDefs; let i = index"
+                      [field]="columnDef.field"
+                      [header]="columnDef.headerName"
+                      [editable]="i > 0">   <!-- first column should not be editable -->
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                    <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
+                </template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="row income-table">
+        <p-dataTable [value]="discretionaryExpensesRowData"
+                     [editable]="true">
+            <p-column *ngFor="let columnDef of discretionaryExpensesColumnDefs; let i = index"
+                      [field]="columnDef.field"
+                      [header]="columnDef.headerName"
+                      [editable]="i > 0">   <!-- first column should not be editable -->
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                    <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
+                </template>
+            </p-column>
+        </p-dataTable>
+    </div>
+    <div class="row income-table">
+        <p-dataTable [value]="excessExpensesRowData"
+                     [editable]="true">
+            <p-column *ngFor="let columnDef of excessExpensesColumnDefs; let i = index"
+                      [field]="columnDef.field"
+                      [header]="columnDef.headerName"
+                      [editable]="i > 0">   <!-- first column should not be editable -->
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                    <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
+                </template>
+            </p-column>
+        </p-dataTable>
+    </div>
 </div>

@@ -7,23 +7,11 @@
         <span id="month-expenditure-value"><strong>$134.20</strong></span>
     </div>
 </div>
-<!--<div class="row expense-section-container">-->
-<!--<h4 class="table-title">Payroll</h4>-->
-<!--<div class="col-md-6">-->
-<!--<payroll-component [monthId]="monthId"></payroll-component>-->
-<!--</div>-->
-<!--</div>-->
 <div class="row expense-section-container">
     <h4 class="table-title">Income</h4>
     <income-budget-component></income-budget-component>
 </div>
 <div class="row expense-section-container">
     <h4 class="table-title">Expenses</h4>
-    <div class="col-md-6">
-        <necessary-expense-budget-component></necessary-expense-budget-component>
-    </div>
-    <div class="col-md-6">
-        <discretionary-expense-budget-component></discretionary-expense-budget-component>
-        <excess-expense-budget-component></excess-expense-budget-component>
-    </div>
+    <expense-budget-component></expense-budget-component>
 </div>
