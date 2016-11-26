@@ -7,12 +7,11 @@ import {Observable} from "rxjs/Rx";
 @Injectable()
 export class IncomeService {
 
-
     constructor(private http:Http) {
     }
 
     get(year:number, month:number):Observable<MonthlyIncome> {
-        return this.http.get("/api/payrolls?" + year + "-" + month).map(
+        return this.http.get("/api/budgets/incomes?" + year + "-" + month).map(
             response => {
                 return new MonthlyIncome(response.json())
             }

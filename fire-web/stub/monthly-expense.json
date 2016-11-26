@@ -1,0 +1,164 @@
+{
+    "period": "2016-03",
+    "necessaries": [
+        {
+            "target": "Mortgage / Rent",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Home Insurance",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Property Tax",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Health Insurance",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Medical",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Food & Groceries",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Electric",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Natural Gas",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Cable & Internet",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Mobile Phones",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Public Transport",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Car Insurance",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Car Maintenance",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Petrol",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Home Repairs",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Pets",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Furniture",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Misc",
+            "budget": 2300,
+            "actual": 2000
+        }
+    ],
+    "discretionaries": [
+        {
+            "target": "Hobbies",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Gifts",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Eating",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Entertainment",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Electronics",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Personal",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Clothing",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Misc",
+            "budget": 2300,
+            "actual": 2000
+        }
+    ],
+    "excesses": [
+        {
+            "target": "Gifts",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Anniversaries",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Holidays",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Travel",
+            "budget": 2300,
+            "actual": 2000
+        },
+        {
+            "target": "Business",
+            "budget": 2300,
+            "actual": 2000
+        }
+    ]
+}

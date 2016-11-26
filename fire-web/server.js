@@ -17,8 +17,13 @@ app.use(bodyParser.json());                                  // parse applicatio
 //     }
 // }));
 
-app.get('/api/payrolls', function (req, res) {
+app.get('/api/budgets/incomes', function (req, res) {
     var content = fs.readFileSync("stub/monthly-income.json");
+    res.json(JSON.parse(content));
+});
+
+app.get('/api/budgets/expenses', function (req, res) {
+    var content = fs.readFileSync("stub/monthly-expense.json");
     res.json(JSON.parse(content));
 });
 
