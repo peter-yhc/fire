@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {ExpenseService} from "./expense.service";
 import {MonthlyExpense} from "./MonthlyExpense";
 
@@ -9,43 +9,43 @@ import {MonthlyExpense} from "./MonthlyExpense";
         ExpenseService
     ]
 })
-export class ExpenseBudgetComponent {
+export class ExpenseBudgetComponent implements OnChanges {
+    @Input() monthId: number;
 
-    private necessaryExpensesRowData;
     private necessaryExpensesColumnDefs;
-    private discretionaryExpensesRowData;
     private discretionaryExpensesColumnDefs;
-    private excessExpensesRowData;
     private excessExpensesColumnDefs;
-
-    private _expenseService:ExpenseService;
+    private necessaryExpensesRowData;
+    private discretionaryExpensesRowData;
+    private excessExpensesRowData;
+    private expenseService:ExpenseService;
 
     constructor(expenseService:ExpenseService) {
-        this._expenseService = expenseService;
+        let createBaseColumnDefs = () => {
+            return [
+                {headerName: 'Monthly Budgeted', field: 'budget'},
+                {headerName: 'Monthly Actual', field: 'actual'},
+            ]
+        };
 
-        this.necessaryExpensesColumnDefs = [
-            {headerName: 'Necessary Expenses', field: 'target'},
-            {headerName: 'Monthly Budgeted', field: 'budget'},
-            {headerName: 'Monthly Actual', field: 'actual'},
-        ];
+        this.necessaryExpensesColumnDefs = createBaseColumnDefs();
+        this.necessaryExpensesColumnDefs.unshift({headerName: 'Necessary Expenses', field: 'target'});
 
-        this.discretionaryExpensesColumnDefs = [
-            {headerName: 'Discretionary Expenses', field: 'target'},
-            {headerName: 'Monthly Budgeted', field: 'budget'},
-            {headerName: 'Monthly Actual', field: 'actual'},
-        ];
+        this.discretionaryExpensesColumnDefs = createBaseColumnDefs();
+        this.discretionaryExpensesColumnDefs.unshift({headerName: 'Discretionary Expenses', field: 'target'});
 
-        this.excessExpensesColumnDefs = [
-            {headerName: 'Excess Expenses', field: 'target'},
-            {headerName: 'Monthly Budgeted', field: 'budget'},
-            {headerName: 'Monthly Actual', field: 'actual'},
-        ];
+        this.excessExpensesColumnDefs = createBaseColumnDefs();
+        this.excessExpensesColumnDefs.unshift({headerName: 'Excess Expenses', field: 'target'});
 
+        this.expenseService = expenseService;
+    }
+
+    ngOnChanges(changes:SimpleChanges):void {
         this.necessaryExpensesRowData = [];
         this.discretionaryExpensesRowData = [];
         this.excessExpensesRowData = [];
 
-        this._expenseService.get(2016, 12).subscribe(
+        this.expenseService.get(2016, this.monthId).subscribe(
             (monthlyExpense:MonthlyExpense) => {
                 monthlyExpense.necessaries.forEach(i => {
                     this.necessaryExpensesRowData.push(mapExpenseData(i))
@@ -59,7 +59,7 @@ export class ExpenseBudgetComponent {
             }
         );
 
-        var mapExpenseData = (expense) => {
+        let mapExpenseData = (expense) => {
             return {
                 target: expense.target,
                 budget: expense.budget,
@@ -67,5 +67,4 @@ export class ExpenseBudgetComponent {
             }
         }
     }
-
 }

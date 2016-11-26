@@ -1,5 +1,6 @@
 export module ExpenseEntry {
     export class Expense {
+
         private _target: String;
         private _budget: Number;
         private _actual: Number;
@@ -37,7 +38,7 @@ export class MonthlyExpense {
         this._necessaries = [];
         this._discretionaries = [];
         this._excesses = [];
-        monthlyExpenseData['necessaries'].forEach(necessaryData => this._necessaries.push(new Expense(necessaryData)));
+        monthlyExpenseData  ['necessaries'].forEach(necessaryData => this._necessaries.push(new Expense(necessaryData)));
         monthlyExpenseData['discretionaries'].forEach(discretionaryData => this._discretionaries.push(new Expense(discretionaryData)));
         monthlyExpenseData['excesses'].forEach(excessData => this._excesses.push(new Expense(excessData)));
     }

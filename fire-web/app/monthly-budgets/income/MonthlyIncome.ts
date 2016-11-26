@@ -1,16 +1,17 @@
 export module IncomeEntry {
     export class Income {
+
+        private _source:string;
+        private _actual:number;
+        private _budget:number;
+        private _taxWithheld:number;
+
         constructor(incomeData:any) {
             this._source = incomeData.source;
             this._actual = incomeData.actual;
             this._budget = incomeData.budget;
             this._taxWithheld = incomeData.taxWithheld;
         }
-
-        private _source:string;
-        private _actual:number;
-        private _budget:number;
-        private _taxWithheld:number;
 
         get source():string {
             return this._source;
