@@ -22,9 +22,19 @@ app.get('/api/budgets/incomes', function (req, res) {
     res.json(JSON.parse(content));
 });
 
+app.post('/api/budgets/incomes', function (req, res) {
+    fs.writeFileSync("stub/monthly-income.json", JSON.stringify(req.body));
+    res.end();
+});
+
 app.get('/api/budgets/expenses', function (req, res) {
     var content = fs.readFileSync("stub/monthly-expense.json");
     res.json(JSON.parse(content));
+});
+
+app.post('/api/budgets/expenses', function (req, res) {
+    fs.writeFileSync("stub/monthly-expense.json", JSON.stringify(req.body));
+    res.end();
 });
 
 app.get('*', function (req, res) {
