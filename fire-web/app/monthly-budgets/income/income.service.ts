@@ -1,4 +1,4 @@
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {MonthlyIncome} from "./MonthlyIncome";
@@ -16,5 +16,14 @@ export class IncomeService {
                 return new MonthlyIncome(response.json())
             }
         )
+    }
+
+    save(year:number, month:number, data:MonthlyIncome) {
+        var body = JSON.stringify(data);
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.post("/api/budgets/incomes?" + year + "-" + month, body, {headers: headers})
+            .map(response => response.json());
     }
 }
