@@ -19,19 +19,19 @@ export class IncomeBudgetComponent implements OnChanges {
     private incomeService: IncomeService;
 
     constructor(incomeService:IncomeService) {
-        let createBaseColumnDefs = () => {
-            return [
-                {headerName: 'Monthly Budgeted', field: 'budget'},
-                {headerName: 'Monthly Actual', field: 'actual'},
-                {headerName: 'Tax Withheld', field: 'taxWithheld'},
-            ];
-        };
+        this.directIncomeColumnDefs = [
+            {headerName: 'Monthly Budgeted', field: 'budget'},
+            {headerName: 'Monthly Actual', field: 'actual'},
+            {headerName: 'Tax Withheld', field: 'taxWithheld'},
+        ];
+        this.directIncomeColumnDefs.unshift({headerName: 'Income', field: 'source'});
 
-        this.directIncomeColumnDefs = createBaseColumnDefs();
-        this.directIncomeColumnDefs.unshift({headerName: 'Income', field: 'income'});
-
-        this.investmentsColumnDefs = createBaseColumnDefs();
-        this.investmentsColumnDefs.unshift({headerName: 'Investment', field: 'investment'});
+        this.investmentsColumnDefs = [
+            {headerName: 'Monthly Budgeted', field: 'budget'},
+            {headerName: 'Monthly Actual', field: 'actual'},
+            {headerName: 'Dividends', field: 'dividend'},
+        ];
+        this.investmentsColumnDefs.unshift({headerName: 'Investment', field: 'source'});
         this.incomeService = incomeService;
     }
 
@@ -42,30 +42,24 @@ export class IncomeBudgetComponent implements OnChanges {
         this.incomeService.get(2015, this.monthId).subscribe(
             (monthlyIncome:MonthlyIncome) => {
                 monthlyIncome.incomes.forEach(i => {
-                    this.directIncomeRowData.push(mapIncomeData(i))
+                    this.directIncomeRowData.push(i)
                 });
                 monthlyIncome.investments.forEach(i => {
-                    this.investmentsRowData.push(mapInvestmentData(i))
+                    this.investmentsRowData.push(i)
                 });
             }
         );
+    }
 
-        var mapIncomeData = (income) => {
-            return {
-                income: income.source,
-                budget: income.budget,
-                actual: income.actual,
-                taxWithheld: income.taxWithheld
-            }
+    saveIncomeChanges() {
+        let data = {
+            period: 2015 + "-" + this.monthId,
+            incomes: this.directIncomeRowData,
+            investments: this.investmentsRowData
         };
-
-        var mapInvestmentData = (investment) => {
-            return {
-                investment: investment.source,
-                budget: investment.budget,
-                actual: investment.actual,
-                dividend: investment.dividend
-            }
-        };
+        this.incomeService.save(2015, this.monthId, new MonthlyIncome(data)).subscribe(
+            data => console.log("Success: " + data),
+            error => console.log("Error: " + error)
+        );
     }
 }

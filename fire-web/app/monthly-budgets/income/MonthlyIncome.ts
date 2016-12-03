@@ -90,4 +90,9 @@ export class MonthlyIncome {
     get investments():InvestmentEntry.Investment[] {
         return this._investments;
     }
+
+    toJsonString():string {
+        let json = JSON.stringify(this);
+        return json.replace(/_(.*?)/g, "");
+    }
 }

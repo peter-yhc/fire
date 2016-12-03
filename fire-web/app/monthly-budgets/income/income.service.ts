@@ -11,19 +11,16 @@ export class IncomeService {
     }
 
     get(year:number, month:number):Observable<MonthlyIncome> {
-        return this.http.get("/api/budgets/incomes?" + year + "-" + month).map(
+        return this.http.get("/api/budgets/incomes?period=" + year + "-" + month.toFixed(2)).map(
             response => {
                 return new MonthlyIncome(response.json())
             }
         )
     }
 
-    save(year:number, month:number, data:MonthlyIncome) {
-        var body = JSON.stringify(data);
+    save(year:number, month:number, data:MonthlyIncome):Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
-        return this.http.post("/api/budgets/incomes?" + year + "-" + month, body, {headers: headers})
-            .map(response => response.json());
+        return this.http.post("/api/budgets/incomes?period=" + year + "-" + month, data.toJsonString(), {headers: headers});
     }
 }
