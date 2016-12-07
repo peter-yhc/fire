@@ -5,7 +5,7 @@ import {MonthlyExpense} from "./MonthlyExpense";
 import "rxjs/add/operator/map";
 
 @Injectable()
-export class ExpenseService {
+export class MonthlyExpenseService {
 
     constructor(private http:Http) {
     }

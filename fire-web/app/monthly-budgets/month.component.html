@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <h3 id="month-title">{{ month }}</h3>
         <span id="month-savings-rate">Monthly Savings Rate</span>
         <span id="month-savings-rate-value"><strong>65%</strong></span>
@@ -9,9 +9,9 @@
 </div>
 <div class="row expense-section-container">
     <h4 class="table-title">Income</h4>
-    <income-budget-component [monthId]="monthId"></income-budget-component>
+    <monthly-income-component [monthId]="monthId"></monthly-income-component>
 </div>
 <div class="row expense-section-container">
     <h4 class="table-title">Expenses</h4>
-    <expense-budget-component [monthId]="monthId"></expense-budget-component>
+    <monthly-expense-component [monthId]="monthId"></monthly-expense-component>
 </div>

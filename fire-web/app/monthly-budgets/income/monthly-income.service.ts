@@ -5,7 +5,7 @@ import {MonthlyIncome} from "./MonthlyIncome";
 import {Observable} from "rxjs/Rx";
 
 @Injectable()
-export class IncomeService {
+export class MonthlyIncomeService {
 
     constructor(private http:Http) {
     }

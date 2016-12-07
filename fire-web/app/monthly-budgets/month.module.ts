@@ -4,8 +4,8 @@ import {SharedModule} from "primeng/components/common/shared";
 import {MonthComponent} from "./month.component";
 import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
-import {IncomeBudgetComponent} from "./income/income-budget.component";
-import {ExpenseBudgetComponent} from "./expense/expense-budget.component";
+import {MonthlyIncomeComponent} from "./income/monthly-income.component";
+import {MonthlyExpenseComponent} from "./expense/monthly-expense.component";
 
 @NgModule({
     imports: [
@@ -13,8 +13,8 @@ import {ExpenseBudgetComponent} from "./expense/expense-budget.component";
     ],
     declarations: [
         MonthComponent,
-        IncomeBudgetComponent,
-        ExpenseBudgetComponent
+        MonthlyIncomeComponent,
+        MonthlyExpenseComponent
     ]
 })
 export class MonthModule {

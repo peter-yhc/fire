@@ -1,15 +1,15 @@
 import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
-import {ExpenseService} from "./expense.service";
+import {MonthlyExpenseService} from "./monthly-expense.service";
 import {MonthlyExpense} from "./MonthlyExpense";
 
 @Component({
-    selector: 'expense-budget-component',
-    templateUrl: 'app/monthly-budgets/expense/expense.template.html',
+    selector: 'monthly-expense-component',
+    templateUrl: 'app/monthly-budgets/expense/monthly-expense.template.html',
     providers: [
-        ExpenseService
+        MonthlyExpenseService
     ]
 })
-export class ExpenseBudgetComponent implements OnChanges {
+export class MonthlyExpenseComponent implements OnChanges {
     @Input() monthId: number;
 
     private necessaryExpensesColumnDefs;
@@ -18,9 +18,9 @@ export class ExpenseBudgetComponent implements OnChanges {
     private necessaryExpensesRowData;
     private discretionaryExpensesRowData;
     private excessExpensesRowData;
-    private expenseService:ExpenseService;
+    private expenseService:MonthlyExpenseService;
 
-    constructor(expenseService:ExpenseService) {
+    constructor(expenseService:MonthlyExpenseService) {
         let createBaseColumnDefs = () => {
             return [
                 {headerName: 'Monthly Budgeted', field: 'budget'},

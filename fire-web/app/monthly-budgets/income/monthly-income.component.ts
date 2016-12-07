@@ -1,24 +1,24 @@
 import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
-import {IncomeService} from "./income.service";
+import {MonthlyIncomeService} from "./monthly-income.service";
 import {MonthlyIncome} from "./MonthlyIncome";
 
 @Component({
-    selector: 'income-budget-component',
-    templateUrl: 'app/monthly-budgets/income/income.template.html',
+    selector: 'monthly-income-component',
+    templateUrl: 'app/monthly-budgets/income/monthly-income-table.template.html',
     providers: [
-        IncomeService
+        MonthlyIncomeService
     ]
 })
-export class IncomeBudgetComponent implements OnChanges {
+export class MonthlyIncomeComponent implements OnChanges {
     @Input() monthId: number;
 
     private directIncomeColumnDefs;
     private investmentsColumnDefs;
     private directIncomeRowData;
     private investmentsRowData;
-    private incomeService: IncomeService;
+    private incomeService: MonthlyIncomeService;
 
-    constructor(incomeService:IncomeService) {
+    constructor(incomeService:MonthlyIncomeService) {
         this.directIncomeColumnDefs = [
             {headerName: 'Monthly Budgeted', field: 'budget'},
             {headerName: 'Monthly Actual', field: 'actual'},
