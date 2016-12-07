@@ -21,6 +21,6 @@ export class IncomeService {
     save(year:number, month:number, data:MonthlyIncome):Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post("/api/budgets/incomes?period=" + year + "-" + month, data.toJsonString(), {headers: headers});
+        return this.http.post("/api/budgets/incomes?period=" + year + "-" + month, JSON.stringify(data), {headers: headers});
     }
 }
