@@ -1,24 +1,27 @@
-import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
+import {Component, Input, OnChanges, OnInit} from "@angular/core";
 import {MonthlyIncomeService} from "./monthly-income.service";
 import {MonthlyIncome} from "./MonthlyIncome";
+import {PersistenceEventEmitter} from "../../application/service/persistence-event-emitter.service";
 
 @Component({
     selector: 'monthly-income-component',
     templateUrl: 'app/monthly-budgets/income/monthly-income-table.template.html',
     providers: [
-        MonthlyIncomeService
+        MonthlyIncomeService, PersistenceEventEmitter
     ]
 })
-export class MonthlyIncomeComponent implements OnChanges {
-    @Input() monthId: number;
+export class MonthlyIncomeComponent implements OnChanges, OnInit {
+    @Input() monthId:number;
 
     private directIncomeColumnDefs;
     private investmentsColumnDefs;
     private directIncomeRowData;
     private investmentsRowData;
-    private incomeService: MonthlyIncomeService;
+    private incomeService:MonthlyIncomeService;
+    private persistenceEventEmitter:PersistenceEventEmitter;
+    private tableDirty:boolean = false;
 
-    constructor(incomeService:MonthlyIncomeService) {
+    constructor(incomeService:MonthlyIncomeService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.directIncomeColumnDefs = [
             {headerName: 'Monthly Budgeted', field: 'budget'},
             {headerName: 'Monthly Actual', field: 'actual'},
@@ -33,9 +36,21 @@ export class MonthlyIncomeComponent implements OnChanges {
         ];
         this.investmentsColumnDefs.unshift({headerName: 'Investment', field: 'source'});
         this.incomeService = incomeService;
+        this.persistenceEventEmitter = persistenceEventEmitter;
     }
 
-    ngOnChanges(changes:SimpleChanges):void {
+    ngOnInit():void {
+        this.persistenceEventEmitter.getEmitter().subscribe(
+            () => {
+                if (this.tableDirty) {
+                    this.saveIncomeChanges()
+                }
+            },
+            error => console.log("Error" + error)
+        )
+    }
+
+    ngOnChanges():void {
         this.directIncomeRowData = [];
         this.investmentsRowData = [];
 
@@ -51,6 +66,10 @@ export class MonthlyIncomeComponent implements OnChanges {
         );
     }
 
+    markTableDirty():void {
+        this.tableDirty = true;
+    }
+
     saveIncomeChanges() {
         let data = {
             period: 2015 + "-" + this.monthId,
@@ -58,7 +77,10 @@ export class MonthlyIncomeComponent implements OnChanges {
             investments: this.investmentsRowData
         };
         this.incomeService.save(2015, this.monthId, new MonthlyIncome(data)).subscribe(
-            data => console.log("Success: " + data),
+            data => {
+                console.log("Success: " + data);
+                this.tableDirty = false
+            },
             error => console.log("Error: " + error)
         );
     }

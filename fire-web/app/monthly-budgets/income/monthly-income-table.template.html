@@ -1,7 +1,8 @@
 <div class="col-md-6">
     <div class="row income-table">
         <p-dataTable [value]="directIncomeRowData"
-                     [editable]="true">
+                     [editable]="true"
+                     (onEdit)="markTableDirty()">
             <p-column *ngFor="let columnDef of directIncomeColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
@@ -16,7 +17,8 @@
 <div class="col-md-6">
     <div class="row income-table">
         <p-dataTable [value]="investmentsRowData"
-                     [editable]="true">
+                     [editable]="true"
+                     (onEdit)="markTableDirty()">
             <p-column *ngFor="let columnDef of investmentsColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
@@ -28,4 +30,4 @@
         </p-dataTable>
     </div>
 </div>
-<button (click)="saveIncomeChanges()" >Save</button>
+<button (click)="saveIncomeChanges()">Save</button>
