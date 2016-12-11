@@ -2,7 +2,7 @@
     <div class="row income-table">
         <p-dataTable [value]="necessaryExpensesRowData"
                      [editable]="true"
-                     (onEdit)="markTableDirty()">
+                     (onEdit)="markEntityChanged()">
             <p-column *ngFor="let columnDef of necessaryExpensesColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
@@ -17,7 +17,8 @@
 <div class="col-md-6">
     <div class="row income-table">
         <p-dataTable [value]="discretionaryExpensesRowData"
-                     [editable]="true">
+                     [editable]="true"
+                     (onEdit)="markEntityChanged()">
             <p-column *ngFor="let columnDef of discretionaryExpensesColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
@@ -30,7 +31,8 @@
     </div>
     <div class="row income-table">
         <p-dataTable [value]="excessExpensesRowData"
-                     [editable]="true">
+                     [editable]="true"
+                     (onEdit)="markEntityChanged()">
             <p-column *ngFor="let columnDef of excessExpensesColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"

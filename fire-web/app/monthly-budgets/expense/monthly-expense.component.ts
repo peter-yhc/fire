@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges, OnInit} from "@angular/core";
 import {MonthlyExpenseService} from "./monthly-expense.service";
 import {MonthlyExpense} from "./MonthlyExpense";
-import {PersistenceEventEmitter} from "../../application/service/persistence-event-emitter.service";
+import {PersistenceEventEmitter} from "../../application/autosave/persistence-event-emitter.service";
 
 @Component({
     selector: 'monthly-expense-component',
@@ -10,7 +10,7 @@ import {PersistenceEventEmitter} from "../../application/service/persistence-eve
         MonthlyExpenseService, PersistenceEventEmitter
     ]
 })
-export class MonthlyExpenseComponent implements OnChanges, OnInit {
+export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable {
     @Input() monthId: number;
 
     private necessaryExpensesColumnDefs;
@@ -21,7 +21,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit {
     private excessExpensesRowData;
     private expenseService:MonthlyExpenseService;
     private persistenceEventEmitter: PersistenceEventEmitter;
-    private tableDirty = false;
+    private entityChanged:boolean;
 
     constructor(expenseService:MonthlyExpenseService, persistenceEventEmitter: PersistenceEventEmitter) {
         let createBaseColumnDefs = () => {
@@ -30,13 +30,10 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit {
                 {headerName: 'Monthly Actual', field: 'actual'},
             ]
         };
-
         this.necessaryExpensesColumnDefs = createBaseColumnDefs();
         this.necessaryExpensesColumnDefs.unshift({headerName: 'Necessary Expenses', field: 'target'});
-
         this.discretionaryExpensesColumnDefs = createBaseColumnDefs();
         this.discretionaryExpensesColumnDefs.unshift({headerName: 'Discretionary Expenses', field: 'target'});
-
         this.excessExpensesColumnDefs = createBaseColumnDefs();
         this.excessExpensesColumnDefs.unshift({headerName: 'Excess Expenses', field: 'target'});
 
@@ -47,7 +44,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit {
     ngOnInit():void {
         this.persistenceEventEmitter.getEmitter().subscribe(
             () => {
-                if (this.tableDirty) {
+                if (this.entityChanged) {
                     this.saveExpenseChanges()
                 }
             },
@@ -83,11 +80,11 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit {
         }
     }
 
-    markTableDirty():void {
-        this.tableDirty = true;
+    markEntityChanged():void {
+        this.entityChanged = true;
     }
 
-    saveExpenseChanges() {
+    private saveExpenseChanges() {
         let data = {
             period: 2015 + "-" + this.monthId,
             necessaries: this.necessaryExpensesRowData,
@@ -97,7 +94,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit {
         this.expenseService.save(2015, this.monthId, new MonthlyExpense(data)).subscribe(
             data => {
                 console.log("Success: " + data);
-                this.tableDirty = false
+                this.entityChanged = false
             },
             error => console.log("Error: " + error)
         );
