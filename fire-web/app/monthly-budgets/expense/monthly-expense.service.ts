@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {MonthlyExpense} from "./MonthlyExpense";
 import "rxjs/add/operator/map";
@@ -16,5 +16,11 @@ export class MonthlyExpenseService {
                 return new MonthlyExpense(response.json())
             }
         )
+    }
+
+    save(year:number, month:number, data:MonthlyExpense):Observable<any> {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post("/api/budgets/expenses?period=" + year + "-" + month, JSON.stringify(data), {headers: headers});
     }
 }

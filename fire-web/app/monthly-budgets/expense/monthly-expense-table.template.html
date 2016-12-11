@@ -1,7 +1,8 @@
 <div class="col-md-6">
     <div class="row income-table">
         <p-dataTable [value]="necessaryExpensesRowData"
-                     [editable]="true">
+                     [editable]="true"
+                     (onEdit)="markTableDirty()">
             <p-column *ngFor="let columnDef of necessaryExpensesColumnDefs; let i = index"
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
