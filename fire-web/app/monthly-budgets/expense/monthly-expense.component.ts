@@ -16,12 +16,10 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
     private necessaryExpensesColumnDefs;
     private discretionaryExpensesColumnDefs;
     private excessExpensesColumnDefs;
-    private necessaryExpensesRowData;
-    private discretionaryExpensesRowData;
-    private excessExpensesRowData;
     private expenseService:MonthlyExpenseService;
     private persistenceEventEmitter: PersistenceEventEmitter;
     private entityChanged:boolean;
+    private monthlyExpense:MonthlyExpense;
 
     constructor(expenseService:MonthlyExpenseService, persistenceEventEmitter: PersistenceEventEmitter) {
         let createBaseColumnDefs = () => {
@@ -39,6 +37,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
 
         this.expenseService = expenseService;
         this.persistenceEventEmitter = persistenceEventEmitter;
+        this.monthlyExpense = new MonthlyExpense();
     }
 
     ngOnInit():void {
@@ -53,31 +52,11 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
     }
 
     ngOnChanges():void {
-        this.necessaryExpensesRowData = [];
-        this.discretionaryExpensesRowData = [];
-        this.excessExpensesRowData = [];
-
         this.expenseService.get(2016, this.monthId).subscribe(
             (monthlyExpense:MonthlyExpense) => {
-                monthlyExpense.necessaries.forEach(i => {
-                    this.necessaryExpensesRowData.push(mapExpenseData(i))
-                });
-                monthlyExpense.discretionaries.forEach(i => {
-                    this.discretionaryExpensesRowData.push(mapExpenseData(i))
-                });
-                monthlyExpense.excesses.forEach(i => {
-                    this.excessExpensesRowData.push(mapExpenseData(i))
-                });
+                this.monthlyExpense = monthlyExpense;
             }
         );
-
-        let mapExpenseData = (expense) => {
-            return {
-                target: expense.target,
-                budget: expense.budget,
-                actual: expense.actual
-            }
-        }
     }
 
     markEntityChanged():void {
@@ -85,13 +64,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
     }
 
     private saveExpenseChanges() {
-        let data = {
-            period: 2015 + "-" + this.monthId,
-            necessaries: this.necessaryExpensesRowData,
-            discretionaries: this.discretionaryExpensesRowData,
-            excesses: this.excessExpensesRowData
-        };
-        this.expenseService.save(2015, this.monthId, new MonthlyExpense(data)).subscribe(
+        this.expenseService.save(2015, this.monthId, this.monthlyExpense).subscribe(
             data => {
                 console.log("Success: " + data);
                 this.entityChanged = false

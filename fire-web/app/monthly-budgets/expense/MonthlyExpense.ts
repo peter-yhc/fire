@@ -1,9 +1,9 @@
 export module ExpenseEntry {
     export class Expense {
 
-        public target: String;
-        public budget: Number;
-        public actual: Number;
+        public target:String;
+        public budget:Number;
+        public actual:Number;
 
         constructor(expenseData:any) {
             this.target = expenseData.target;
@@ -21,13 +21,15 @@ export class MonthlyExpense {
     public discretionaries:Expense[];
     public excesses:Expense[];
 
-    constructor(monthlyExpenseData:any) {
-        this.period = monthlyExpenseData.period;
+    constructor(monthlyExpenseData?:any) {
         this.necessaries = [];
         this.discretionaries = [];
         this.excesses = [];
-        monthlyExpenseData  ['necessaries'].forEach(necessaryData => this.necessaries.push(new Expense(necessaryData)));
-        monthlyExpenseData['discretionaries'].forEach(discretionaryData => this.discretionaries.push(new Expense(discretionaryData)));
-        monthlyExpenseData['excesses'].forEach(excessData => this.excesses.push(new Expense(excessData)));
+        if (monthlyExpenseData !== undefined) {
+            this.period = monthlyExpenseData.period;
+            monthlyExpenseData['necessaries'].forEach(necessaryData => this.necessaries.push(new Expense(necessaryData)));
+            monthlyExpenseData['discretionaries'].forEach(discretionaryData => this.discretionaries.push(new Expense(discretionaryData)));
+            monthlyExpenseData['excesses'].forEach(excessData => this.excesses.push(new Expense(excessData)));
+        }
     }
 }

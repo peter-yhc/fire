@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <div class="row income-table">
-        <p-dataTable [value]="directIncomeRowData"
+        <p-dataTable [value]="monthlyIncome.incomes"
                      [editable]="true"
                      (onEdit)="markEntityChanged()">
             <p-column *ngFor="let columnDef of directIncomeColumnDefs; let i = index"
@@ -16,7 +16,7 @@
 </div>
 <div class="col-md-6">
     <div class="row income-table">
-        <p-dataTable [value]="investmentsRowData"
+        <p-dataTable [value]="monthlyIncome.investments"
                      [editable]="true"
                      (onEdit)="markEntityChanged()">
             <p-column *ngFor="let columnDef of investmentsColumnDefs; let i = index"

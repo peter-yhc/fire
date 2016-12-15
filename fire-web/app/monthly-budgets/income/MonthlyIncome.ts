@@ -39,11 +39,13 @@ export class MonthlyIncome {
     public incomes:Income[];
     public investments:Investment[];
 
-    constructor(monthlyIncomeData:any) {
-        this.period = monthlyIncomeData.period;
+    constructor(monthlyIncomeData?:any) {
         this.incomes = [];
         this.investments = [];
-        monthlyIncomeData['incomes'].forEach(incomeData => this.incomes.push(new Income(incomeData)));
-        monthlyIncomeData['investments'].forEach(investmentData => this.investments.push(new Investment(investmentData)));
+        if (monthlyIncomeData !== undefined) {
+            this.period = monthlyIncomeData.period;
+            monthlyIncomeData['incomes'].forEach(incomeData => this.incomes.push(new Income(incomeData)));
+            monthlyIncomeData['investments'].forEach(investmentData => this.investments.push(new Investment(investmentData)));
+        }
     }
 }

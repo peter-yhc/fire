@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter} from "@angular/core";
 import {MonthlyIncomeService} from "./monthly-income.service";
 import {MonthlyIncome} from "./MonthlyIncome";
 import {PersistenceEventEmitter} from "../../application/autosave/persistence-event-emitter.service";
@@ -15,11 +15,10 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
 
     private directIncomeColumnDefs;
     private investmentsColumnDefs;
-    private directIncomeRowData;
-    private investmentsRowData;
     private incomeService:MonthlyIncomeService;
     private persistenceEventEmitter:PersistenceEventEmitter;
     private entityChanged:boolean = false;
+    private monthlyIncome:MonthlyIncome;
 
     constructor(incomeService:MonthlyIncomeService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.directIncomeColumnDefs = [
@@ -37,6 +36,7 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
 
         this.incomeService = incomeService;
         this.persistenceEventEmitter = persistenceEventEmitter;
+        this.monthlyIncome = new MonthlyIncome();
     }
 
     ngOnInit():void {
@@ -51,17 +51,9 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
     }
 
     ngOnChanges():void {
-        this.directIncomeRowData = [];
-        this.investmentsRowData = [];
-
         this.incomeService.get(2015, this.monthId).subscribe(
             (monthlyIncome:MonthlyIncome) => {
-                monthlyIncome.incomes.forEach(i => {
-                    this.directIncomeRowData.push(i)
-                });
-                monthlyIncome.investments.forEach(i => {
-                    this.investmentsRowData.push(i)
-                });
+                this.monthlyIncome = monthlyIncome;
             }
         );
     }
@@ -71,12 +63,7 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
     }
 
     private saveIncomeChanges() {
-        let data = {
-            period: 2015 + "-" + this.monthId,
-            incomes: this.directIncomeRowData,
-            investments: this.investmentsRowData
-        };
-        this.incomeService.save(2015, this.monthId, new MonthlyIncome(data)).subscribe(
+        this.incomeService.save(2015, this.monthId, this.monthlyIncome).subscribe(
             data => {
                 console.log("Success: " + data);
                 this.entityChanged = false
