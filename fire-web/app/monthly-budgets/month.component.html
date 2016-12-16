@@ -9,9 +9,9 @@
 </div>
 <div class="row expense-section-container">
     <h4 class="table-title">Income</h4>
-    <monthly-income-component [monthId]="monthId"></monthly-income-component>
+    <monthly-income-component [monthId]="monthId" (incomeUpdatedEmitter)="onIncomeChanged($event)"></monthly-income-component>
 </div>
 <div class="row expense-section-container">
     <h4 class="table-title">Expenses</h4>
-    <monthly-expense-component [monthId]="monthId"></monthly-expense-component>
+    <monthly-expense-component [monthId]="monthId" (expenseUpdatedEmitter)="onExpenseChanged($event)"></monthly-expense-component>
 </div>

@@ -12,6 +12,7 @@ import {PersistenceEventEmitter} from "../../application/autosave/persistence-ev
 })
 export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
     @Input() monthId:number;
+    @Output() incomeUpdatedEmitter: EventEmitter<MonthlyIncome> = new EventEmitter<MonthlyIncome>();
 
     private directIncomeColumnDefs;
     private investmentsColumnDefs;
@@ -54,10 +55,10 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
         this.incomeService.get(2015, this.monthId).subscribe(
             (monthlyIncome:MonthlyIncome) => {
                 this.monthlyIncome = monthlyIncome;
+                this.emitIncomeUpdated();
             }
         );
     }
-
     markEntityChanged():void {
         this.entityChanged = true;
     }
@@ -66,9 +67,14 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
         this.incomeService.save(2015, this.monthId, this.monthlyIncome).subscribe(
             data => {
                 console.log("Success: " + data);
+                this.emitIncomeUpdated();
                 this.entityChanged = false
             },
             error => console.log("Error: " + error)
         );
+    }
+
+    private emitIncomeUpdated() {
+        this.incomeUpdatedEmitter.emit(this.monthlyIncome)
     }
 }

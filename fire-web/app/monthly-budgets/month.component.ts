@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {MonthlyIncome} from "./income/MonthlyIncome";
+import {MonthlyExpense} from "./expense/MonthlyExpense";
 
 @Component({
     templateUrl: 'app/monthly-budgets/month.component.html',
@@ -7,11 +9,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MonthComponent {
 
-    private monthId: number;
-    private month: string;
-    private monthList: Object;
+    private monthId:number;
+    private month:string;
+    private monthList:Object;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route:ActivatedRoute) {
         this.monthList = {
             "january": "01",
             "february": "02",
@@ -35,5 +37,22 @@ export class MonthComponent {
         });
     }
 
+    onIncomeChanged(monthlyIncome:MonthlyIncome) {
+        let incomeSum = monthlyIncome.incomes.reduce(this.reduceMethod()).actual;
+        let investmentsSum = monthlyIncome.investments.reduce(this.reduceMethod()).actual;
+    }
 
+    onExpenseChanged(monthlyExpense:MonthlyExpense) {
+        let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod()).actual;
+        let excessesSum = monthlyExpense.excesses.reduce(this.reduceMethod()).actual;
+        let discretionariesSum = monthlyExpense.discretionaries.reduce(this.reduceMethod()).actual;
+    }
+
+    reduceMethod() {
+        return function (a, b) {
+            a.actual = a.actual == undefined ? 0 : parseInt(a.actual);
+            b.actual = b.actual == undefined ? 0 : parseInt(b.actual);
+            return {actual: a.actual + b.actual}
+        }
+    }
 }

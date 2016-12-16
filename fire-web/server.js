@@ -23,7 +23,8 @@ app.get('/api/budgets/incomes', function (req, res) {
 });
 
 app.post('/api/budgets/incomes', function (req, res) {
-    fs.writeFileSync("stub/monthly-income.json", JSON.stringify(req.body));
+    var body = JSON.stringify(req.body).replace(/"(\d+\.?\d*)"/g, "$1");
+    fs.writeFileSync("stub/monthly-income.json", body);
     res.end();
 });
 
@@ -33,7 +34,8 @@ app.get('/api/budgets/expenses', function (req, res) {
 });
 
 app.post('/api/budgets/expenses', function (req, res) {
-    fs.writeFileSync("stub/monthly-expense.json", JSON.stringify(req.body));
+    var body = JSON.stringify(req.body).replace(/"(\d+\.?\d*)"/g, "$1");
+    fs.writeFileSync("stub/monthly-expense.json", body);
     res.end();
 });
 

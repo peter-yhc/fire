@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges, OnInit} from "@angular/core";
+import {Component, Input, OnChanges, SimpleChanges, OnInit, Output, EventEmitter} from "@angular/core";
 import {MonthlyExpenseService} from "./monthly-expense.service";
 import {MonthlyExpense} from "./MonthlyExpense";
 import {PersistenceEventEmitter} from "../../application/autosave/persistence-event-emitter.service";
@@ -12,6 +12,7 @@ import {PersistenceEventEmitter} from "../../application/autosave/persistence-ev
 })
 export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable {
     @Input() monthId: number;
+    @Output() expenseUpdatedEmitter: EventEmitter<MonthlyExpense> = new EventEmitter<MonthlyExpense>();
 
     private necessaryExpensesColumnDefs;
     private discretionaryExpensesColumnDefs;
@@ -55,6 +56,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
         this.expenseService.get(2016, this.monthId).subscribe(
             (monthlyExpense:MonthlyExpense) => {
                 this.monthlyExpense = monthlyExpense;
+                this.emitExpenseUpdated();
             }
         );
     }
@@ -67,9 +69,14 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
         this.expenseService.save(2015, this.monthId, this.monthlyExpense).subscribe(
             data => {
                 console.log("Success: " + data);
-                this.entityChanged = false
+                this.emitExpenseUpdated();
+                this.entityChanged = false;
             },
             error => console.log("Error: " + error)
         );
+    }
+
+    private emitExpenseUpdated() {
+        this.expenseUpdatedEmitter.emit(this.monthlyExpense)
     }
 }
