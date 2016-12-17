@@ -1,11 +1,12 @@
 import {Component, OnInit, Input} from "@angular/core";
+import {StockAccount} from "../model/StockAccount";
 
 @Component({
     selector: "investment-account-component",
     templateUrl: "app/investments/account/investment-account.component.html"
 })
 export class InvestmentAccountComponent implements OnInit {
-    @Input() account;
+    @Input() stockAccount:StockAccount;
 
     private rowData;
     private columnDefs;
@@ -13,18 +14,16 @@ export class InvestmentAccountComponent implements OnInit {
     ngOnInit():void {
 
         this.columnDefs = [
-            {headerName: "Category", field: "category"},
+            {headerName: "Category", field: "exchange"},
             {headerName: "Symbol", field: "symbol"},
-            {headerName: "Value/Share", field: "valueShare"},
-            {headerName: "Shares", field: "share"},
-            {headerName: "Amount", field: "amount"},
+            {headerName: "Share Price", field: "sharePrice"},
+            {headerName: "Shares", field: "shareCount"},
             {headerName: "Breakdown", field: "breakdown"},
+            {headerName: "Fee", field: "managementFee"},
             {headerName: "Total Value", field: "totalValue"},
-            {headerName: "Updated Date", field: "updatedDate"},
-            {headerName: "Fee", field: "fee"},
-            {headerName: "Fee (in Dollars)", field: "feeDollars"}
+            {headerName: "Updated Date", field: "updatedDate"}
         ];
 
-        this.rowData = [];
+        this.rowData = this.stockAccount.stocks;
     }
 }
