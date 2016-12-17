@@ -1,0 +1,65 @@
+{
+    "accounts": [
+        {
+            "name": "TFSA RBC",
+            "cash": 1129,
+            "stocks": [
+                {
+                    "exchange": "TO",
+                    "symbol": "VCN",
+                    "shareCount": 200,
+                    "managementFee": 0.18,
+                    "dividends": 32.42
+                },
+                {
+                    "exchange": "TO",
+                    "symbol": "VXC",
+                    "shareCount": 100,
+                    "managementFee": 0.4,
+                    "dividends": 31.97
+                },
+                {
+                    "exchange": "TO",
+                    "symbol": "VAB",
+                    "shareCount": 52,
+                    "managementFee": 0.11,
+                    "dividends": 2.3
+                },
+                {
+                    "exchange": "TO",
+                    "symbol": "XEF",
+                    "shareCount": 98,
+                    "managementFee": 0.35,
+                    "dividends": 12.5
+                }
+            ]
+        },
+        {
+            "name": "RBC US Investment",
+            "cash": 192.12,
+            "stocks": [
+                {
+                    "exchange": "NASDAQ",
+                    "symbol": "MSFT",
+                    "shareCount": 53,
+                    "managementFee": 0,
+                    "dividends": 0
+                },
+                {
+                    "exchange": "NASDAQ",
+                    "symbol": "GOOG",
+                    "shareCount": 16,
+                    "managementFee": 0,
+                    "dividends": 0
+                },
+                {
+                    "exchange": "NASDAQ",
+                    "symbol": "AAPL",
+                    "shareCount": 115,
+                    "managementFee": 0,
+                    "dividends": 0
+                }
+            ]
+        }
+    ]
+}

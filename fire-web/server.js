@@ -39,6 +39,17 @@ app.post('/api/budgets/expenses', function (req, res) {
     res.end();
 });
 
+app.get('/api/investments', function (req, res) {
+    var content = fs.readFileSync("stub/investments.json");
+    res.json(JSON.parse(content));
+});
+
+app.post('/api/investments', function (req, res) {
+    var body = JSON.stringify(req.body).replace(/"(\d+\.?\d*)"/g, "$1");
+    fs.writeFileSync("stub/investments.json", body);
+    res.end();
+});
+
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
