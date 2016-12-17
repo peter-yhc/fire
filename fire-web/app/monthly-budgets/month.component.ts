@@ -12,6 +12,9 @@ export class MonthComponent {
     private monthId:number;
     private month:string;
     private monthList:Object;
+    private totalIncome:number;
+    private totalExpense:number;
+    private savingsRate:number;
 
     constructor(private route:ActivatedRoute) {
         this.monthList = {
@@ -38,20 +41,33 @@ export class MonthComponent {
     }
 
     onIncomeChanged(monthlyIncome:MonthlyIncome) {
+        //noinspection TypeScriptUnresolvedFunction
         let incomeSum = monthlyIncome.incomes.reduce(this.reduceMethod()).actual;
+        //noinspection TypeScriptUnresolvedFunction
         let investmentsSum = monthlyIncome.investments.reduce(this.reduceMethod()).actual;
+        this.totalIncome = incomeSum + investmentsSum;
+        this.calculateSavingsRate();
     }
 
     onExpenseChanged(monthlyExpense:MonthlyExpense) {
+        //noinspection TypeScriptUnresolvedFunction
         let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod()).actual;
+        //noinspection TypeScriptUnresolvedFunction
         let excessesSum = monthlyExpense.excesses.reduce(this.reduceMethod()).actual;
+        //noinspection TypeScriptUnresolvedFunction
         let discretionariesSum = monthlyExpense.discretionaries.reduce(this.reduceMethod()).actual;
+        this.totalExpense = necessariesSum + excessesSum + discretionariesSum;
+        this.calculateSavingsRate();
     }
 
-    reduceMethod() {
+    private calculateSavingsRate() {
+        this.savingsRate = ((this.totalIncome - this.totalExpense) / this.totalIncome * 100).toFixed(1);
+    }
+
+    private reduceMethod() {
         return function (a, b) {
-            a.actual = a.actual == undefined ? 0 : parseInt(a.actual);
-            b.actual = b.actual == undefined ? 0 : parseInt(b.actual);
+            a.actual = a.actual == undefined ? 0 : parseFloat(a.actual);
+            b.actual = b.actual == undefined ? 0 : parseFloat(b.actual);
             return {actual: a.actual + b.actual}
         }
     }

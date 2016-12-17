@@ -1,10 +1,12 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h3 id="month-title">{{ month }}</h3>
-        <span id="month-savings-rate">Monthly Savings Rate</span>
-        <span id="month-savings-rate-value"><strong>65%</strong></span>
-        <span id="month-expenditure">Monthly Expenses</span>
-        <span id="month-expenditure-value"><strong>$134.20</strong></span>
+        <span id="month-savings-rate">Saving Rate</span>
+        <span id="month-savings-rate-value"><strong>{{savingsRate}}%</strong></span>
+        <span id="month-income">Income</span>
+        <span id="month-income-value"><strong>{{totalIncome | currency : "USD" : true}}</strong></span>
+        <span id="month-expense">Expenses</span>
+        <span id="month-expense-value"><strong>{{totalExpense | currency : "USD" : true}}</strong></span>
     </div>
 </div>
 <div class="row expense-section-container">

@@ -18,6 +18,14 @@
     margin-left: 15px;
 }
 
-#month-expenditure {
+#month-income, #month-expense {
     margin-left: 1em;
+}
+
+#month-income-value {
+    color: #2D882D;
+}
+
+#month-expense-value {
+    color: #AA3939;
 }
