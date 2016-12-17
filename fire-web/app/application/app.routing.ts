@@ -3,7 +3,7 @@ import {ModuleWithProviders} from "@angular/core";
 import {InstructionsComponent} from "../instructions/instructions.component";
 import {HomeComponent} from "../home/home.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
-import {ExpensesComponent} from "../expenses/expenses.component";
+import {ExpensesComponent} from "../analyze/analyze.component";
 import {NetWorthComponent} from "../net-worth/net-worth.component";
 import {InvestmentsComponent} from "../investments/investments.component";
 import {MonthComponent} from "../monthly-budgets/month.component";
@@ -21,7 +21,7 @@ const appRoutes:Routes = [
     }, {
         path: 'dashboard', component: DashboardComponent
     }, {
-        path: 'expenses', component: ExpensesComponent
+        path: 'analyze', component: ExpensesComponent
     }, {
         path: 'networth', component: NetWorthComponent
     }, {

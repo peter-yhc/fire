@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'necessary-total-component',
-    templateUrl: 'app/expenses/expense-table.template.html',
-    styleUrls: ['app/expenses/total/total.component.css']
+    templateUrl: 'app/analyze/analyze-table.template.html',
+    styleUrls: ['app/analyze/total/total.component.css']
 })
 export class NecessaryTotalComponent {
 

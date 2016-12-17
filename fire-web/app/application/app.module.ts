@@ -5,7 +5,7 @@ import {routing, appRoutingProviders} from "./app.routing";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {DataTableModule, SharedModule} from "primeng/primeng";
 import {DateGeneratorService} from "./service/date-generator.service";
-import {ExpensesModule} from "../expenses/expenses.module";
+import {ExpensesModule} from "../analyze/analyze.module";
 import {MonthModule} from "../monthly-budgets/month.module";
 import {InvestmentsModule} from "../investments/investments.module";
 import {DashboardModule} from "../dashboard/dashboard.module";

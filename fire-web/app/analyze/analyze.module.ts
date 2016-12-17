@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {ExpensesComponent} from "./expenses.component";
+import {ExpensesComponent} from "./analyze.component";
 import {NecessaryTotalComponent} from "./total/necessary-total.component";
 import {DiscretionaryTotalComponent} from "./total/discretionary-total.component";
 import {ExcessTotalComponent} from "./total/excess-total.component";

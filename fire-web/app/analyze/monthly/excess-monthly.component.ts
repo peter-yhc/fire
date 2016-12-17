@@ -4,8 +4,8 @@ import moment = require('moment/moment');
 
 @Component({
     selector: 'excess-monthly-component',
-    templateUrl: 'app/expenses/expense-table.template.html',
-    styleUrls: ['app/expenses/monthly/monthly.component.css']
+    templateUrl: 'app/analyze/analyze-table.template.html',
+    styleUrls: ['app/analyze/monthly/monthly.component.css']
 })
 export class ExcessMonthlyComponent implements OnInit {
 
