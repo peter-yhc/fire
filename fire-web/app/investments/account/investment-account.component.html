@@ -1,8 +1,10 @@
-<h4>{{stockAccount.name}}</h4>
-<p-dataTable [value]="stockAccount.stocks">
+<h4>{{ stockAccount.name }}</h4>
+<span>Cash remaining: <strong>{{ stockAccount.cash | currency : 'USD' : true }}</strong></span>
+<p-dataTable [value]="stockViewModels">
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
               [header]="columnDef.headerName">
+
         <template *ngIf="columnDef.field == 'symbol'" pTemplate type="body" let-row="rowData">
             <span>
                 <a class="symbol-link"
@@ -12,5 +14,11 @@
                 </a>
             </span>
         </template>
+
+        <template *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice'"
+                  pTemplate type="body" let-row="rowData">
+            <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
+        </template>
+
     </p-column>
 </p-dataTable>
