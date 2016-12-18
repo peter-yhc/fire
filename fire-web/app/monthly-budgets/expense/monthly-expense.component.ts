@@ -19,8 +19,8 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
     private excessExpensesColumnDefs;
     private expenseService:MonthlyExpenseService;
     private persistenceEventEmitter: PersistenceEventEmitter;
-    private entityChanged:boolean;
     private monthlyExpense:MonthlyExpense;
+    entityChanged:boolean;
 
     constructor(expenseService:MonthlyExpenseService, persistenceEventEmitter: PersistenceEventEmitter) {
         let createBaseColumnDefs = () => {

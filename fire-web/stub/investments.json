@@ -5,25 +5,25 @@
             "cash": 1129,
             "stocks": [
                 {
-                    "exchange": "TO",
+                    "exchange": "TSE",
                     "symbol": "VCN",
                     "shareCount": 200,
                     "managementFee": 0.18
                 },
                 {
-                    "exchange": "TO",
+                    "exchange": "TSE",
                     "symbol": "VXC",
                     "shareCount": 100,
                     "managementFee": 0.4
                 },
                 {
-                    "exchange": "TO",
+                    "exchange": "TSE",
                     "symbol": "VAB",
                     "shareCount": 52,
                     "managementFee": 0.11
                 },
                 {
-                    "exchange": "TO",
+                    "exchange": "TSE",
                     "symbol": "XEF",
                     "shareCount": 98,
                     "managementFee": 0.35

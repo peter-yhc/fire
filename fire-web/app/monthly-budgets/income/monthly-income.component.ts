@@ -18,8 +18,8 @@ export class MonthlyIncomeComponent implements OnChanges, OnInit, AutoSaveable {
     private investmentsColumnDefs;
     private incomeService:MonthlyIncomeService;
     private persistenceEventEmitter:PersistenceEventEmitter;
-    private entityChanged:boolean = false;
     private monthlyIncome:MonthlyIncome;
+    entityChanged:boolean = false;
 
     constructor(incomeService:MonthlyIncomeService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.directIncomeColumnDefs = [
