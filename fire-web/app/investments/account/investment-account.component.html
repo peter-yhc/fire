@@ -1,3 +1,16 @@
+<h4>{{stockAccount.name}}</h4>
 <p-dataTable [value]="rowData">
-    <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
+    <p-column *ngFor="let columnDef of columnDefs; let i = index"
+              [field]="columnDef.field"
+              [header]="columnDef.headerName">
+        <template *ngIf="columnDef.field == 'symbol'" pTemplate type="body" let-row="rowData">
+            <span>
+                <a class="symbol-link"
+                   href="{{ 'https://www.google.com/finance?q=' + row[columnDef.field] }}"
+                   target="_blank">
+                    {{ row[columnDef.field] }}
+                </a>
+            </span>
+        </template>
+    </p-column>
 </p-dataTable>

@@ -14,7 +14,7 @@ export class InvestmentAccountComponent implements OnInit {
     ngOnInit():void {
 
         this.columnDefs = [
-            {headerName: "Category", field: "exchange"},
+            {headerName: "Exchange", field: "exchange"},
             {headerName: "Symbol", field: "symbol"},
             {headerName: "Share Price", field: "sharePrice"},
             {headerName: "Shares", field: "shareCount"},

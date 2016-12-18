@@ -9,3 +9,7 @@
 #add-account-button-container {
     padding-right: 0;
 }
+
+:host /deep/ .symbol-link {
+    color: #607F99;
+}

@@ -1,5 +1,6 @@
-import {Component, OnInit, OnChanges} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {InvestmentsService} from "./investments.service";
+import {StockAccount} from "./model/StockAccount";
 
 @Component({
     templateUrl: "app/investments/investments.component.html",
@@ -10,17 +11,15 @@ import {InvestmentsService} from "./investments.service";
 })
 export class InvestmentsComponent implements OnInit {
 
-    private accounts:Array<String>;
+    private stockAccounts:Array<StockAccount>;
 
     constructor(private investmentsService:InvestmentsService) {
     }
 
     ngOnInit():void {
-        this.accounts = ["TFSA", "Canadian Holdings"];
-
         this.investmentsService.get().subscribe(
             investmentData => {
-                console.log("InvestmentData" + JSON.stringify(investmentData));
+                this.stockAccounts = investmentData.accounts;
             }
         )
     }
