@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {StockAccount} from "../model/StockAccount";
+import {InvestmentsService} from "../investments.service";
 
 @Component({
     selector: "investment-account-component",
@@ -8,8 +9,11 @@ import {StockAccount} from "../model/StockAccount";
 export class InvestmentAccountComponent implements OnInit {
     @Input() stockAccount:StockAccount;
 
-    private rowData;
     private columnDefs;
+
+    constructor(private investmentsService:InvestmentsService) {
+
+    }
 
     ngOnInit():void {
 
@@ -24,6 +28,12 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Updated Date", field: "updatedDate"}
         ];
 
-        this.rowData = this.stockAccount.stocks;
+        this.investmentsService.getSharePrices(this.stockAccount).subscribe(data => {
+            this.stockAccount.stocks.forEach(stock => {
+                if (stock.symbol == data.symbol) {
+                    stock.sharePrice = data.price;
+                }
+            })
+        });
     }
 }

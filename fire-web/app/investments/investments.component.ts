@@ -20,10 +20,7 @@ export class InvestmentsComponent implements OnInit {
         this.investmentsService.get().subscribe(
             investmentData => {
                 this.stockAccounts = investmentData.accounts;
-                this.investmentsService.getSharePrices(this.stockAccounts);
             }
         );
-
     }
-
 }

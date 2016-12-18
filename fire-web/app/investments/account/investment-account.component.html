@@ -1,5 +1,5 @@
 <h4>{{stockAccount.name}}</h4>
-<p-dataTable [value]="rowData">
+<p-dataTable [value]="stockAccount.stocks">
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
               [header]="columnDef.headerName">

@@ -5,6 +5,7 @@ export module StockEntry {
         public shareCount: number;
         public managementFee: number;
         public dividends: number;
+        public sharePrice: number;
 
         constructor(stockData: any) {
             this.exchange = stockData.exchange;
