@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {StockAccount} from "../model/StockAccount";
 import {InvestmentsService} from "../investments.service";
-import {StockViewModel} from "../model/StockViewModel";
+import {Stock} from "../model/Stock";
 
 @Component({
     selector: "investment-account-component",
@@ -11,16 +11,17 @@ export class InvestmentAccountComponent implements OnInit {
     @Input() stockAccount:StockAccount;
 
     private columnDefs;
-    private stockViewModels:StockViewModel[];
+    private stocks:Stock[];
 
     constructor(private investmentsService:InvestmentsService) {
-        this.stockViewModels = [];
+        this.stocks = [];
     }
 
     ngOnInit():void {
 
         this.columnDefs = [
-            {headerName: "Symbol", field: "exchangeSymbol"},
+            {headerName: "Exchange", field: "exchange"},
+            {headerName: "Symbol", field: "symbol"},
             {headerName: "Share Price", field: "sharePrice"},
             {headerName: "Shares", field: "shareCount"},
             {headerName: "Breakdown", field: "breakdown"},
@@ -28,20 +29,27 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Total Value", field: "totalValue"},
             {headerName: "Updated Date", field: "updatedDate"}
         ];
-
         this.updateStockViewModel();
     }
 
     private updateStockViewModel() {
+        let totalAccountValue = 0;
         this.investmentsService.getSharePrices(this.stockAccount).subscribe(data => {
             this.stockAccount.stocks.forEach(stock => {
                 if (stock.symbol == data.symbol) {
-                    let stockViewModel = new StockViewModel(stock);
-                    stockViewModel.sharePrice = data.price;
-                    stockViewModel.totalValue = (stockViewModel.sharePrice * stockViewModel.shareCount).toFixed(2);
-                    this.stockViewModels.push(stockViewModel);
+                    stock.sharePrice = parseFloat(data.price);
+                    stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
+                    totalAccountValue += stock.totalValue;
+                    this.stocks.push(stock);
                 }
-            })
+            });
+            this.updateBreakdown(totalAccountValue);
         });
+    }
+
+    private updateBreakdown(totalAccountValue) {
+        this.stocks.forEach(stock => {
+            stock.breakdown = (stock.totalValue / totalAccountValue).toFixed(3);
+        })
     }
 }

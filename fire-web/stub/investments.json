@@ -8,25 +8,29 @@
                     "exchange": "TSE",
                     "symbol": "VCN",
                     "shareCount": 200,
-                    "managementFee": 0.18
+                    "managementFee": 0.0018,
+                    "updatedDate": "2016-12-02"
                 },
                 {
                     "exchange": "TSE",
                     "symbol": "VXC",
                     "shareCount": 100,
-                    "managementFee": 0.4
+                    "managementFee": 0.004,
+                    "updatedDate": "2016-12-02"
                 },
                 {
                     "exchange": "TSE",
                     "symbol": "VAB",
                     "shareCount": 52,
-                    "managementFee": 0.11
+                    "managementFee": 0.0011,
+                    "updatedDate": "2016-12-02"
                 },
                 {
                     "exchange": "TSE",
                     "symbol": "XEF",
                     "shareCount": 98,
-                    "managementFee": 0.35
+                    "managementFee": 0.0035,
+                    "updatedDate": "2016-12-02"
                 }
             ]
         },
@@ -38,19 +42,22 @@
                     "exchange": "NASDAQ",
                     "symbol": "MSFT",
                     "shareCount": 53,
-                    "managementFee": 0
+                    "managementFee": 0,
+                    "updatedDate": "2016-12-02"
                 },
                 {
                     "exchange": "NASDAQ",
                     "symbol": "GOOG",
                     "shareCount": 16,
-                    "managementFee": 0
+                    "managementFee": 0,
+                    "updatedDate": "2016-12-02"
                 },
                 {
                     "exchange": "NASDAQ",
                     "symbol": "AAPL",
                     "shareCount": 115,
-                    "managementFee": 0
+                    "managementFee": 0,
+                    "updatedDate": "2016-12-02"
                 }
             ]
         }
