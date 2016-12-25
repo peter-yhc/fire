@@ -12,6 +12,6 @@
     </div>
 </div>
 
-<div class="row investment-account-container" *ngFor="let stockAccount of stockAccounts">
-    <investment-account-component [stockAccount]="stockAccount"></investment-account-component>
+<div class="row investment-account-container" *ngFor="let stockAccount of investment.accounts">
+    <investment-account-component [stockAccount]="stockAccount" (investmentUpdatedEmitter)="markEntityChanged()"></investment-account-component>
 </div>

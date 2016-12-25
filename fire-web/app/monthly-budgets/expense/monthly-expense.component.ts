@@ -1,7 +1,8 @@
-import {Component, Input, OnChanges, SimpleChanges, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, Input, OnChanges, OnInit, Output, EventEmitter} from "@angular/core";
 import {MonthlyExpenseService} from "./monthly-expense.service";
 import {MonthlyExpense} from "./MonthlyExpense";
 import {PersistenceEventEmitter} from "../../application/autosave/persistence-event-emitter.service";
+import {AutoSaveable} from "../../application/autosave/AutoSaveable";
 
 @Component({
     selector: 'monthly-expense-component',
@@ -11,18 +12,17 @@ import {PersistenceEventEmitter} from "../../application/autosave/persistence-ev
     ]
 })
 export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable {
-    @Input() monthId: number;
-    @Output() expenseUpdatedEmitter: EventEmitter<MonthlyExpense> = new EventEmitter<MonthlyExpense>();
+    @Input() monthId:number;
+    @Output() expenseUpdatedEmitter:EventEmitter<MonthlyExpense> = new EventEmitter<MonthlyExpense>();
 
     private necessaryExpensesColumnDefs;
     private discretionaryExpensesColumnDefs;
     private excessExpensesColumnDefs;
     private expenseService:MonthlyExpenseService;
-    private persistenceEventEmitter: PersistenceEventEmitter;
     private monthlyExpense:MonthlyExpense;
-    entityChanged:boolean;
+    private entityChanged:boolean;
 
-    constructor(expenseService:MonthlyExpenseService, persistenceEventEmitter: PersistenceEventEmitter) {
+    constructor(expenseService:MonthlyExpenseService, private persistenceEventEmitter:PersistenceEventEmitter) {
         let createBaseColumnDefs = () => {
             return [
                 {headerName: 'Monthly Budgeted', field: 'budget'},
@@ -45,7 +45,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
         this.persistenceEventEmitter.getEmitter().subscribe(
             () => {
                 if (this.entityChanged) {
-                    this.saveExpenseChanges()
+                    this.saveChanges()
                 }
             },
             error => console.log("Error" + error)
@@ -65,7 +65,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
         this.entityChanged = true;
     }
 
-    private saveExpenseChanges() {
+    private saveChanges(): void {
         this.expenseService.save(2015, this.monthId, this.monthlyExpense).subscribe(
             data => {
                 console.log("Success: " + data);

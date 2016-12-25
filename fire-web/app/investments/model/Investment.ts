@@ -3,8 +3,10 @@ export class Investment {
 
     public accounts:StockAccount[];
 
-    constructor(investmentData:any) {
+    constructor(investmentData?:any) {
         this.accounts = [];
-        investmentData.accounts.forEach(accountData => this.accounts.push(new StockAccount(accountData)))
+        if (investmentData !== undefined) {
+            investmentData.accounts.forEach(accountData => this.accounts.push(new StockAccount(accountData)))
+        }
     }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {StockAccount} from "../model/StockAccount";
 import {InvestmentsService} from "../investments.service";
 import {Stock} from "../model/Stock";
@@ -9,6 +9,7 @@ import {Stock} from "../model/Stock";
 })
 export class InvestmentAccountComponent implements OnInit {
     @Input() stockAccount:StockAccount;
+    @Output() investmentUpdatedEmitter:EventEmitter<StockAccount> = new EventEmitter<StockAccount>();
 
     private columnDefs;
     private stocks:Stock[];
@@ -18,7 +19,6 @@ export class InvestmentAccountComponent implements OnInit {
     }
 
     ngOnInit():void {
-
         this.columnDefs = [
             {headerName: "Exchange", field: "exchange"},
             {headerName: "Symbol", field: "symbol"},
@@ -30,6 +30,15 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Updated Date", field: "updatedDate"}
         ];
         this.updateStockViewModel();
+    }
+
+    addRow() {
+        this.stocks.push(new Stock());
+        this.investmentUpdatedEmitter.emit(this.stockAccount);
+    }
+
+    emitChanges() {
+        this.investmentUpdatedEmitter.emit(this.stockAccount);
     }
 
     private updateStockViewModel() {

@@ -1,10 +1,15 @@
 <h4>{{ stockAccount.name }}</h4>
 <span>Cash remaining: <strong>{{ stockAccount.cash | currency : 'USD' : true }}</strong></span>
-<p-dataTable [value]="stocks" [editable]="true">
+<p-dataTable [value]="stocks"
+             [editable]="true"
+             (onEdit)="emitChanges()">
+
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
               [header]="columnDef.headerName"
               [editable]="i <= 6 && i % 2 == 1 || i == 0">
+
+        <!--Regular Columns-->
         <template *ngIf="columnDef.field == 'symbol'" pTemplate type="body" let-row="rowData">
             <span>
                 <a class="symbol-link"
@@ -15,15 +20,17 @@
             </span>
         </template>
 
+        <!--Currency Columns-->
         <template *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice'"
                   pTemplate type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
         </template>
 
+        <!--Percentage Columns-->
         <template *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee'"
                   pTemplate type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | percent }}</span>
         </template>
-
     </p-column>
+    <footer><button (click)="addRow()">Add New Row</button></footer>
 </p-dataTable>

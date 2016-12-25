@@ -18,6 +18,14 @@ export class InvestmentsService {
         )
     }
 
+    save(investments: Investment): Observable<void> {
+        return this.http.post("/api/investments", investments).map(
+            response => {
+                return response.status;
+            }
+        )
+    }
+
     getSharePrices(stockAccount:StockAccount):Observable<any> {
         let allSymbols = this.mapSymbolsToExchanges(stockAccount);
         return this.getGoogleSharePrices(allSymbols);
