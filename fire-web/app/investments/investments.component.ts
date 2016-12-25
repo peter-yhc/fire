@@ -40,7 +40,7 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
         this.entityChanged = true;
     }
 
-    saveChanges():void {
+    private saveChanges():void {
         this.investmentsService.save(this.investment).subscribe(
             data => {
                 console.log("Success: " + data);

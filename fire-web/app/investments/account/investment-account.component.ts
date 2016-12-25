@@ -38,18 +38,19 @@ export class InvestmentAccountComponent implements OnInit {
     }
 
     emitChanges() {
+        this.updateStockViewModel();
         this.investmentUpdatedEmitter.emit(this.stockAccount);
     }
 
     private updateStockViewModel() {
         let totalAccountValue = 0;
         this.investmentsService.getSharePrices(this.stockAccount).subscribe(data => {
-            this.stockAccount.stocks.forEach(stock => {
+            this.stockAccount.stocks.forEach((stock:Stock, idx) => {
                 if (stock.symbol == data.symbol) {
                     stock.sharePrice = parseFloat(data.price);
                     stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
                     totalAccountValue += stock.totalValue;
-                    this.stocks.push(stock);
+                    this.stocks[idx] = stock;
                 }
             });
             this.updateBreakdown(totalAccountValue);
