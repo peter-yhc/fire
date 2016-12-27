@@ -13,9 +13,11 @@ export class InvestmentAccountComponent implements OnInit {
 
     private columnDefs;
     private stocks:Stock[];
+    private backupShareCount;
 
     constructor(private investmentsService:InvestmentsService) {
         this.stocks = [];
+        this.backupShareCount = {};
     }
 
     ngOnInit():void {
@@ -46,11 +48,16 @@ export class InvestmentAccountComponent implements OnInit {
         let totalAccountValue = 0;
         this.investmentsService.getSharePrices(this.stockAccount).subscribe(data => {
             this.stockAccount.stocks.forEach((stock:Stock, idx) => {
+                if (stock.shareCount.toString().match(/[^0-9]+/)) {
+                    stock.shareCount = this.backupShareCount[stock.symbol];
+                }
+
                 if (stock.symbol == data.symbol) {
                     stock.sharePrice = parseFloat(data.price);
                     stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
                     totalAccountValue += stock.totalValue;
                     this.stocks[idx] = stock;
+                    this.backupShareCount[stock.symbol] = stock.shareCount;
                 }
             });
             this.updateBreakdown(totalAccountValue);
@@ -59,7 +66,7 @@ export class InvestmentAccountComponent implements OnInit {
 
     private updateBreakdown(totalAccountValue) {
         this.stocks.forEach(stock => {
-            stock.breakdown = (stock.totalValue / totalAccountValue).toFixed(3);
+            stock.breakdown = parseFloat((stock.totalValue / totalAccountValue).toFixed(3));
         })
     }
 }
