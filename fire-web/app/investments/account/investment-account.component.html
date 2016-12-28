@@ -1,6 +1,6 @@
 <h4>{{ stockAccount.name }}</h4>
 <span>Cash remaining: <strong>{{ stockAccount.cash | currency : 'USD' : true }}</strong></span>
-<p-dataTable [value]="stocks"
+<p-dataTable [value]="stockAccount.stocks"
              [editable]="true"
              (onEdit)="emitChanges()">
 
@@ -9,7 +9,7 @@
               [header]="columnDef.headerName"
               [editable]="i <= 6 && i % 2 == 1 || i == 0">
 
-        <!--Regular Columns-->
+        <!--Symbol Columns-->
         <template *ngIf="columnDef.field == 'symbol'" pTemplate="type" type="body" let-row="rowData">
             <span>
                 <a class="symbol-link"

@@ -8,19 +8,18 @@ import {Stock} from "../model/Stock";
     templateUrl: "app/investments/account/investment-account.component.html"
 })
 export class InvestmentAccountComponent implements OnInit {
-    @Input() stockAccount:StockAccount;
-    @Output() investmentUpdatedEmitter:EventEmitter<StockAccount> = new EventEmitter<StockAccount>();
+
+    @Input() stockAccount: StockAccount;
+    @Output() investmentUpdatedEmitter: EventEmitter<StockAccount> = new EventEmitter<StockAccount>();
 
     private columnDefs;
-    private stocks:Stock[];
     private backupShareCount;
 
-    constructor(private investmentsService:InvestmentsService) {
-        this.stocks = [];
+    constructor(private investmentsService: InvestmentsService) {
         this.backupShareCount = {};
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         this.columnDefs = [
             {headerName: "Exchange", field: "exchange"},
             {headerName: "Symbol", field: "symbol"},
@@ -35,7 +34,7 @@ export class InvestmentAccountComponent implements OnInit {
     }
 
     addRow() {
-        this.stocks.push(new Stock());
+        this.stockAccount.stocks.push(new Stock());
         this.investmentUpdatedEmitter.emit(this.stockAccount);
     }
 
@@ -47,7 +46,7 @@ export class InvestmentAccountComponent implements OnInit {
     private updateStockViewModel() {
         let totalAccountValue = 0;
         this.investmentsService.getSharePrices(this.stockAccount).subscribe(data => {
-            this.stockAccount.stocks.forEach((stock:Stock, idx) => {
+            this.stockAccount.stocks.forEach((stock: Stock, idx) => {
                 if (stock.shareCount.toString().match(/[^0-9]+/)) {
                     stock.shareCount = this.backupShareCount[stock.symbol];
                 }
@@ -56,7 +55,7 @@ export class InvestmentAccountComponent implements OnInit {
                     stock.sharePrice = parseFloat(data.price);
                     stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
                     totalAccountValue += stock.totalValue;
-                    this.stocks[idx] = stock;
+                    this.stockAccount.stocks[idx] = stock;
                     this.backupShareCount[stock.symbol] = stock.shareCount;
                 }
             });
@@ -65,7 +64,7 @@ export class InvestmentAccountComponent implements OnInit {
     }
 
     private updateBreakdown(totalAccountValue) {
-        this.stocks.forEach(stock => {
+        this.stockAccount.stocks.forEach(stock => {
             stock.breakdown = parseFloat((stock.totalValue / totalAccountValue).toFixed(3));
         })
     }

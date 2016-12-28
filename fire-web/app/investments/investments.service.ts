@@ -18,7 +18,7 @@ export class InvestmentsService {
         )
     }
 
-    save(investments: Investment): Observable<void> {
+    save(investments: Investment): Observable<number> {
         return this.http.post("/api/investments", investments).map(
             response => {
                 return response.status;
