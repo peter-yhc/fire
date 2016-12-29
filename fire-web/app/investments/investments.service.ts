@@ -7,10 +7,10 @@ import {StockAccount} from "./model/StockAccount";
 @Injectable()
 export class InvestmentsService {
 
-    constructor(private http:Http) {
+    constructor(private http: Http) {
     }
 
-    get():Observable<Investment> {
+    get(): Observable<Investment> {
         return this.http.get("/api/investments").map(
             response => {
                 return new Investment(response.json());
@@ -26,40 +26,34 @@ export class InvestmentsService {
         )
     }
 
-    getSharePrices(stockAccount:StockAccount):Observable<any> {
+    getSharePrices(stockAccount: StockAccount): Observable<any> {
         let allSymbols = this.mapSymbolsToExchanges(stockAccount);
         return this.getGoogleSharePrices(allSymbols);
     }
 
-    private mapSymbolsToExchanges(stockAccount) {
-        let exchangeSymbolMap = {};
+    private mapSymbolsToExchanges(stockAccount): String[] {
+        let exchangeSymbolList = [];
         stockAccount.stocks.forEach(stock => {
             let exchange = stock.exchange;
-            if (exchangeSymbolMap[exchange] == undefined) {
-                exchangeSymbolMap[exchange] = [];
-            }
-            exchangeSymbolMap[exchange].push(stock.symbol);
+            exchangeSymbolList.push(`${stock.exchange}:${stock.symbol}`);
         });
-        return exchangeSymbolMap;
+        return exchangeSymbolList;
     }
 
-    private getGoogleSharePrices(exchangeSymbolMap:{}):Observable<any> {
+    private getGoogleSharePrices(exchangeSymbolList: String[]): Observable<any> {
         let googleSharePrices = new Subject();
-        for (let exchange in exchangeSymbolMap) {
-            let symbolsForExchange = exchangeSymbolMap[exchange].join();
-            let link = `https://finance.google.com/finance/info?client=ig&q=${exchange}:${symbolsForExchange}`;
-            let googleQuery = this.http.get(link).map(
-                response => {
-                    return JSON.parse(response['_body'].replace('//', ''));
-                }
-            );
-            googleQuery.subscribe(shares => {
-                shares.forEach(share => {
-                    googleSharePrices.next({"symbol": share.t, "price": share.l});
-                });
-                googleSharePrices.complete();
+        let link = `https://finance.google.com/finance/info?client=ig&q=${exchangeSymbolList.join()}`;
+        let googleQuery = this.http.get(link).map(
+            response => {
+                return JSON.parse(response['_body'].replace('//', ''));
+            }
+        );
+        googleQuery.subscribe(shares => {
+            shares.forEach(share => {
+                googleSharePrices.next({"symbol": share.t, "price": share.l});
             });
-        }
+            googleSharePrices.complete();
+        });
         return googleSharePrices;
     }
 }
