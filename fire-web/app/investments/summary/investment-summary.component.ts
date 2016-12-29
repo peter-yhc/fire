@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
+import {Investment} from "../model/Investment";
 
 @Component({
     selector: "investment-summary-component",
@@ -8,6 +9,8 @@ export class InvestmentSummaryComponent implements OnInit {
     private rowData;
     private columnDefs;
 
+    @Input() investment: Investment;
+
     ngOnInit(): void {
 
         this.columnDefs = [
@@ -16,7 +19,8 @@ export class InvestmentSummaryComponent implements OnInit {
         ];
 
         this.rowData = [
-            {allocationType: "Total", value: "$120000"},
+            {allocationType: "Market Value", value: "$120000"},
+            {allocationType: "Book Value", value: "$120000"},
             {allocationType: "CA Stock", value: "40000"},
             {allocationType: "US Stock", value: "70000"},
             {allocationType: "Bonds", value: "10000"},

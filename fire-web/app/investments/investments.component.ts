@@ -13,11 +13,13 @@ import {Investment} from "./model/Investment";
 })
 export class InvestmentsComponent implements OnInit, AutoSaveable {
 
-    private entityChanged:boolean;
+    entityChanged:boolean;
+    persistenceEventEmitter:PersistenceEventEmitter;
     private investment:Investment;
 
-    constructor(private investmentsService:InvestmentsService, private persistenceEventEmitter:PersistenceEventEmitter) {
+    constructor(private investmentsService:InvestmentsService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.investment = new Investment();
+        this.persistenceEventEmitter = persistenceEventEmitter;
     }
 
     ngOnInit():void {
@@ -40,7 +42,7 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
         this.entityChanged = true;
     }
 
-    private saveChanges():void {
+    saveChanges():void {
         this.investmentsService.save(this.investment).subscribe(
             data => {
                 console.log("Success: " + data);
