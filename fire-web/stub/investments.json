@@ -1,1 +1,113 @@
-{"accounts":[{"name":"TFSA RBC","cash":1129,"stocks":[{"exchange":"TSE","symbol":"VCN","shareCount":291,"managementFee":0.0018,"sharePrice":31.09,"breakdown":0.421,"totalValue":9047.19,"updatedDate":"2016-12-02"},{"exchange":"TSE","symbol":"VXC","shareCount":100,"managementFee":0.004,"sharePrice":31.48,"breakdown":0.147,"totalValue":3148,"updatedDate":"2016-12-02"},{"exchange":"TSE","symbol":"VAB","shareCount":52,"managementFee":0.0011,"sharePrice":25.29,"breakdown":0.061,"totalValue":1315.08,"updatedDate":"2016-12-02"},{"exchange":"TSE","symbol":"XEF","shareCount":98,"managementFee":0.0035,"sharePrice":26.58,"breakdown":0.121,"totalValue":2604.84,"updatedDate":"2016-12-02"},{"exchange":"TSE","symbol":"XEC","shareCount":3,"sharePrice":22.17,"breakdown":0.003,"totalValue":66.51},{"exchange":"TSE","symbol":"VXC","shareCount":34,"breakdown":0.05,"sharePrice":31.48,"totalValue":1070.32}]},{"name":"RBC US Investment","cash":192.12,"stocks":[{"exchange":"NASDAQ","symbol":"MSFT","shareCount":53,"managementFee":0,"sharePrice":62.99,"breakdown":0.114,"totalValue":3338.47,"updatedDate":"2016-12-02"},{"exchange":"NASDAQ","symbol":"GOOG","shareCount":16,"managementFee":0,"sharePrice":785.05,"breakdown":0.428,"totalValue":12560.8,"updatedDate":"2016-12-02"},{"exchange":"NASDAQ","symbol":"AAPL","shareCount":115,"managementFee":0,"sharePrice":116.76,"breakdown":0.458,"totalValue":13427.4,"updatedDate":"2016-12-02"}]}]}
+{
+  "accounts": [
+    {
+      "name": "TFSA RBC",
+      "cash": 1129,
+      "stocks": [
+        {
+          "exchange": "TSE",
+          "symbol": "VCN",
+          "shareCount": 291,
+          "managementFee": 0.0018,
+          "sharePrice": 31.09,
+          "breakdown": 0.421,
+          "totalValue": 9047.19,
+          "bookValue": 8012.12,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "TSE",
+          "symbol": "VXC",
+          "shareCount": 100,
+          "managementFee": 0.004,
+          "sharePrice": 31.48,
+          "breakdown": 0.147,
+          "totalValue": 3148,
+          "bookValue": 2090.2,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "TSE",
+          "symbol": "VAB",
+          "shareCount": 52,
+          "managementFee": 0.0011,
+          "sharePrice": 25.29,
+          "breakdown": 0.061,
+          "totalValue": 1315.08,
+          "bookValue": 994.75,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "TSE",
+          "symbol": "XEF",
+          "shareCount": 98,
+          "managementFee": 0.0035,
+          "sharePrice": 26.58,
+          "breakdown": 0.121,
+          "totalValue": 2604.84,
+          "bookValue": 2699.61,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "TSE",
+          "symbol": "XEC",
+          "shareCount": 3,
+          "sharePrice": 22.17,
+          "breakdown": 0.003,
+          "totalValue": 66.51,
+          "bookValue": 80.12,
+          "updatedDate": "2016-09-19"
+        },
+        {
+          "exchange": "TSE",
+          "symbol": "VXC",
+          "shareCount": 34,
+          "breakdown": 0.05,
+          "sharePrice": 31.48,
+          "totalValue": 1070.32,
+          "bookValue": 800.33,
+          "updatedDate": "2016-11-23"
+        }
+      ]
+    },
+    {
+      "name": "RBC US Investment",
+      "cash": 192.12,
+      "stocks": [
+        {
+          "exchange": "NASDAQ",
+          "symbol": "MSFT",
+          "shareCount": 53,
+          "managementFee": 0,
+          "sharePrice": 62.99,
+          "breakdown": 0.114,
+          "totalValue": 3338.47,
+          "bookValue": 4500.12,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "NASDAQ",
+          "symbol": "GOOG",
+          "shareCount": 16,
+          "managementFee": 0,
+          "sharePrice": 785.05,
+          "breakdown": 0.428,
+          "totalValue": 12560.8,
+          "bookValue": 11024.18,
+          "updatedDate": "2016-12-02"
+        },
+        {
+          "exchange": "NASDAQ",
+          "symbol": "AAPL",
+          "shareCount": 115,
+          "managementFee": 0,
+          "sharePrice": 116.76,
+          "breakdown": 0.458,
+          "totalValue": 13427.4,
+          "bookValue": 10829.12,
+          "updatedDate": "2016-12-02"
+        }
+      ]
+    }
+  ]
+}

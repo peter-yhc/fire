@@ -28,6 +28,7 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Breakdown", field: "breakdown"},
             {headerName: "Fee", field: "managementFee"},
             {headerName: "Total Value", field: "totalValue"},
+            {headerName: "Book Value", field: "bookValue"},
             {headerName: "Updated Date", field: "updatedDate"}
         ];
         this.updateStockViewModel();

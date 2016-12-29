@@ -7,7 +7,7 @@
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
               [header]="columnDef.headerName"
-              [editable]="i <= 6 && i % 2 == 1 || i == 0">
+              [editable]="i <= 7 && i % 2 == 1 || i == 0">
 
         <!--Symbol Columns-->
         <template *ngIf="columnDef.field == 'symbol'" pTemplate="type" type="body" let-row="rowData">
@@ -21,7 +21,7 @@
         </template>
 
         <!--Currency Columns-->
-        <template *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice'"
+        <template *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
                   pTemplate="type" type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
         </template>
