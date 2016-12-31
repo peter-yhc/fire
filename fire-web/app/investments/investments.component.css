@@ -13,3 +13,7 @@
 :host /deep/ .symbol-link {
     color: #607F99;
 }
+
+:host /deep/ td {
+    text-align: center;
+}

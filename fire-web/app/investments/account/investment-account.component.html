@@ -27,10 +27,12 @@
         </template>
 
         <!--Percentage Columns-->
-        <template *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee'"
+        <template *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee' || columnDef.field == 'gain'"
                   pTemplate="type" type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | percent }}</span>
         </template>
     </p-column>
-    <footer><button (click)="addRow()">Add New Row</button></footer>
+    <footer><button (click)="addRow()" type="button" class="btn btn-default" aria-label="Left Align">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button></footer>
 </p-dataTable>

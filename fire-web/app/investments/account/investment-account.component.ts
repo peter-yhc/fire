@@ -29,6 +29,7 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Fee", field: "managementFee"},
             {headerName: "Total Value", field: "totalValue"},
             {headerName: "Book Value", field: "bookValue"},
+            {headerName: "Gain", field: "gain"},
             {headerName: "Updated Date", field: "updatedDate"}
         ];
         this.updateStockViewModel();
@@ -55,6 +56,7 @@ export class InvestmentAccountComponent implements OnInit {
                 if (stock.symbol == data.symbol) {
                     stock.sharePrice = parseFloat(data.price);
                     stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
+                    stock.gain = parseFloat(((stock.totalValue - stock.bookValue) / stock.bookValue).toFixed(2));
                     totalAccountValue += stock.totalValue;
                     this.stockAccount.stocks[idx] = stock;
                     this.backupShareCount[stock.symbol] = stock.shareCount;

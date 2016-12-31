@@ -8,6 +8,7 @@ export class Stock {
     public breakdown:number;
     public totalValue:number;
     public bookValue:number;
+    public gain:number;
     public updatedDate:Date;
 
     constructor(stockData?:any) {
@@ -20,6 +21,7 @@ export class Stock {
             this.breakdown = stockData.breakdown;
             this.totalValue = stockData.totalValue;
             this.bookValue = stockData.bookValue;
+            this.gain = stockData.gain;
             this.updatedDate = stockData.updatedDate;
         }
     }
