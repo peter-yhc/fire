@@ -8,10 +8,34 @@
 <div id="stock-details-container" class="row">
     <h3>Stock Details</h3>
     <div id="add-account-button-container" class="col-md-offset-10 col-md-2">
-        <button class="btn btn-default pull-right">Add new account</button>
+        <!--<button class="btn btn-default pull-right" (click)="addStockAccount()">Add new account</button>-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small
+            modal
+        </button>
     </div>
 </div>
 
 <div class="row investment-account-container" *ngFor="let stockAccount of investment.accounts">
-    <investment-account-component [stockAccount]="stockAccount" (investmentUpdatedEmitter)="markEntityChanged()"></investment-account-component>
+    <investment-account-component [stockAccount]="stockAccount"
+                                  (investmentUpdatedEmitter)="markEntityChanged()"></investment-account-component>
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Stock Account</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -3,6 +3,7 @@ import {InvestmentsService} from "./investments.service";
 import {AutoSaveable} from "../application/autosave/AutoSaveable";
 import {PersistenceEventEmitter} from "../application/autosave/persistence-event-emitter.service";
 import {Investment} from "./model/Investment";
+import {StockAccount} from "./model/StockAccount";
 
 @Component({
     templateUrl: "app/investments/investments.component.html",
@@ -36,6 +37,10 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
             },
             error => console.log("Error" + error)
         )
+    }
+
+    addStockAccount():void {
+        this.investment.accounts.push(new StockAccount())
     }
 
     markEntityChanged():void {
