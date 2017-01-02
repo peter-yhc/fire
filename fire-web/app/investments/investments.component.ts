@@ -16,11 +16,14 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
 
     entityChanged:boolean;
     persistenceEventEmitter:PersistenceEventEmitter;
+
     private investment:Investment;
+    private editModeToggle:boolean;
 
     constructor(private investmentsService:InvestmentsService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.investment = new Investment();
         this.persistenceEventEmitter = persistenceEventEmitter;
+        this.editModeToggle = false;
     }
 
     ngOnInit():void {
@@ -41,6 +44,10 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
 
     addStockAccount():void {
         this.investment.accounts.push(new StockAccount())
+    }
+
+    toggleEditActions():void {
+        this.editModeToggle = !this.editModeToggle;
     }
 
     markEntityChanged():void {

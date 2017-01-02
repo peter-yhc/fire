@@ -10,6 +10,7 @@ import {Stock} from "../model/Stock";
 export class InvestmentAccountComponent implements OnInit {
 
     @Input() stockAccount: StockAccount;
+    @Input() editModeToggle: boolean;
     @Output() investmentUpdatedEmitter: EventEmitter<StockAccount> = new EventEmitter<StockAccount>();
 
     private columnDefs;

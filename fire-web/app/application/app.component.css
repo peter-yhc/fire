@@ -1,3 +1,12 @@
 :host /deep/ table {
     font-size: 1em;
 }
+
+:host /deep/ .btn-custom-success,
+:host /deep/ .btn-custom-success:hover,
+:host /deep/ .btn-custom-success:active,
+:host /deep/ .btn-custom-success:visited,
+:host /deep/ .btn-custom-success:focus {
+    background-color: #659999;
+    border-color: #226666;
+}

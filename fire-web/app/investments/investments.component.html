@@ -6,18 +6,25 @@
 </div>
 
 <div id="stock-details-container" class="row">
-    <h3>Stock Details</h3>
-    <div id="add-account-button-container" class="col-md-offset-10 col-md-2">
-        <!--<button class="btn btn-default pull-right" (click)="addStockAccount()">Add new account</button>-->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small
-            modal
-        </button>
-    </div>
+    <h3>Stock Accounts</h3>
+    <button class="btn btn-default pull-right" (click)="toggleEditActions()">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </button>
 </div>
 
 <div class="row investment-account-container" *ngFor="let stockAccount of investment.accounts">
-    <investment-account-component [stockAccount]="stockAccount"
-                                  (investmentUpdatedEmitter)="markEntityChanged()"></investment-account-component>
+    <investment-account-component
+            [stockAccount]="stockAccount"
+            (investmentUpdatedEmitter)="markEntityChanged()"
+            [editModeToggle]="editModeToggle">
+    </investment-account-component>
+</div>
+
+<div class="row" *ngIf="editModeToggle">
+    <button type="button" class="btn btn-custom-success pull-left" data-toggle="modal"
+            data-target=".bs-example-modal-sm">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Account
+    </button>
 </div>
 
 <!-- Large modal -->
@@ -27,10 +34,13 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">New Stock Account</h4>
+                <h4 class="modal-title" id="myModalLabel">Please give your new account an alias.</h4>
             </div>
             <div class="modal-body">
-                ...
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon" id="sizing-addon3">Alias</span>
+                    <input type="text" class="form-control" placeholder="Account Name" aria-describedby="sizing-addon3">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
