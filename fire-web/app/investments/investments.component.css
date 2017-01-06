@@ -17,3 +17,11 @@
 :host /deep/ td {
     text-align: center;
 }
+
+:host /deep/ .investment-cash-container {
+    margin-bottom: 1em;
+}
+
+:host /deep/ .investment-cash-remaining-addon {
+    background-color: rgb(235, 237, 240);
+}

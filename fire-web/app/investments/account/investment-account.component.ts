@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, OnChanges, Input, Output, EventEmitter} from "@angular/core";
 import {StockAccount} from "../model/StockAccount";
 import {InvestmentsService} from "../investments.service";
 import {Stock} from "../model/Stock";
@@ -7,7 +7,7 @@ import {Stock} from "../model/Stock";
     selector: "investment-account-component",
     templateUrl: "app/investments/account/investment-account.component.html"
 })
-export class InvestmentAccountComponent implements OnInit {
+export class InvestmentAccountComponent implements OnInit, OnChanges {
 
     @Input() stockAccount: StockAccount;
     @Input() editModeToggle: boolean;
@@ -15,9 +15,11 @@ export class InvestmentAccountComponent implements OnInit {
 
     private columnDefs;
     private backupShareCount;
+    private visible;
 
     constructor(private investmentsService: InvestmentsService) {
         this.backupShareCount = {};
+        this.visible = true;
     }
 
     ngOnInit(): void {
@@ -34,6 +36,13 @@ export class InvestmentAccountComponent implements OnInit {
             {headerName: "Updated Date", field: "updatedDate"}
         ];
         this.updateStockViewModel();
+    }
+
+    ngOnChanges(changes) {
+        if (changes.editModeToggle && (changes.editModeToggle.previousValue !== changes.editModeToggle.currentValue)) {
+            this.visible = false;
+            setTimeout(() => this.visible = true, 0)
+        }
     }
 
     addRow() {

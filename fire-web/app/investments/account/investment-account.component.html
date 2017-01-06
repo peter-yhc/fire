@@ -1,8 +1,18 @@
 <h4>{{ stockAccount.name }}</h4>
-<span>Cash remaining: <strong>{{ stockAccount.cash | currency : 'USD' : true }}</strong></span>
+<!--<span>Cash remaining: <strong>{{ stockAccount.cash | currency : 'USD' : true }}</strong></span>-->
+<div class="row">
+    <div class="col-md-3 investment-cash-container">
+        <div class="input-group input-group-">
+            <span class="input-group-addon investment-cash-remaining-addon">Cash Remaining</span>
+            <input type="text" class="form-control" [disabled]="!editModeToggle"
+                   placeholder="{{ stockAccount.cash | currency : 'USD' : true }}"/>
+        </div>
+    </div>
+</div>
 <p-dataTable [value]="stockAccount.stocks"
-             [editable]="true"
-             (onEdit)="emitChanges()">
+             [editable]="editModeToggle"
+             (onEdit)="emitChanges()"
+             *ngIf="visible">
 
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
@@ -21,18 +31,32 @@
         </template>
 
         <!--Currency Columns-->
-        <template *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
-                  pTemplate="type" type="body" let-row="rowData">
+        <template
+                *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
+                pTemplate="type" type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
         </template>
 
         <!--Percentage Columns-->
-        <template *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee' || columnDef.field == 'gain'"
-                  pTemplate="type" type="body" let-row="rowData">
+        <template
+                *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee' || columnDef.field == 'gain'"
+                pTemplate="type" type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | percent }}</span>
         </template>
+
+        <template
+                *ngIf="columnDef.field == 'updatedDate'"
+                pTemplate="type" type="body" let-row="rowData">
+            <span>
+                {{ row[columnDef.field] }}
+                <button *ngIf="editToggleMode"><span class="glyphicon glyphicon-remove"></span>Delete</button>
+
+            </span>
+        </template>
     </p-column>
-    <footer [hidden]="!editModeToggle"><button (click)="addRow()" type="button" class="btn btn-default" aria-label="Left Align" >
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </button></footer>
+    <footer [hidden]="!editModeToggle">
+        <button (click)="addRow()" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </footer>
 </p-dataTable>
