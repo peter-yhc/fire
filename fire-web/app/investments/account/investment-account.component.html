@@ -12,7 +12,7 @@
 <p-dataTable [value]="stockAccount.stocks"
              [editable]="editModeToggle"
              (onEdit)="emitChanges()"
-             *ngIf="visible">
+             *ngIf="tableRefreshToggle">
 
     <p-column *ngFor="let columnDef of columnDefs; let i = index"
               [field]="columnDef.field"
@@ -47,11 +47,7 @@
         <template
                 *ngIf="columnDef.field == 'updatedDate'"
                 pTemplate="type" type="body" let-row="rowData">
-            <span>
-                {{ row[columnDef.field] }}
-                <button *ngIf="editToggleMode"><span class="glyphicon glyphicon-remove"></span>Delete</button>
-
-            </span>
+            <span>{{ row[columnDef.field] }}</span>
         </template>
     </p-column>
     <footer [hidden]="!editModeToggle">

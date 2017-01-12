@@ -15,11 +15,11 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
 
     private columnDefs;
     private backupShareCount;
-    private visible;
+    private tableRefreshToggle;
 
     constructor(private investmentsService: InvestmentsService) {
         this.backupShareCount = {};
-        this.visible = true;
+        this.tableRefreshToggle = true;
     }
 
     ngOnInit(): void {
@@ -40,8 +40,8 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes) {
         if (changes.editModeToggle && (changes.editModeToggle.previousValue !== changes.editModeToggle.currentValue)) {
-            this.visible = false;
-            setTimeout(() => this.visible = true, 0)
+            this.tableRefreshToggle = false;
+            setTimeout(() => this.tableRefreshToggle = true, 0)
         }
     }
 
