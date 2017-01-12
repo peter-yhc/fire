@@ -25,3 +25,13 @@
 :host /deep/ .investment-cash-remaining-addon {
     background-color: rgb(235, 237, 240);
 }
+
+:host /deep/ .stock-delete-button {
+    color: #FFFFFF;
+    background-color: #AA3939;
+}
+
+:host /deep/ .stock-add-button {
+    color: #FFFFFF;
+    background-color: #2D882D;
+}

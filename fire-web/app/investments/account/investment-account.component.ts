@@ -20,9 +20,6 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
     constructor(private investmentsService: InvestmentsService) {
         this.backupShareCount = {};
         this.tableRefreshToggle = true;
-    }
-
-    ngOnInit(): void {
         this.columnDefs = [
             {headerName: "Exchange", field: "exchange"},
             {headerName: "Symbol", field: "symbol"},
@@ -35,14 +32,24 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
             {headerName: "Gain", field: "gain"},
             {headerName: "Updated Date", field: "updatedDate"}
         ];
+    }
+
+    ngOnInit(): void {
         this.updateStockViewModel();
     }
 
     ngOnChanges(changes) {
-        if (changes.editModeToggle && (changes.editModeToggle.previousValue !== changes.editModeToggle.currentValue)) {
+        if (changes.editModeToggle && changes.editModeToggle.currentValue === true) {
             this.tableRefreshToggle = false;
-            setTimeout(() => this.tableRefreshToggle = true, 0)
+            if (this.columnDefs[this.columnDefs.length - 1].headerName !== "Delete") {
+                this.columnDefs.push({headerName: "Delete", field: "delete"});
+            }
+        } else {
+            if (this.columnDefs[this.columnDefs.length - 1].headerName === "Delete") {
+                this.columnDefs.splice(this.columnDefs.length - 1, 1)
+            }
         }
+        setTimeout(() => this.tableRefreshToggle = true, 0)
     }
 
     addRow() {
@@ -52,6 +59,12 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
 
     emitChanges() {
         this.updateStockViewModel();
+        this.investmentUpdatedEmitter.emit(this.stockAccount);
+    }
+
+    deleteRow(row: Stock): void {
+        let index = this.stockAccount.stocks.indexOf(row);
+        this.stockAccount.stocks.splice(index, 1);
         this.investmentUpdatedEmitter.emit(this.stockAccount);
     }
 
