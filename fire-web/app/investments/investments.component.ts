@@ -19,6 +19,7 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
 
     private investment:Investment;
     private editModeToggle:boolean;
+    private newAccountName:string;
 
     constructor(private investmentsService:InvestmentsService, persistenceEventEmitter:PersistenceEventEmitter) {
         this.investment = new Investment();
@@ -43,7 +44,8 @@ export class InvestmentsComponent implements OnInit, AutoSaveable {
     }
 
     addStockAccount():void {
-        this.investment.accounts.push(new StockAccount())
+        this.investment.accounts.push(new StockAccount());
+        this.markEntityChanged();
     }
 
     toggleEditActions():void {

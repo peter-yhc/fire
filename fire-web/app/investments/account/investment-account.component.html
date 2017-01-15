@@ -54,12 +54,12 @@
         <template
                 *ngIf="columnDef.field == 'delete'"
                 pTemplate="type" type="body" let-row="rowData">
-            <button class="btn stock-delete-button" (click)="deleteRow(row)"><span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-custom-failure" (click)="deleteRow(row)"><span class="glyphicon glyphicon-remove"></span></button>
         </template>
 
     </p-column>
     <footer [hidden]="!editModeToggle">
-        <button (click)="addRow()" type="button" class="btn stock-add-button" aria-label="Left Align">
+        <button (click)="addRow()" type="button" class="btn btn-custom-success" aria-label="Left Align">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
     </footer>

@@ -5,10 +5,11 @@ import {InvestmentsComponent} from "./investments.component";
 import {InvestmentAccountComponent} from "./account/investment-account.component";
 import {InvestmentSummaryComponent} from "./summary/investment-summary.component";
 import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
-        CommonModule, DataTableModule, SharedModule,
+        CommonModule, DataTableModule, SharedModule, FormsModule
     ],
     declarations: [
         InvestmentsComponent,

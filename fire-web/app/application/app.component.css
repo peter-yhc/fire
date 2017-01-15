@@ -9,4 +9,10 @@
 :host /deep/ .btn-custom-success:focus {
     background-color: #659999;
     border-color: #226666;
+    color: #FFFFFF;
+}
+
+:host /deep/ .btn-custom-failure {
+    color: #FFFFFF;
+    background-color: #AA3939;
 }

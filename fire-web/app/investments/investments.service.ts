@@ -28,6 +28,9 @@ export class InvestmentsService {
 
     getSharePrices(stockAccount: StockAccount): Observable<any> {
         let allSymbols = this.mapSymbolsToExchanges(stockAccount);
+        if (allSymbols.length == 0) {
+            return Observable.empty();
+        }
         return this.getGoogleSharePrices(allSymbols);
     }
 

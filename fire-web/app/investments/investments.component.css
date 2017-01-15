@@ -2,7 +2,7 @@
     margin-bottom: 1.5em;
 }
 
-#stock-details-container {
+#stock-edit-container {
     margin-top: 1em;
 }
 
@@ -26,12 +26,11 @@
     background-color: rgb(235, 237, 240);
 }
 
-:host /deep/ .stock-delete-button {
-    color: #FFFFFF;
-    background-color: #AA3939;
+:host /deep/ #new-investment-account-modal {
+    top: 25% !important;
 }
 
-:host /deep/ .stock-add-button {
-    color: #FFFFFF;
-    background-color: #2D882D;
+:host /deep/ #investment-edit-toggle {
+    height: 1.45em;
+    padding-top: 0.15em;
 }
