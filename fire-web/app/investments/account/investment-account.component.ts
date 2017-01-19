@@ -94,4 +94,9 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
             stock.breakdown = parseFloat((stock.totalValue / totalAccountValue).toFixed(3));
         })
     }
+
+    private updateStockAccountCash($event) {
+        this.stockAccount.cash = $event.target.value.replace(',','').replace('$','');
+        this.investmentUpdatedEmitter.emit(this.stockAccount);
+    }
 }

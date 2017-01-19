@@ -5,7 +5,9 @@
         <div class="input-group input-group-">
             <span class="input-group-addon investment-cash-remaining-addon">Cash Remaining</span>
             <input type="text" class="form-control" [disabled]="!editModeToggle"
-                   placeholder="{{ stockAccount.cash | currency : 'USD' : true }}"/>
+                   [ngModel]="stockAccount.cash | currency : 'USD' : true"
+                   (blur)="updateStockAccountCash($event)"
+            />
         </div>
     </div>
 </div>
