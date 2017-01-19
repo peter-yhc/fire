@@ -34,3 +34,8 @@
     height: 1.45em;
     padding-top: 0.15em;
 }
+
+:host /deep/ .investment-account-add-button-fix {
+    top: 0;
+    left: 0.05em;
+}
