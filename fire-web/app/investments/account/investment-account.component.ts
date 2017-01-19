@@ -27,7 +27,7 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
             {headerName: "Shares", field: "shareCount"},
             {headerName: "Breakdown", field: "breakdown"},
             {headerName: "Fee", field: "managementFee"},
-            {headerName: "Total Value", field: "totalValue"},
+            {headerName: "Market Value", field: "marketValue"},
             {headerName: "Book Value", field: "bookValue"},
             {headerName: "Gain", field: "gain"},
             {headerName: "Updated Date", field: "updatedDate"}
@@ -78,9 +78,9 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
 
                 if (stock.symbol == data.symbol) {
                     stock.sharePrice = parseFloat(data.price);
-                    stock.totalValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
-                    stock.gain = parseFloat(((stock.totalValue - stock.bookValue) / stock.bookValue).toFixed(2));
-                    totalAccountValue += stock.totalValue;
+                    stock.marketValue = parseFloat((stock.sharePrice * stock.shareCount).toFixed(2));
+                    stock.gain = parseFloat(((stock.marketValue - stock.bookValue) / stock.bookValue).toFixed(2));
+                    totalAccountValue += stock.marketValue;
                     this.stockAccount.stocks[idx] = stock;
                     this.backupShareCount[stock.symbol] = stock.shareCount;
                 }
@@ -91,7 +91,7 @@ export class InvestmentAccountComponent implements OnInit, OnChanges {
 
     private updateBreakdown(totalAccountValue) {
         this.stockAccount.stocks.forEach(stock => {
-            stock.breakdown = parseFloat((stock.totalValue / totalAccountValue).toFixed(3));
+            stock.breakdown = parseFloat((stock.marketValue / totalAccountValue).toFixed(3));
         })
     }
 

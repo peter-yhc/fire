@@ -6,7 +6,7 @@ export class Stock {
     public managementFee:number;
     public sharePrice:number;
     public breakdown:number;
-    public totalValue:number;
+    public marketValue:number;
     public bookValue:number;
     public gain:number;
     public updatedDate:Date;
@@ -19,7 +19,7 @@ export class Stock {
             this.managementFee = stockData.managementFee;
             this.sharePrice = stockData.sharePrice;
             this.breakdown = stockData.breakdown;
-            this.totalValue = stockData.totalValue;
+            this.marketValue = stockData.marketValue;
             this.bookValue = stockData.bookValue;
             this.gain = stockData.gain;
             this.updatedDate = stockData.updatedDate;

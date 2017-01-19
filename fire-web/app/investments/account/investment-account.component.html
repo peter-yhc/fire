@@ -34,7 +34,7 @@
 
         <!--Currency Columns-->
         <template
-                *ngIf="columnDef.field == 'totalValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
+                *ngIf="columnDef.field == 'marketValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
                 pTemplate="type" type="body" let-row="rowData">
             <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
         </template>
