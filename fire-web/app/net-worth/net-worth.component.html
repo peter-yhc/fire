@@ -1,5 +1,11 @@
 <div class="row income-table">
     <p-dataTable [value]="rowData">
-        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
+        <p-header>
+            <div style="text-align:left">
+                <p-multiSelect [(options)]="columnOptions" [(ngModel)]="columnDefs"></p-multiSelect>
+            </div>
+        </p-header>
+        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field"
+                  [header]="columnDef.headerName"></p-column>
     </p-dataTable>
 </div>
