@@ -1,31 +1,42 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {Investment} from "../model/Investment";
 
 @Component({
     selector: "investment-summary-component",
     templateUrl: "app/investments/summary/investment-summary.component.html"
 })
-export class InvestmentSummaryComponent implements OnInit {
+export class InvestmentSummaryComponent implements OnChanges {
+
     private rowData;
     private columnDefs;
 
     @Input() investment: Investment;
 
-    ngOnInit(): void {
-
+    constructor() {
         this.columnDefs = [
             {headerName: "Allocation Type", field: "allocationType"},
             {headerName: "Value", field: "value"}
         ];
+    }
 
+    ngOnChanges():void {
+        var marketValue = this.calculateTotals("marketValue");
+        var bookValue = this.calculateTotals("bookValue");
+        var gains = (marketValue - bookValue) / bookValue;
         this.rowData = [
-            {allocationType: "Market Value", value: "$120000"},
-            {allocationType: "Book Value", value: "$120000"},
-            {allocationType: "CA Stock", value: "40000"},
-            {allocationType: "US Stock", value: "70000"},
-            {allocationType: "Bonds", value: "10000"},
-            {allocationType: "Total Fees", value: "500"},
-            {allocationType: "Average Management Fee", value: "0.12%"},
+            {allocationType: "Market Value", value: marketValue},
+            {allocationType: "Book Value", value: bookValue},
+            {allocationType: "Gains", value: gains},
         ];
+    }
+
+    calculateTotals(field):number {
+        let total = 0;
+        this.investment.accounts.forEach(account => {
+            account.stocks.forEach(stock => {
+                total += stock[field]
+            })
+        });
+        return parseFloat(total.toFixed(2));
     }
 }

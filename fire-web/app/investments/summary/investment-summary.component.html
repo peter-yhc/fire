@@ -1,5 +1,12 @@
 <div class="row">
     <p-dataTable [value]="rowData">
-        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field" [header]="columnDef.headerName"></p-column>
+        <p-column *ngFor="let columnDef of columnDefs; let j = index"
+                  [field]="columnDef.field"
+                  [header]="columnDef.headerName">
+            <template *ngIf="j == 1" pTemplate="type" type="body" let-row="rowData" let-i="rowIndex">
+                <span *ngIf="i < 2">{{ row[columnDef.field] | currency : 'USD' : true }}</span>
+                <span *ngIf="i >= 2">{{ row[columnDef.field] | percent : '1.2-2' }}</span>
+            </template>
+        </p-column>
     </p-dataTable>
 </div>
