@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnChanges} from "@angular/core";
 import {SelectItem} from "primeng/primeng";
 
 @Component({
@@ -6,6 +6,7 @@ import {SelectItem} from "primeng/primeng";
     styleUrls: ["app/net-worth/net-worth.component.css"],
 })
 export class NetWorthComponent implements OnInit {
+
     private rowData;
     private columnDefs;
     private columnOptions:SelectItem[];
@@ -64,8 +65,12 @@ export class NetWorthComponent implements OnInit {
         ];
 
         this.columnOptions = [];
-        for (let i = 0; i < this.columnDefs.length; i++) {
-            this.columnOptions.push({label: this.columnDefs[i].headerName, value: this.columnDefs[i]});
-        }
+        this.columnDefs.forEach(columnDef => {
+            this.columnOptions.push({label: columnDef.headerName, value: columnDef})
+        })
+    }
+
+    multiselectChange(changes):void {
+        console.log("multiselect changed " + JSON.stringify($event))
     }
 }

@@ -2,10 +2,20 @@
     <p-dataTable [value]="rowData">
         <p-header>
             <div style="text-align:left">
-                <p-multiSelect [(options)]="columnOptions" [(ngModel)]="columnDefs"></p-multiSelect>
+                <p-multiSelect id="networth-table-multiselect"
+                               [(options)]="columnOptions"
+                               [ngModel]="columnDefs"
+                               (ngModelChange)="multiselectChange($event)">
+                </p-multiSelect>
             </div>
         </p-header>
-        <p-column *ngFor="let columnDef of columnDefs" [field]="columnDef.field"
-                  [header]="columnDef.headerName"></p-column>
+        <p-column *ngFor="let columnDef of columnDefs; let colIndex = index" [field]="columnDef.field"
+                  [header]="columnDef.headerName">
+
+            <template *ngIf="colIndex > 0" pTemplate="type" type="body" let-row="rowData">
+                <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
+            </template>
+
+        </p-column>
     </p-dataTable>
 </div>
