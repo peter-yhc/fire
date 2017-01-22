@@ -1,138 +1,66 @@
 [
     {
         "month": "2016-01",
-        "netWorth": [
-            {
-                "currency": "CDN",
-                "value": 325550.11
-            },
-            {
-                "currency": "AUD",
-                "value": 98414.11
-            }
-        ],
-        "savings": [
-            {
-                "currency": "CDN",
-                "value": 2351.15
-            },
-            {
-                "currency": "AUD",
-                "value": 1993.15
-            }
-        ],
-        "invested": [
-            {
-                "currency": "CDN",
-                "value": 79825.11
-            },
-            {
-                "currency": "USD",
-                "value": 6548.11
-            }
-        ],
+        "currency": "CDN",
+        "total": 320796.11,
+        "savings": 2351.15,
+        "invested": 79825.11,
         "homeEquity": 250012.6
     },
     {
         "month": "2016-02",
-        "netWorth": [
-            {
-                "currency": "CDN",
-                "value": 325550.11
-            },
-            {
-                "currency": "AUD",
-                "value": 98414.11
-            }
-        ],
-        "savings": [
-            {
-                "currency": "CDN",
-                "value": 2351.15
-            },
-            {
-                "currency": "AUD",
-                "value": 1993.15
-            }
-        ],
-        "invested": [
-            {
-                "currency": "CDN",
-                "value": 79825.11
-            },
-            {
-                "currency": "USD",
-                "value": 6548.11
-            }
-        ],
-        "homeEquity": 250012.6
+        "currency": "CDN",
+        "total": 380962.11,
+        "savings": 2651.15,
+        "invested": 81825.11,
+        "homeEquity": 280012.6
     },
     {
         "month": "2016-03",
-        "netWorth": [
-            {
-                "currency": "CDN",
-                "value": 325550.11
-            },
-            {
-                "currency": "AUD",
-                "value": 98414.11
-            }
-        ],
-        "savings": [
-            {
-                "currency": "CDN",
-                "value": 2351.15
-            },
-            {
-                "currency": "AUD",
-                "value": 1993.15
-            }
-        ],
-        "invested": [
-            {
-                "currency": "CDN",
-                "value": 79825.11
-            },
-            {
-                "currency": "USD",
-                "value": 6548.11
-            }
-        ],
-        "homeEquity": 250012.6
+        "currency": "CDN",
+        "total": 435790.11,
+        "savings": 3051.15,
+        "invested": 85825.11,
+        "homeEquity": 398012.6
     },
     {
         "month": "2016-04",
-        "netWorth": [
-            {
-                "currency": "CDN",
-                "value": 325550.11
-            },
-            {
-                "currency": "AUD",
-                "value": 98414.11
-            }
-        ],
-        "savings": [
-            {
-                "currency": "CDN",
-                "value": 2351.15
-            },
-            {
-                "currency": "AUD",
-                "value": 1993.15
-            }
-        ],
-        "invested": [
-            {
-                "currency": "CDN",
-                "value": 79825.11
-            },
-            {
-                "currency": "USD",
-                "value": 6548.11
-            }
-        ],
+        "currency": "CDN",
+        "total": 507630.11,
+        "savings": 2351.15,
+        "invested": 94825.11,
+        "homeEquity": 420012.6
+    },
+    {
+        "month": "2016-01",
+        "currency": "AUD",
+        "total": 320796.11,
+        "savings": 2351.15,
+        "invested": 79825.11,
         "homeEquity": 250012.6
+    },
+    {
+        "month": "2016-02",
+        "currency": "AUD",
+        "total": 380962.11,
+        "savings": 2651.15,
+        "invested": 81825.11,
+        "homeEquity": 280012.6
+    },
+    {
+        "month": "2016-03",
+        "currency": "AUD",
+        "total": 435790.11,
+        "savings": 3051.15,
+        "invested": 85825.11,
+        "homeEquity": 398012.6
+    },
+    {
+        "month": "2016-04",
+        "currency": "AUD",
+        "total": 507630.11,
+        "savings": 2351.15,
+        "invested": 94825.11,
+        "homeEquity": 420012.6
     }
 ]

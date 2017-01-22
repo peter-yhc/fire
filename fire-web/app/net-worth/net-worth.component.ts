@@ -1,62 +1,100 @@
 import {Component, OnInit} from "@angular/core";
 import {SelectItem} from "primeng/primeng";
+import {NetWorthService} from "./net-worth.service";
+import {NetWorth} from "./model/NetWorth";
 
 @Component({
     templateUrl: "app/net-worth/net-worth.component.html",
     styleUrls: ["app/net-worth/net-worth.component.css"],
+    providers: [
+        NetWorthService
+    ]
 })
 export class NetWorthComponent implements OnInit {
 
     private rowData;
     private columns;
-    private previousColumns:any[];
-    private columnIndices:string[];
-    private columnOptions:SelectItem[];
+    private previousColumns: any[];
+    private columnIndices: string[];
+    private columnOptions: SelectItem[];
+    private netWorth: NetWorth;
+
+    constructor(private networthService: NetWorthService) {
+        this.netWorth = new NetWorth();
+    }
 
     ngOnInit() {
         this.initialColumnSetup();
 
+        this.networthService.get().subscribe(netWorth => {
+            this.netWorth = netWorth;
+        });
+
         this.rowData = [
             {
-                month: "2016-01",
-                netWorth: 12302.21,
-                "liquid": 8454.23,
-                "invested": 64972,
-                "homeEquity": 3522,
-                "income": 23432
+                "month": "2016-01",
+                "currency": "CDN",
+                "total": 320796.11,
+                "savings": 2351.15,
+                "invested": 79825.11,
+                "homeEquity": 250012.6
             },
             {
-                month: "2016-02",
-                netWorth: 12302.21,
-                "liquid": 8454.23,
-                "invested": 64972,
-                "homeEquity": 3522,
-                "income": 23432
+                "month": "2016-02",
+                "currency": "CDN",
+                "total": 380962.11,
+                "savings": 2651.15,
+                "invested": 81825.11,
+                "homeEquity": 280012.6
             },
             {
-                month: "2016-03",
-                netWorth: 12302.21,
-                "liquid": 8454.23,
-                "invested": 64972,
-                "homeEquity": 3522,
-                "income": 23432
+                "month": "2016-03",
+                "currency": "CDN",
+                "total": 435790.11,
+                "savings": 3051.15,
+                "invested": 85825.11,
+                "homeEquity": 398012.6
             },
             {
-                month: "2016-04",
-                netWorth: 12302.21,
-                "liquid": 8454.23,
-                "invested": 64972,
-                "homeEquity": 3522,
-                "income": 23432
+                "month": "2016-04",
+                "currency": "CDN",
+                "total": 507630.11,
+                "savings": 2351.15,
+                "invested": 94825.11,
+                "homeEquity": 420012.6
             },
             {
-                month: "2016-05",
-                netWorth: 12302.21,
-                "liquid": 8454.23,
-                "invested": 64972,
-                "homeEquity": 3522,
-                "income": 23432
+                "month": "2016-01",
+                "currency": "AUD",
+                "total": 320796.11,
+                "savings": 2351.15,
+                "invested": 79825.11,
+                "homeEquity": 250012.6
             },
+            {
+                "month": "2016-02",
+                "currency": "AUD",
+                "total": 380962.11,
+                "savings": 2651.15,
+                "invested": 81825.11,
+                "homeEquity": 280012.6
+            },
+            {
+                "month": "2016-03",
+                "currency": "AUD",
+                "total": 435790.11,
+                "savings": 3051.15,
+                "invested": 85825.11,
+                "homeEquity": 398012.6
+            },
+            {
+                "month": "2016-04",
+                "currency": "AUD",
+                "total": 507630.11,
+                "savings": 2351.15,
+                "invested": 94825.11,
+                "homeEquity": 420012.6
+            }
         ];
 
         this.columnOptions = [];
@@ -78,7 +116,7 @@ export class NetWorthComponent implements OnInit {
         this.previousColumns = this.columns.slice();
     }
 
-    multiselectChange():void {
+    multiselectChange(): void {
         if (this.columns.length > this.previousColumns.length) {
             let addedColumn = this.intersect(this.columns, this.previousColumns)[0];
             let originalPosition = this.columnIndices.indexOf(addedColumn.headerName);
