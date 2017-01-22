@@ -4,16 +4,16 @@
             <div style="text-align:left">
                 <p-multiSelect id="networth-table-multiselect"
                                [(options)]="columnOptions"
-                               [ngModel]="columnDefs"
+                               [ngModel]="columns"
                                (ngModelChange)="multiselectChange($event)">
                 </p-multiSelect>
             </div>
         </p-header>
-        <p-column *ngFor="let columnDef of columnDefs; let colIndex = index" [field]="columnDef.field"
-                  [header]="columnDef.headerName">
+        <p-column *ngFor="let column of columns; let colIndex = index" [field]="column.field"
+                  [header]="column.headerName">
 
             <template *ngIf="colIndex > 0" pTemplate="type" type="body" let-row="rowData">
-                <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
+                <span>{{ row[column.field] | currency : 'USD' : true }}</span>
             </template>
 
         </p-column>

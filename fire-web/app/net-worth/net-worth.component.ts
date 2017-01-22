@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SelectItem} from "primeng/primeng";
 
 @Component({
@@ -8,18 +8,13 @@ import {SelectItem} from "primeng/primeng";
 export class NetWorthComponent implements OnInit {
 
     private rowData;
-    private columnDefs;
+    private columns;
+    private previousColumns:any[];
+    private columnIndices:string[];
     private columnOptions:SelectItem[];
 
     ngOnInit() {
-        this.columnDefs = [
-            {headerName: "Month", field: "month"},
-            {headerName: "Net Worth", field: "netWorth"},
-            {headerName: "Liquid", field: "liquid"},
-            {headerName: "Invested", field: "invested"},
-            {headerName: "Home Equity", field: "homeEquity"},
-            {headerName: "Income", field: "income"}
-        ];
+        this.initialColumnSetup();
 
         this.rowData = [
             {
@@ -65,12 +60,44 @@ export class NetWorthComponent implements OnInit {
         ];
 
         this.columnOptions = [];
-        this.columnDefs.forEach(columnDef => {
-            this.columnOptions.push({label: columnDef.headerName, value: columnDef})
+        this.columns.forEach(column => {
+            this.columnOptions.push({label: column.headerName, value: column})
         })
     }
 
-    multiselectChange(changes):void {
-        console.log("multiselect changed " + JSON.stringify($event))
+    private initialColumnSetup() {
+        this.columns = [
+            {headerName: "Month", field: "month"},
+            {headerName: "Net Worth", field: "netWorth"},
+            {headerName: "Liquid", field: "liquid"},
+            {headerName: "Invested", field: "invested"},
+            {headerName: "Home Equity", field: "homeEquity"},
+            {headerName: "Income", field: "income"}
+        ];
+        this.columnIndices = ["Month", "Net Worth", "Liquid", "Invested", "Home Equity", "Income"];
+        this.previousColumns = this.columns.slice();
+    }
+
+    multiselectChange():void {
+        if (this.columns.length > this.previousColumns.length) {
+            let addedColumn = this.intersect(this.columns, this.previousColumns)[0];
+            let originalPosition = this.columnIndices.indexOf(addedColumn.headerName);
+
+            var splice = this.columns.splice(this.columns.length - 1, 1); // remove from default end of array
+            this.columns.splice(originalPosition, 0, splice[0]); // reintroduce to original position
+        }
+        this.previousColumns = this.columns.slice();
+    }
+
+    private intersect(a, b) {
+        let t;
+        if (b.length > a.length) {
+            t = b;
+            b = a;
+            a = t;
+        }
+        return a.filter(function (e) {
+            if (b.indexOf(e) == -1) return true;
+        });
     }
 }
