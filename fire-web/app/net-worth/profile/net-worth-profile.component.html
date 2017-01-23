@@ -1,0 +1,21 @@
+<div class="row income-table">
+    <p-dataTable [value]="rows">
+        <p-header>
+            <div style="text-align:left">
+                <p-multiSelect id="networth-table-multiselect"
+                               [(options)]="columnOptions"
+                               [ngModel]="columns"
+                               (ngModelChange)="multiselectChange($event)">
+                </p-multiSelect>
+            </div>
+        </p-header>
+        <p-column *ngFor="let column of columns; let colIndex = index" [field]="column.field"
+                  [header]="column.headerName">
+
+            <template *ngIf="colIndex > 0" pTemplate="type" type="body" let-row="rowData">
+                <span>{{ row[column.field] | currency : 'USD' : true }}</span>
+            </template>
+
+        </p-column>
+    </p-dataTable>
+</div>

@@ -50,6 +50,17 @@ app.post('/api/investments', function (req, res) {
     res.end();
 });
 
+app.get('/api/net-worth', function (req, res) {
+    var content = fs.readFileSync("stub/net-worth.json");
+    res.json(JSON.parse(content));
+});
+
+app.post('/api/net-worth', function (req, res) {
+    var body = JSON.stringify(req.body).replace(/"(\d+\.?\d*)"/g, "$1");
+    fs.writeFileSync("stub/net-worth.json", body);
+    res.end();
+});
+
 app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
