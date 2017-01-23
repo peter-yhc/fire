@@ -1,7 +1,3 @@
-:host /deep/ table tr:last-child {
-    background: #00e900;
-}
-
 :host /deep/ #networth-table-multiselect label {
     font-weight: normal;
     font-size: 0.9em;

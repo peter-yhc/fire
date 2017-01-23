@@ -1,5 +1,6 @@
 <div class="row income-table">
-    <p-dataTable [value]="rows">
+    <h4>{{profile.currency}}</h4>
+    <p-dataTable [value]="profile.reports">
         <p-header>
             <div style="text-align:left">
                 <p-multiSelect id="networth-table-multiselect"

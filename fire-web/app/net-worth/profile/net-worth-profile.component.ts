@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
-import {MonthlyReport} from "../model/MonthlyReport";
 import {SelectItem} from "primeng/components/common/api";
+import {NetWorthProfile} from "../model/NetWorthProfile";
 
 @Component({
     selector: "net-worth-profile-component",
@@ -9,7 +9,7 @@ import {SelectItem} from "primeng/components/common/api";
 })
 export class NetWorthProfileComponent {
 
-    @Input() monthlyReports: MonthlyReport[];
+    @Input() profile: NetWorthProfile;
 
     private rows;
     private columns;
@@ -19,41 +19,6 @@ export class NetWorthProfileComponent {
 
     ngOnInit() {
         this.initialColumnSetup();
-
-        this.rows = [
-            {
-                "month": "2016-01",
-                "currency": "AUD",
-                "total": 320796.11,
-                "savings": 2351.15,
-                "invested": 79825.11,
-                "homeEquity": 250012.6,
-            },
-            {
-                "month": "2016-02",
-                "currency": "AUD",
-                "total": 380962.11,
-                "savings": 2651.15,
-                "invested": 81825.11,
-                "homeEquity": 280012.6
-            },
-            {
-                "month": "2016-03",
-                "currency": "AUD",
-                "total": 435790.11,
-                "savings": 3051.15,
-                "invested": 85825.11,
-                "homeEquity": 398012.6
-            },
-            {
-                "month": "2016-04",
-                "currency": "AUD",
-                "total": 507630.11,
-                "savings": 2351.15,
-                "invested": 94825.11,
-                "homeEquity": 420012.6
-            }
-        ];
 
         this.columnOptions = [];
         this.columns.forEach(column => {

@@ -1,4 +1,3 @@
-<div>
-
-    <net-worth-profile-component></net-worth-profile-component>
+<div class="row net-worth-profile-container" *ngFor="let profile of netWorth.profiles">
+    <net-worth-profile-component [profile]="profile"></net-worth-profile-component>
 </div>
