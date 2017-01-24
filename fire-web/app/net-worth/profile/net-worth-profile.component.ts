@@ -32,7 +32,8 @@ export class NetWorthProfileComponent {
             {headerName: "Total", field: "total"},
             {headerName: "Savings", field: "savings"},
             {headerName: "Invested", field: "invested"},
-            {headerName: "Home Equity", field: "homeEquity"}
+            {headerName: "Home Equity", field: "homeEquity"},
+            {headerName: "Debts", field: "debts"}
         ];
         this.columnIndices = ["Month", "Net Worth", "Liquid", "Invested", "Home Equity", "Income"];
         this.previousColumns = this.columns.slice();

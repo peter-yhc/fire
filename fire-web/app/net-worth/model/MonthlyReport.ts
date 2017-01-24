@@ -5,6 +5,7 @@ export class MonthlyReport {
     public savings: number;
     public invested: number;
     public homeEquity: number;
+    public debts: number;
 
     constructor(reportData: any) {
         this.month = reportData.month;
@@ -12,5 +13,6 @@ export class MonthlyReport {
         this.savings = reportData.savings;
         this.invested = reportData.invested;
         this.homeEquity = reportData.homeEquity;
+        this.debts = reportData.debts;
     }
 }

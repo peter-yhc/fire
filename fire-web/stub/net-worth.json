@@ -8,28 +8,32 @@
                     "total": 320796.11,
                     "savings": 2351.15,
                     "invested": 79825.11,
-                    "homeEquity": 250012.6
+                    "homeEquity": 250012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-02",
                     "total": 380962.11,
                     "savings": 2651.15,
                     "invested": 81825.11,
-                    "homeEquity": 280012.6
+                    "homeEquity": 280012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-03",
                     "total": 435790.11,
                     "savings": 3051.15,
                     "invested": 85825.11,
-                    "homeEquity": 398012.6
+                    "homeEquity": 398012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-04",
                     "total": 507630.11,
                     "savings": 2351.15,
                     "invested": 94825.11,
-                    "homeEquity": 420012.6
+                    "homeEquity": 420012.6,
+                    "debts": 0
                 }
             ]
         },
@@ -41,28 +45,32 @@
                     "total": 320796.11,
                     "savings": 2351.15,
                     "invested": 79825.11,
-                    "homeEquity": 250012.6
+                    "homeEquity": 250012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-02",
                     "total": 380962.11,
                     "savings": 2651.15,
                     "invested": 81825.11,
-                    "homeEquity": 280012.6
+                    "homeEquity": 280012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-03",
                     "total": 435790.11,
                     "savings": 3051.15,
                     "invested": 85825.11,
-                    "homeEquity": 398012.6
+                    "homeEquity": 398012.6,
+                    "debts": 0
                 },
                 {
                     "month": "2016-04",
                     "total": 507630.11,
                     "savings": 2351.15,
                     "invested": 94825.11,
-                    "homeEquity": 420012.6
+                    "homeEquity": 420012.6,
+                    "debts": 0
                 }
             ]
         }
