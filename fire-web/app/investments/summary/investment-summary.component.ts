@@ -20,9 +20,9 @@ export class InvestmentSummaryComponent implements OnChanges {
     }
 
     ngOnChanges():void {
-        var marketValue = this.calculateTotals("marketValue");
-        var bookValue = this.calculateTotals("bookValue");
-        var gains = (marketValue - bookValue) / bookValue;
+        let marketValue = this.calculateTotals("marketValue");
+        let bookValue = this.calculateTotals("bookValue");
+        let gains = (marketValue - bookValue) / bookValue;
         this.rowData = [
             {allocationType: "Market Value", value: marketValue},
             {allocationType: "Book Value", value: bookValue},

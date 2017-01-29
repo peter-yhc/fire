@@ -22,7 +22,7 @@
               [editable]="i <= 7 && i % 2 == 1 || i == 0">
 
         <!--Symbol Columns-->
-        <template *ngIf="columnDef.field == 'symbol'" pTemplate="type" type="body" let-row="rowData">
+        <template *ngIf="columnDef.field == 'symbol'" pTemplate="type" let-row="rowData">
             <span>
                 <a class="symbol-link"
                    href="{{ 'https://www.google.com/finance?q=' + row[columnDef.field] }}"
@@ -35,27 +35,27 @@
         <!--Currency Columns-->
         <template
                 *ngIf="columnDef.field == 'marketValue' || columnDef.field == 'sharePrice' || columnDef.field == 'bookValue'"
-                pTemplate="type" type="body" let-row="rowData">
+                pTemplate="type" let-row="rowData">
             <span>{{ row[columnDef.field] | currency : 'USD' : true }}</span>
         </template>
 
         <!--Percentage Columns-->
         <template
                 *ngIf="columnDef.field == 'breakdown' || columnDef.field == 'managementFee' || columnDef.field == 'gain'"
-                pTemplate="type" type="body" let-row="rowData">
+                pTemplate="type" let-row="rowData">
             <span>{{ row[columnDef.field] | percent }}</span>
         </template>
 
         <template
                 *ngIf="columnDef.field == 'updatedDate'"
-                pTemplate="type" type="body" let-row="rowData">
+                pTemplate="type" let-row="rowData">
             <span>{{ row[columnDef.field] }}</span>
         </template>
 
         <!--Delete Button-->
         <template
                 *ngIf="columnDef.field == 'delete'"
-                pTemplate="type" type="body" let-row="rowData">
+                pTemplate="type" let-row="rowData">
             <button class="btn btn-custom-failure" (click)="deleteRow(row)"><span class="glyphicon glyphicon-remove"></span></button>
         </template>
 

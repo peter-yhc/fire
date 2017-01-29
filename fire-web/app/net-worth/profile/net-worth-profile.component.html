@@ -13,7 +13,7 @@
         <p-column *ngFor="let column of columns; let colIndex = index" [field]="column.field"
                   [header]="column.headerName">
 
-            <template *ngIf="colIndex > 0" pTemplate="type" type="body" let-row="rowData">
+            <template *ngIf="colIndex > 0" pTemplate="type" let-row="rowData">
                 <span>{{ row[column.field] | currency : 'USD' : true }}</span>
             </template>
 
