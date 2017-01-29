@@ -7,7 +7,7 @@
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
                       [editable]="i > 0">   <!-- first column should not be editable -->
-                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate="body">
                     <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
                 </template>
             </p-column>
@@ -23,7 +23,7 @@
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
                       [editable]="i > 0">   <!-- first column should not be editable -->
-                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate="body">
                     <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
                 </template>
             </p-column>
@@ -37,7 +37,7 @@
                       [field]="columnDef.field"
                       [header]="columnDef.headerName"
                       [editable]="i > 0">   <!-- first column should not be editable -->
-                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate type="body">
+                <template *ngIf="i > 0" let-col let-row="rowData" pTemplate="body">
                     <span *ngIf="row[col.field]">{{ row[col.field] | currency : 'USD' : true }}</span>
                 </template>
             </p-column>

@@ -51,7 +51,7 @@ export class MonthComponent {
 
     onExpenseChanged(monthlyExpense: MonthlyExpense) {
         //noinspection TypeScriptUnresolvedFunction
-        let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod).actual;
+        let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod()).actual;
         //noinspection TypeScriptUnresolvedFunction
         let excessesSum = monthlyExpense.excesses.reduce(this.reduceMethod()).actual;
         //noinspection TypeScriptUnresolvedFunction
@@ -66,9 +66,9 @@ export class MonthComponent {
 
     private reduceMethod() {
         return function (a, b) {
-            a.actual = a.actual == undefined ? 0 : parseFloat(a.actual);
-            b.actual = b.actual == undefined ? 0 : parseFloat(b.actual);
-            return {actual: a.actual + b.actual}
+            let aValue = a.actual == undefined ? 0 : parseFloat(a.actual);
+            let bValue = b.actual == undefined ? 0 : parseFloat(b.actual);
+            return {actual: aValue + bValue}
         }
     }
 }
