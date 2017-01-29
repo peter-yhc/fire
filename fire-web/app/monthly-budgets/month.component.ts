@@ -9,14 +9,14 @@ import {MonthlyExpense} from "./expense/MonthlyExpense";
 })
 export class MonthComponent {
 
-    private monthId:number;
-    private month:string;
-    private monthList:Object;
-    private totalIncome:number;
-    private totalExpense:number;
-    private savingsRate:number;
+    private monthId: number;
+    private month: string;
+    private monthList: Object;
+    private totalIncome: number;
+    private totalExpense: number;
+    private savingsRate: string;
 
-    constructor(private route:ActivatedRoute) {
+    constructor(private route: ActivatedRoute) {
         this.monthList = {
             "january": "01",
             "february": "02",
@@ -40,7 +40,7 @@ export class MonthComponent {
         });
     }
 
-    onIncomeChanged(monthlyIncome:MonthlyIncome) {
+    onIncomeChanged(monthlyIncome: MonthlyIncome) {
         //noinspection TypeScriptUnresolvedFunction
         let incomeSum = monthlyIncome.incomes.reduce(this.reduceMethod()).actual;
         //noinspection TypeScriptUnresolvedFunction
@@ -49,9 +49,9 @@ export class MonthComponent {
         this.calculateSavingsRate();
     }
 
-    onExpenseChanged(monthlyExpense:MonthlyExpense) {
+    onExpenseChanged(monthlyExpense: MonthlyExpense) {
         //noinspection TypeScriptUnresolvedFunction
-        let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod()).actual;
+        let necessariesSum = monthlyExpense.necessaries.reduce(this.reduceMethod).actual;
         //noinspection TypeScriptUnresolvedFunction
         let excessesSum = monthlyExpense.excesses.reduce(this.reduceMethod()).actual;
         //noinspection TypeScriptUnresolvedFunction

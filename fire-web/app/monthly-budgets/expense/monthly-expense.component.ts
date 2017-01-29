@@ -20,9 +20,10 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
     private excessExpensesColumnDefs;
     private expenseService:MonthlyExpenseService;
     private monthlyExpense:MonthlyExpense;
-    private entityChanged:boolean;
+    entityChanged:boolean;
+    persistenceEventEmitter:PersistenceEventEmitter;
 
-    constructor(expenseService:MonthlyExpenseService, private persistenceEventEmitter:PersistenceEventEmitter) {
+    constructor(expenseService:MonthlyExpenseService, persistenceEventEmitter:PersistenceEventEmitter) {
         let createBaseColumnDefs = () => {
             return [
                 {headerName: 'Monthly Budgeted', field: 'budget'},
@@ -65,7 +66,7 @@ export class MonthlyExpenseComponent implements OnChanges, OnInit, AutoSaveable 
         this.entityChanged = true;
     }
 
-    private saveChanges(): void {
+    saveChanges(): void {
         this.expenseService.save(2015, this.monthId, this.monthlyExpense).subscribe(
             data => {
                 console.log("Success: " + data);

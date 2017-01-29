@@ -1,19 +1,4 @@
-export module ExpenseEntry {
-    export class Expense {
-
-        public target:String;
-        public budget:Number;
-        public actual:Number;
-
-        constructor(expenseData:any) {
-            this.target = expenseData.target;
-            this.budget = expenseData.budget;
-            this.actual = expenseData.actual;
-        }
-    }
-}
-
-import Expense = ExpenseEntry.Expense;
+import {Expense} from "./ExpenseEntry";
 export class MonthlyExpense {
 
     public period:string;
